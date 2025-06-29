@@ -74,44 +74,47 @@ import { ref } from 'vue'
 const experiences = ref([
   {
     id: 1,
-    company: 'TechCorp Inc.',
-    position: 'Senior Full Stack Developer',
-    duration: '2022 - Present',
-    location: 'San Francisco, CA',
-    description: 'Led development of scalable web applications using Vue.js, Node.js, and AWS. Mentored junior developers and implemented CI/CD pipelines.',
-    technologies: ['Vue.js', 'Node.js', 'AWS', 'Docker', 'MongoDB'],
+    company: 'Schrödinger',
+    position: 'Senior Scientist II',
+    duration: 'Mar 2020 - Present',
+    location: 'Bangalore, India',
+    description: 'Led active learning–based virtual screening campaigns using large molecular databases for faster hit enrichment. Developed predictive deep learning models for toxicity profiling and managed large scale compound libraries.',
+    technologies: ['Python', 'Machine Learning', 'Molecular Modeling', 'Schrödinger Suite', 'Deep Learning'],
     achievements: [
-      'Increased application performance by 40%',
-      'Reduced deployment time by 60%',
-      'Led team of 5 developers'
+      'Led active learning–based virtual screening campaigns',
+      'Developed predictive deep learning models for toxicity profiling',
+      'Managed large scale compound libraries and automated workflows',
+      'Presented complex scientific findings to executive stakeholders'
     ]
   },
   {
     id: 2,
-    company: 'StartupXYZ',
-    position: 'Frontend Developer',
-    duration: '2020 - 2022',
-    location: 'Remote',
-    description: 'Built responsive user interfaces and implemented modern frontend architectures. Collaborated with design and backend teams.',
-    technologies: ['React', 'TypeScript', 'Redux', 'Tailwind CSS'],
+    company: 'Schrödinger',
+    position: 'Senior Scientist',
+    duration: 'Jan 2016 - Mar 2020',
+    location: 'Bangalore, India',
+    description: 'Spearheaded cross-functional collaborations with medicinal chemists and biologists to identify and validate novel therapeutic targets in oncology. Coordinated global deployment of computational tools.',
+    technologies: ['Target Prioritization', 'Data Digitization', 'Research Analytics', 'Oncology Research'],
     achievements: [
-      'Improved user engagement by 25%',
-      'Reduced bundle size by 30%',
-      'Implemented accessibility features'
+      'Led 8 new drug discovery projects for hit and lead optimisation',
+      'Coordinated global research partners for data digitization',
+      'Developed custom automations for target prioritization',
+      'Created advanced automated analytics and computational tools'
     ]
   },
   {
     id: 3,
-    company: 'Digital Solutions Ltd.',
-    position: 'Junior Developer',
-    duration: '2019 - 2020',
-    location: 'New York, NY',
-    description: 'Developed and maintained web applications. Learned modern development practices and tools.',
-    technologies: ['JavaScript', 'HTML', 'CSS', 'PHP', 'MySQL'],
+    company: 'Schrödinger',
+    position: 'Junior Application Scientist',
+    duration: 'May 2011 - Jan 2016',
+    location: 'Bangalore, India',
+    description: 'Trained researchers on advanced computational methods and provided technical support. Developed impactful case studies and training materials for computational techniques.',
+    technologies: ['Molecular Docking', 'Molecular Dynamics', '3D QSAR', 'Cheminformatics', 'Training'],
     achievements: [
-      'Completed 15+ client projects',
-      'Learned modern development practices',
-      'Contributed to open source projects'
+      'Trained over 10 researchers annually on computational methods',
+      'Resolved 20+ user issues monthly',
+      'Developed impactful case studies for software adoption',
+      'Contributed to training materials and documentation'
     ]
   }
 ])

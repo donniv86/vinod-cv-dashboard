@@ -77,19 +77,24 @@
 import { ref, computed } from 'vue'
 
 const skills = ref([
-  { name: 'Vue.js', level: 90, category: 'Frontend' },
-  { name: 'React', level: 85, category: 'Frontend' },
-  { name: 'JavaScript', level: 95, category: 'Programming' },
-  { name: 'TypeScript', level: 80, category: 'Programming' },
-  { name: 'Node.js', level: 85, category: 'Backend' },
-  { name: 'Python', level: 75, category: 'Programming' },
-  { name: 'Docker', level: 70, category: 'DevOps' },
-  { name: 'AWS', level: 65, category: 'Cloud' },
-  { name: 'MongoDB', level: 80, category: 'Database' },
-  { name: 'PostgreSQL', level: 75, category: 'Database' }
+  { name: 'Python', level: 95, category: 'Programming' },
+  { name: 'Machine Learning', level: 90, category: 'AI/ML' },
+  { name: 'Molecular Modeling', level: 95, category: 'Drug Discovery' },
+  { name: 'Schrödinger Suite', level: 95, category: 'Tools' },
+  { name: 'Cheminformatics', level: 90, category: 'Drug Discovery' },
+  { name: 'Molecular Dynamics', level: 85, category: 'Simulation' },
+  { name: 'Structure-Based Design', level: 90, category: 'Drug Discovery' },
+  { name: 'Ligand-Based Design', level: 85, category: 'Drug Discovery' },
+  { name: 'TensorFlow/PyTorch', level: 80, category: 'AI/ML' },
+  { name: 'AWS/GCP', level: 75, category: 'Cloud' },
+  { name: 'Shell Scripting', level: 80, category: 'Programming' },
+  { name: 'Git', level: 85, category: 'Programming' },
+  { name: 'KNIME', level: 80, category: 'Tools' },
+  { name: 'GROMACS', level: 75, category: 'Tools' },
+  { name: 'Quantum Mechanics', level: 70, category: 'Simulation' }
 ])
 
-const categories = ref(['All', 'Frontend', 'Backend', 'Programming', 'DevOps', 'Cloud', 'Database'])
+const categories = ref(['All', 'Programming', 'AI/ML', 'Drug Discovery', 'Tools', 'Simulation', 'Cloud'])
 
 const selectedCategory = ref('All')
 

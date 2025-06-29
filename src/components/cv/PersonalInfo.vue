@@ -3,9 +3,11 @@
     <div class="flex flex-col lg:flex-row items-center lg:items-start gap-6">
       <!-- Profile Picture -->
       <div class="flex-shrink-0">
-        <div class="w-32 h-32 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white text-4xl font-bold shadow-lg">
-          {{ personalInfo.name.charAt(0) }}
-        </div>
+        <img
+          src="/vinod.png"
+          alt="Vinod Devaraji"
+          class="w-32 h-32 rounded-full object-cover shadow-lg border-4 border-white dark:border-boxdark"
+        />
       </div>
 
       <!-- Personal Details -->
@@ -43,10 +45,10 @@
             <LinkedinIcon class="w-4 h-4 mr-2" />
             LinkedIn
           </a>
-          <a :href="`https://${personalInfo.github}`" target="_blank"
+          <a :href="`https://orcid.org/${personalInfo.orcid}`" target="_blank"
              class="flex items-center text-bodydark2 hover:text-primary transition-colors">
-            <GithubIcon class="w-4 h-4 mr-2" />
-            GitHub
+            <GlobeIcon class="w-4 h-4 mr-2" />
+            ORCID
           </a>
         </div>
       </div>
@@ -57,16 +59,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { MapPinIcon, MailIcon, PhoneIcon } from '@heroicons/vue/24/outline'
-import { LinkedinIcon, GithubIcon } from 'lucide-vue-next'
+import { LinkedinIcon, GlobeIcon } from 'lucide-vue-next'
 
 const personalInfo = ref({
-  name: 'Your Name',
-  title: 'Full Stack Developer',
-  location: 'San Francisco, CA',
-  summary: 'Passionate full-stack developer with 5+ years of experience building scalable web applications. Specialized in Vue.js, React, Node.js, and cloud technologies. Committed to writing clean, maintainable code and delivering exceptional user experiences.',
-  email: 'your.email@example.com',
-  phone: '+1 (555) 123-4567',
-  linkedin: 'linkedin.com/in/yourprofile',
-  github: 'github.com/yourusername'
+  name: 'Vinod Devaraji',
+  title: 'Innovative Drug Hunter | Champion of AI/ML-Driven Drug Discovery',
+  location: 'Bangalore, India',
+  summary: 'Strategic computational chemist with 13+ years of experience advancing drug discovery through AI/ML, cheminformatics, and physics-based molecular modeling. Proven track record in hit-to-lead optimization, DMTA cycle automation, and predictive model development across oncology, metabolic, and infectious diseases.',
+  email: 'donniv86@gmail.com',
+  phone: '+91-6364817778',
+  linkedin: 'linkedin.com/in/vinod-devaraji',
+  orcid: '0000-0002-9355-3995'
 })
 </script>

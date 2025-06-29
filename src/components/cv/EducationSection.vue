@@ -133,68 +133,79 @@ import { GraduationCapIcon, CertificateIcon } from '@heroicons/vue/24/outline'
 const educationHistory = ref([
   {
     id: 1,
-    degree: 'Master of Science in Computer Science',
-    institution: 'Stanford University',
-    year: '2020 - 2022',
-    location: 'Stanford, CA',
-    gpa: '3.9/4.0',
-    major: 'Computer Science',
-    description: 'Specialized in Artificial Intelligence and Machine Learning. Completed thesis on "Deep Learning Applications in Natural Language Processing".',
-    achievements: ['Dean\'s List', 'Research Assistant']
+    degree: 'Ph.D. in Biotechnology',
+    institution: 'Vellore Institute of Technology',
+    year: '2016 - 2024',
+    location: 'Vellore, India',
+    gpa: 'N/A',
+    major: 'Biotechnology',
+    description: 'Interdisciplinary Approach to Antidiabetic Drug Discovery: Advanced antidiabetic therapeutic development through an integrated strategy combining computational drug design, phytochemistry, and bioformulation.',
+    achievements: ['Research Excellence', 'Interdisciplinary Approach']
   },
   {
     id: 2,
-    degree: 'Bachelor of Science in Software Engineering',
-    institution: 'University of California, Berkeley',
-    year: '2016 - 2020',
-    location: 'Berkeley, CA',
-    gpa: '3.8/4.0',
-    major: 'Software Engineering',
-    description: 'Focused on software development methodologies, algorithms, and data structures. Completed capstone project on scalable web applications.',
-    achievements: ['Honors Program', 'Dean\'s List']
+    degree: 'M.Pharm. in Medicinal Chemistry',
+    institution: 'The Tamil Nadu Dr. M.G.R. Medical University, Madras Medical College',
+    year: '2009 - 2011',
+    location: 'Chennai, India',
+    gpa: 'N/A',
+    major: 'Medicinal Chemistry',
+    description: 'Dual inhibitor design of Aurora Kinase Subtypes A and B: Identified dual inhibitors through pharmacophore design, docking studies, and 3D QSAR analysis.',
+    achievements: ['Research Project', 'Molecular Modeling']
+  },
+  {
+    id: 3,
+    degree: 'B.Pharm. in Pharmacy',
+    institution: 'The Tamil Nadu Dr. M.G.R. Medical University, Padmavathi College of Pharmacy',
+    year: '2004 - 2008',
+    location: 'Dharmapuri, India',
+    gpa: 'N/A',
+    major: 'Pharmacy',
+    description: 'Evaluated Anthelmintic Activity of Cissus quadrangularis Linn. (Stem): Comprehensive computational phytochemistry study employing molecular docking, phytochemical analysis, and pharmacological assessment.',
+    achievements: ['Research Project', 'Computational Studies']
   }
 ])
 
 const certifications = ref([
   {
     id: 1,
-    name: 'AWS Certified Solutions Architect',
-    issuer: 'Amazon Web Services',
-    year: '2023',
-    expiry: '2026',
-    description: 'Demonstrates expertise in designing distributed systems on AWS.',
-    id: 'AWS-123456',
-    verification: 'https://aws.amazon.com/verification'
+    name: 'Data Science and Machine Learning',
+    issuer: 'Coursera & DataCamp',
+    year: '2020-2023',
+    expiry: 'N/A',
+    description: 'Completed coursework in core data science and machine learning concepts, including statistical learning, supervised and unsupervised learning algorithms.',
+    id: 'DS-ML-001',
+    verification: 'https://coursera.org'
   },
   {
     id: 2,
-    name: 'Google Cloud Professional Developer',
-    issuer: 'Google Cloud',
-    year: '2022',
-    expiry: '2025',
-    description: 'Validates ability to build scalable applications on Google Cloud Platform.',
-    id: 'GCP-789012',
-    verification: 'https://cloud.google.com/certification'
+    name: 'Python Programming and Data Manipulation',
+    issuer: 'DataCamp',
+    year: '2020-2023',
+    expiry: 'N/A',
+    description: 'Developed proficiency in Python programming for data science, including data manipulation with pandas, data cleaning, and data import/export.',
+    id: 'PYTHON-001',
+    verification: 'https://datacamp.com'
   },
   {
     id: 3,
-    name: 'Certified Kubernetes Administrator',
-    issuer: 'Cloud Native Computing Foundation',
-    year: '2021',
-    expiry: '2024',
-    description: 'Proves expertise in Kubernetes administration and operations.',
-    id: 'CKA-345678',
-    verification: 'https://www.cncf.io/certification'
+    name: 'Cloud Computing and Software Management',
+    issuer: 'DataCamp',
+    year: '2020-2023',
+    expiry: 'N/A',
+    description: 'Completed training in cloud computing fundamentals and AWS Boto, as well as software environment management with Conda.',
+    id: 'CLOUD-001',
+    verification: 'https://datacamp.com'
   },
   {
     id: 4,
-    name: 'MongoDB Certified Developer',
-    issuer: 'MongoDB University',
-    year: '2020',
-    expiry: '2023',
-    description: 'Validates skills in MongoDB application development and data modeling.',
-    id: 'MDB-901234',
-    verification: 'https://university.mongodb.com/certification'
+    name: 'Data Analysis and Databases',
+    issuer: 'DataCamp',
+    year: '2020-2023',
+    expiry: 'N/A',
+    description: 'Gained experience in data analysis techniques using pandas and SQL, including statistical analysis and data visualization.',
+    id: 'DATA-001',
+    verification: 'https://datacamp.com'
   }
 ])
 </script>

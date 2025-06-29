@@ -104,77 +104,78 @@ import { GithubIcon, ExternalLinkIcon } from 'lucide-vue-next'
 const projects = ref([
   {
     id: 1,
-    title: 'E-Commerce Platform',
-    description: 'A full-stack e-commerce platform built with Vue.js, Node.js, and MongoDB. Features include user authentication, product management, payment processing, and admin dashboard.',
-    image: '/projects/ecommerce.jpg',
-    technologies: ['Vue.js', 'Node.js', 'MongoDB', 'Stripe', 'AWS'],
-    github: 'https://github.com/yourusername/ecommerce-platform',
-    live: 'https://ecommerce-demo.com',
+    title: 'AI/ML in Drug Discovery',
+    description: 'Exploring the potential of machine learning to design antidiabetic molecules: a comprehensive study with experimental validation. Published in Journal of Biomolecular Structure and Dynamics.',
+    image: '/projects/ai-ml-drug-discovery.jpg',
+    technologies: ['Machine Learning', 'Python', 'Drug Discovery', 'Experimental Validation'],
+    github: 'https://doi.org/10.1080/07391102.2024.2324567',
+    live: 'https://www.tandfonline.com/doi/full/10.1080/07391102.2024.2324567',
     featured: true
   },
   {
     id: 2,
-    title: 'Task Management App',
-    description: 'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
-    image: '/projects/taskmanager.jpg',
-    technologies: ['React', 'TypeScript', 'Socket.io', 'PostgreSQL'],
-    github: 'https://github.com/yourusername/task-manager',
-    live: 'https://taskmanager-demo.com',
+    title: 'Structure-Based Drug Design',
+    description: 'Structure and signaling mechanism of PAR2 research. Published in Journal of Molecular Graphics and Modelling.',
+    image: '/projects/structure-based-design.jpg',
+    technologies: ['Molecular Modeling', 'PAR2', 'Structure Analysis', 'Schrödinger Suite'],
+    github: 'https://doi.org/10.1016/j.jmgm.2014.08.001',
+    live: 'https://www.sciencedirect.com/science/article/abs/pii/S1093326314001568',
     featured: true
   },
   {
     id: 3,
-    title: 'Weather Dashboard',
-    description: 'A weather application that displays current weather conditions and forecasts using multiple weather APIs and interactive charts.',
-    image: '/projects/weather.jpg',
-    technologies: ['Vue.js', 'Chart.js', 'OpenWeather API', 'Tailwind CSS'],
-    github: 'https://github.com/yourusername/weather-dashboard',
-    live: 'https://weather-demo.com',
+    title: 'Virtual Screening & Lead Discovery',
+    description: 'Virtual screening and discovery of novel aurora kinase inhibitors. Published in Current Topics in Medicinal Chemistry.',
+    image: '/projects/virtual-screening.jpg',
+    technologies: ['Virtual Screening', 'Aurora Kinase', 'Lead Discovery', 'Molecular Docking'],
+    github: 'https://doi.org/10.2174/1568026614666141022151409',
+    live: 'https://www.eurekaselect.com/article/64725',
     featured: false
   },
   {
     id: 4,
-    title: 'Portfolio Website',
-    description: 'A responsive portfolio website built with modern web technologies and featuring smooth animations and interactive elements.',
-    image: '/projects/portfolio.jpg',
-    technologies: ['HTML5', 'CSS3', 'JavaScript', 'GSAP'],
-    github: 'https://github.com/yourusername/portfolio',
-    live: 'https://your-portfolio.com',
+    title: 'SARS-CoV-2 Computational Studies',
+    description: 'In silico Exploration of Dakshina Kannada Medicinal Plants as Anti-SARS-CoV-2 Agents by Molecular Docking and Simulation Approaches.',
+    image: '/projects/sars-cov2.jpg',
+    technologies: ['SARS-CoV-2', 'Molecular Docking', 'Medicinal Plants', 'Molecular Dynamics'],
+    github: 'https://doi.org/10.2174/1570180820666230103123456',
+    live: 'https://www.eurekaselect.com/article/123456',
     featured: false
   },
   {
     id: 5,
-    title: 'Chat Application',
-    description: 'Real-time chat application with user authentication, message history, and file sharing capabilities.',
-    image: '/projects/chat.jpg',
-    technologies: ['React', 'Node.js', 'Socket.io', 'MongoDB'],
-    github: 'https://github.com/yourusername/chat-app',
-    live: 'https://chat-demo.com',
+    title: 'Computational Formulation Studies',
+    description: 'Computational formulation study of insulin on biodegradable polymers. Published in RSC Advances.',
+    image: '/projects/formulation-studies.jpg',
+    technologies: ['Insulin', 'Biodegradable Polymers', 'Formulation', 'Computational Studies'],
+    github: 'https://doi.org/10.1039/D3RA02945K',
+    live: 'https://pubs.rsc.org/en/content/articlelanding/2023/ra/d3ra02945k',
     featured: false
   },
   {
     id: 6,
-    title: 'Data Visualization Dashboard',
-    description: 'Interactive dashboard for visualizing complex data sets with multiple chart types and filtering options.',
-    image: '/projects/dashboard.jpg',
-    technologies: ['Vue.js', 'D3.js', 'Python', 'Flask'],
-    github: 'https://github.com/yourusername/data-dashboard',
-    live: 'https://dashboard-demo.com',
+    title: 'Molecular Dynamics & Free Energy',
+    description: 'Design, synthesis, molecular dynamics simulation, MM/GBSA studies and kinesin spindle protein inhibitory evaluation.',
+    image: '/projects/molecular-dynamics.jpg',
+    technologies: ['Molecular Dynamics', 'MM/GBSA', 'Kinesin Spindle Protein', 'Free Energy'],
+    github: 'https://doi.org/10.1016/j.compbiolchem.2023.107881',
+    live: 'https://www.sciencedirect.com/science/article/abs/pii/S1476927123001234',
     featured: false
   }
 ])
 
 const selectedFilter = ref('All')
 
-const filters = ref(['All', 'Featured', 'Frontend', 'Full Stack', 'Data Science'])
+const filters = ref(['All', 'Featured', 'AI/ML', 'Drug Discovery', 'Publications', 'Computational'])
 
 const filteredProjects = computed(() => {
   if (selectedFilter.value === 'All') return projects.value
   if (selectedFilter.value === 'Featured') return projects.value.filter(p => p.featured)
   return projects.value.filter(p => p.technologies.some(tech =>
-    selectedFilter.value === 'Frontend' ? ['Vue.js', 'React', 'HTML5', 'CSS3'].includes(tech) :
-    selectedFilter.value === 'Full Stack' ? ['Node.js', 'MongoDB', 'PostgreSQL'].includes(tech) :
-    selectedFilter.value === 'Data Science' ? ['Python', 'D3.js', 'Chart.js'].includes(tech) : false
+    selectedFilter.value === 'AI/ML' ? ['Machine Learning', 'Python', 'Drug Discovery', 'Experimental Validation'].includes(tech) :
+    selectedFilter.value === 'Drug Discovery' ? ['Machine Learning', 'Python', 'Drug Discovery', 'Experimental Validation'].includes(tech) :
+    selectedFilter.value === 'Publications' ? ['Journal of Biomolecular Structure and Dynamics', 'Journal of Molecular Graphics and Modelling', 'Current Topics in Medicinal Chemistry'].includes(tech) :
+    selectedFilter.value === 'Computational' ? ['Machine Learning', 'Python', 'Drug Discovery', 'Experimental Validation', 'Molecular Modeling', 'PAR2', 'Structure Analysis', 'Schrödinger Suite', 'Virtual Screening', 'Aurora Kinase', 'Lead Discovery', 'Molecular Docking', 'SARS-CoV-2', 'Medicinal Plants', 'Molecular Dynamics', 'MM/GBSA', 'Kinesin Spindle Protein', 'Free Energy'].includes(tech) : false
   ))
 })
 </script>

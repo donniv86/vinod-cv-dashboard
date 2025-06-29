@@ -82,13 +82,11 @@ import { MailIcon, PhoneIcon, MapPinIcon } from '@heroicons/vue/24/outline'
 import { LinkedinIcon, GithubIcon, TwitterIcon, GlobeIcon, DownloadIcon } from 'lucide-vue-next'
 
 const contactInfo = ref({
-  email: 'your.email@example.com',
-  phone: '+1 (555) 123-4567',
-  location: 'San Francisco, CA',
-  linkedin: 'linkedin.com/in/yourprofile',
-  github: 'github.com/yourusername',
-  twitter: 'twitter.com/yourusername',
-  website: 'yourwebsite.com'
+  email: 'donniv86@gmail.com',
+  phone: '+91-6364817778',
+  location: 'Bangalore, India',
+  linkedin: 'linkedin.com/in/vinod-devaraji',
+  orcid: '0000-0002-9355-3995'
 })
 
 const socialLinks = ref([
@@ -99,20 +97,8 @@ const socialLinks = ref([
     color: 'bg-blue-600'
   },
   {
-    name: 'GitHub',
-    url: `https://${contactInfo.value.github}`,
-    icon: GithubIcon,
-    color: 'bg-gray-800'
-  },
-  {
-    name: 'Twitter',
-    url: `https://${contactInfo.value.twitter}`,
-    icon: TwitterIcon,
-    color: 'bg-blue-400'
-  },
-  {
-    name: 'Website',
-    url: `https://${contactInfo.value.website}`,
+    name: 'ORCID',
+    url: `https://orcid.org/${contactInfo.value.orcid}`,
     icon: GlobeIcon,
     color: 'bg-green-600'
   }
