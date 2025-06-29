@@ -15,6 +15,14 @@ const router = createRouter({
       },
     },
     {
+      path: '/cv',
+      name: 'CV Dashboard',
+      component: () => import('../views/CVDashboard.vue'),
+      meta: {
+        title: 'CV Dashboard',
+      },
+    },
+    {
       path: '/calendar',
       name: 'Calendar',
       component: () => import('../views/Others/Calendar.vue'),
