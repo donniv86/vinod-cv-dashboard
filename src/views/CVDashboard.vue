@@ -26,6 +26,9 @@
       <!-- GitHub Projects & Technical Skills Section -->
       <github-projects />
 
+      <!-- Certifications & Online Courses Section -->
+      <certifications-courses />
+
       <!-- Experience Timeline -->
       <experience-timeline />
 
@@ -44,6 +47,7 @@ import SkillsRadarChart from '../components/cv/SkillsRadarChart.vue'
 import ContactInfo from '../components/cv/ContactInfo.vue'
 import InteractiveProjects from '../components/cv/InteractiveProjects.vue'
 import GitHubProjects from '../components/cv/GitHubProjects.vue'
+import CertificationsCourses from '../components/cv/CertificationsCourses.vue'
 import ExperienceTimeline from '../components/cv/ExperienceTimeline.vue'
 import EducationSection from '../components/cv/EducationSection.vue'
 </script>
