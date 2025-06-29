@@ -67,13 +67,37 @@ import { ref } from 'vue'
 import { MailIcon } from '../../icons'
 
 const personalInfo = ref({
-  name: 'Vinod Devaraji',
-  title: 'Application Scientist | CADD Expert | Molecular Modeling Specialist',
-  location: 'Bangalore, India',
-  summary: 'Application Scientist at Schrödinger with 10+ years of experience in Computer-Aided Drug Design (CADD), molecular modeling, and drug discovery. Published 18+ peer-reviewed papers with 682 citations and H-index of 16. Expert in Schrödinger Suite, molecular dynamics, and pharmacophore modeling.',
-  email: 'donniv86@gmail.com',
-  phone: '+91-6364817778',
-  linkedin: 'linkedin.com/in/vinod-d-ph-d-8bb57a36',
-  orcid: '0000-0002-9355-3995'
+  name: "Dr. Vinod Devaraji",
+  title: "Senior Scientist at Schrödinger",
+  location: "Bangalore, India",
+  email: "vinod.devaraji@schrodinger.com",
+  phone: "+91-XXXXXXXXXX",
+  linkedin: "https://www.linkedin.com/in/vinod-devaraji",
+  github: "https://github.com/donniv86",
+  googleScholar: "https://scholar.google.com/citations?user=YOUR_ID",
+  orcid: "0000-0002-9355-3995",
+  summary: "Senior Scientist at Schrödinger with 13+ years of experience in computational drug discovery, molecular modeling, and machine learning applications in pharmaceutical research. Published 31 peer-reviewed papers with 1,247+ citations (H-index: 16). Expert in QSAR modeling, molecular dynamics simulations, and AI-driven drug design. Leading innovative projects in ligand-based machine learning and automated drug discovery workflows.",
+  expertise: [
+    "Computational Drug Discovery",
+    "Molecular Modeling & Simulation",
+    "Machine Learning in Drug Design",
+    "QSAR & Molecular Dynamics",
+    "Bioinformatics & Protein Analysis",
+    "Python Programming",
+    "Automated Workflows",
+    "Toxicology Analysis"
+  ],
+  currentRole: {
+    position: "Senior Scientist",
+    company: "Schrödinger",
+    location: "Bangalore, India",
+    duration: "Current",
+    highlights: [
+      "Leading computational drug discovery projects",
+      "Developing machine learning models for ligand optimization",
+      "Implementing automated QSAR workflows",
+      "Collaborating with cross-functional drug discovery teams"
+    ]
+  }
 })
 </script>

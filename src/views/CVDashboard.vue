@@ -23,6 +23,9 @@
       <!-- Interactive Projects Section -->
       <interactive-projects />
 
+      <!-- GitHub Projects & Technical Skills Section -->
+      <github-projects />
+
       <!-- Experience Timeline -->
       <experience-timeline />
 
@@ -40,6 +43,7 @@ import ProfessionalAnalytics from '../components/cv/ProfessionalAnalytics.vue'
 import SkillsRadarChart from '../components/cv/SkillsRadarChart.vue'
 import ContactInfo from '../components/cv/ContactInfo.vue'
 import InteractiveProjects from '../components/cv/InteractiveProjects.vue'
+import GitHubProjects from '../components/cv/GitHubProjects.vue'
 import ExperienceTimeline from '../components/cv/ExperienceTimeline.vue'
 import EducationSection from '../components/cv/EducationSection.vue'
 </script>
