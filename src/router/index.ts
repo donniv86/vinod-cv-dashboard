@@ -19,6 +19,38 @@ const router = createRouter({
       },
     },
     {
+      path: '/publications',
+      name: 'Publications',
+      component: () => import('../views/Publications.vue'),
+      meta: {
+        title: 'Research Publications',
+      },
+    },
+    {
+      path: '/github-projects',
+      name: 'GitHub Projects',
+      component: () => import('../views/GitHubProjects.vue'),
+      meta: {
+        title: 'GitHub Projects & Technical Skills',
+      },
+    },
+    {
+      path: '/certifications',
+      name: 'Certifications',
+      component: () => import('../views/Certifications.vue'),
+      meta: {
+        title: 'Certifications & Online Courses',
+      },
+    },
+    {
+      path: '/about',
+      name: 'About',
+      component: () => import('../views/About.vue'),
+      meta: {
+        title: 'About Me',
+      },
+    },
+    {
       path: '/line-chart',
       name: 'Line Chart',
       component: () => import('../views/Chart/LineChart/LineChart.vue'),

@@ -234,12 +234,32 @@ const { isExpanded, isMobileOpen, isHovered, openSubmenu } = useSidebar();
 
 const menuGroups = [
   {
-    title: "Menu",
+    title: "CV Dashboard",
     items: [
       {
         icon: UserCircleIcon,
-        name: "CV Dashboard",
+        name: "Overview",
         path: "/cv",
+      },
+      {
+        icon: DocsIcon,
+        name: "Publications",
+        path: "/publications",
+      },
+      {
+        icon: BoxCubeIcon,
+        name: "GitHub Projects",
+        path: "/github-projects",
+      },
+      {
+        icon: MailIcon,
+        name: "Certifications",
+        path: "/certifications",
+      },
+      {
+        icon: ChatIcon,
+        name: "About Me",
+        path: "/about",
       },
     ],
   },
