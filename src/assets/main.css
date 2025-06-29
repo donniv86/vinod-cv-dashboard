@@ -193,6 +193,7 @@ layer(base);
     color: var(--text-primary);
     line-height: 1.6;
     font-weight: 400;
+    font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -847,11 +848,12 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   font-weight: 400;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Modern Typography */
+/* Modern Typography with Larger Sizes */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: 1.2;
@@ -859,12 +861,30 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
 }
 
-h1 { font-size: 2.5rem; font-weight: 800; }
-h2 { font-size: 2rem; font-weight: 700; }
-h3 { font-size: 1.5rem; font-weight: 600; }
-h4 { font-size: 1.25rem; font-weight: 600; }
-h5 { font-size: 1.125rem; font-weight: 600; }
-h6 { font-size: 1rem; font-weight: 600; }
+h1 { font-size: 3rem; font-weight: 800; }
+h2 { font-size: 2.5rem; font-weight: 700; }
+h3 { font-size: 2rem; font-weight: 600; }
+h4 { font-size: 1.5rem; font-weight: 600; }
+h5 { font-size: 1.25rem; font-weight: 600; }
+h6 { font-size: 1.125rem; font-weight: 600; }
+
+/* Larger paragraph text */
+p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* Larger text for better visualization */
+.text-sm { font-size: 1rem !important; }
+.text-base { font-size: 1.125rem !important; }
+.text-lg { font-size: 1.25rem !important; }
+.text-xl { font-size: 1.5rem !important; }
+.text-2xl { font-size: 1.875rem !important; }
+.text-3xl { font-size: 2.25rem !important; }
+.text-4xl { font-size: 3rem !important; }
+.text-5xl { font-size: 3.75rem !important; }
+.text-6xl { font-size: 4.5rem !important; }
 
 /* Modern Card Component */
 .modern-card {
@@ -874,7 +894,7 @@ h6 { font-size: 1rem; font-weight: 600; }
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
   box-shadow: var(--glass-shadow);
-  padding: 1.5rem;
+  padding: 2rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -900,7 +920,7 @@ h6 { font-size: 1rem; font-weight: 600; }
 .gradient-card {
   background: var(--primary-gradient);
   border-radius: var(--radius-xl);
-  padding: 1.5rem;
+  padding: 2rem;
   color: white;
   position: relative;
   overflow: hidden;
@@ -934,9 +954,9 @@ h6 { font-size: 1rem; font-weight: 600; }
   border: none;
   border-radius: var(--radius-lg);
   color: white;
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 2rem;
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
@@ -958,8 +978,8 @@ h6 { font-size: 1rem; font-weight: 600; }
   backdrop-filter: blur(8px);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-full);
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
   font-weight: 500;
   color: var(--text-primary);
 }
@@ -970,9 +990,9 @@ h6 { font-size: 1rem; font-weight: 600; }
   backdrop-filter: blur(8px);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  padding: 0.75rem 1rem;
+  padding: 1rem 1.25rem;
   color: var(--text-primary);
-  font-size: 0.875rem;
+  font-size: 1rem;
   transition: all 0.3s ease;
 }
 
@@ -1045,16 +1065,26 @@ h6 { font-size: 1rem; font-weight: 600; }
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Responsive Design */
+/* Responsive Design with Larger Text */
 @media (max-width: 768px) {
-  h1 { font-size: 2rem; }
-  h2 { font-size: 1.75rem; }
-  h3 { font-size: 1.25rem; }
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.75rem; }
 
   .modern-card {
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: var(--radius-lg);
   }
+
+  .text-sm { font-size: 0.875rem !important; }
+  .text-base { font-size: 1rem !important; }
+  .text-lg { font-size: 1.125rem !important; }
+  .text-xl { font-size: 1.25rem !important; }
+  .text-2xl { font-size: 1.5rem !important; }
+  .text-3xl { font-size: 1.875rem !important; }
+  .text-4xl { font-size: 2.25rem !important; }
+  .text-5xl { font-size: 3rem !important; }
+  .text-6xl { font-size: 3.75rem !important; }
 }
 
 /* Dark mode optimizations */

@@ -1,111 +1,158 @@
 <template>
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-    <div class="flex items-center justify-between mb-6">
-      <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Certifications & Online Courses</h2>
-      <div class="flex items-center space-x-2">
-        <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-        </svg>
-        <span class="text-sm text-gray-600 dark:text-gray-400">{{ totalCertifications }} Certifications</span>
-      </div>
-    </div>
-
-    <!-- Platform Tabs -->
-    <div class="flex space-x-2 mb-6">
-      <button
-        v-for="platform in platforms"
-        :key="platform.name"
-        @click="activePlatform = platform.name"
-        :class="[
-          'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200',
-          activePlatform === platform.name
-            ? 'bg-blue-600 text-white shadow-lg'
-            : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-        ]"
-      >
-        <div class="flex items-center space-x-2">
-          <span>{{ platform.name }}</span>
-          <span class="bg-white bg-opacity-20 px-2 py-0.5 rounded-full text-xs">
-            {{ platform.count }}
-          </span>
-        </div>
-      </button>
-    </div>
-
-    <!-- Certifications Grid -->
-    <div class="grid gap-6">
-      <div v-for="cert in filteredCertifications" :key="cert.id"
-           class="bg-gradient-to-r from-gray-50 to-blue-50 dark:from-gray-700 dark:to-gray-600 rounded-xl p-6 border border-gray-200 dark:border-gray-600 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-        <div class="flex justify-between items-start mb-4">
-          <div class="flex-1">
-            <div class="flex items-center mb-3">
-              <div class="w-8 h-8 rounded-lg mr-3 flex items-center justify-center text-white font-bold text-sm"
-                   :class="cert.platform === 'Coursera' ? 'bg-blue-600' : 'bg-orange-500'">
-                {{ cert.platform.charAt(0) }}
-              </div>
-              <h3 class="text-lg font-semibold text-gray-800 dark:text-white">
-                {{ cert.title }}
-              </h3>
-            </div>
-            <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">
-              <span class="font-medium">{{ cert.platform }}</span>
-              <span v-if="cert.issuedDate" class="ml-2 text-gray-500">
-                • Issued {{ cert.issuedDate }}
-              </span>
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-6">
+    <div class="space-y-8">
+      <!-- Hero Section with Summary Chart -->
+      <div class="gradient-card animate-fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
+        <div class="flex flex-col lg:flex-row items-center justify-between mb-8">
+          <div class="text-center lg:text-left">
+            <h1 class="text-4xl lg:text-6xl font-black mb-4 text-white drop-shadow-lg">
+              Certifications & Courses
+            </h1>
+            <p class="text-xl lg:text-2xl mb-6 text-white/90 font-medium">
+              Continuous Learning Journey
             </p>
-            <div class="flex flex-wrap gap-2 mb-3">
-              <span v-for="tag in cert.tags" :key="tag"
-                    class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full text-xs font-medium">
-                {{ tag }}
-              </span>
-            </div>
-            <div v-if="cert.credentialId" class="flex items-center text-sm text-gray-500 dark:text-gray-400">
-              <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-              </svg>
-              Credential ID: {{ cert.credentialId }}
-            </div>
+            <p class="text-lg mb-8 text-white/80 font-light">
+              {{ totalCertifications }} certifications across {{ platforms.length - 1 }} platforms
+            </p>
           </div>
-          <div class="ml-4">
-            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-              {{ cert.platform.charAt(0) }}
-            </div>
+          <div class="text-center lg:text-right mt-8 lg:mt-0">
+            <div class="text-6xl lg:text-8xl font-black text-white/90 mb-2">{{ totalCertifications }}</div>
+            <div class="text-xl text-white/80 font-medium">Total Certifications</div>
           </div>
         </div>
 
-        <div class="flex justify-between items-center">
-          <div class="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
-            <span class="flex items-center">
-              <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-              </svg>
-              {{ cert.duration || 'Self-paced' }}
-            </span>
+        <!-- Category Summary Chart -->
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-8">
+          <div v-for="(category, index) in categoryStats" :key="category.name"
+               class="modern-card p-4 text-center transition-all duration-300 hover:scale-105"
+               :style="{ animationDelay: `${index * 0.1}s` }">
+            <div class="text-2xl font-black text-transparent bg-clip-text mb-2"
+                 :style="{ backgroundImage: category.gradient }">{{ category.count }}</div>
+            <div class="text-sm text-white/80 font-medium">{{ category.name }}</div>
+            <div class="text-xs text-white/60 mt-1">{{ category.percentage }}%</div>
           </div>
-          <button class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium">
-            View Credential →
+        </div>
+
+        <!-- Platform Distribution -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="modern-card p-6">
+            <h3 class="text-xl font-bold text-white mb-4">Platform Distribution</h3>
+            <div class="space-y-3">
+              <div v-for="platform in platforms.slice(1)" :key="platform.name"
+                   class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <div class="w-4 h-4 rounded-full mr-3"
+                       :style="{ background: getPlatformColor(platform.name) }"></div>
+                  <span class="text-white/90 font-medium">{{ platform.name }}</span>
+                </div>
+                <div class="flex items-center">
+                  <div class="w-24 bg-white/20 rounded-full h-2 mr-3">
+                    <div class="h-2 rounded-full transition-all duration-500"
+                         :style="{
+                           width: `${(platform.count / totalCertifications) * 100}%`,
+                           background: getPlatformColor(platform.name)
+                         }"></div>
+                  </div>
+                  <span class="text-white/80 text-sm font-bold">{{ platform.count }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modern-card p-6">
+            <h3 class="text-xl font-bold text-white mb-4">Learning Focus Areas</h3>
+            <div class="space-y-3">
+              <div v-for="focus in topFocusAreas" :key="focus.name"
+                   class="flex items-center justify-between">
+                <span class="text-white/90 font-medium">{{ focus.name }}</span>
+                <div class="flex items-center">
+                  <div class="w-20 bg-white/20 rounded-full h-2 mr-3">
+                    <div class="h-2 rounded-full transition-all duration-500"
+                         :style="{
+                           width: `${(focus.count / Math.max(...topFocusAreas.map(f => f.count))) * 100}%`,
+                           background: focus.gradient
+                         }"></div>
+                  </div>
+                  <span class="text-white/80 text-sm font-bold">{{ focus.count }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="modern-card p-6">
+        <div class="flex flex-wrap gap-3 mb-6">
+          <button
+            v-for="category in allCategories"
+            :key="category.name"
+            @click="activeCategory = category.name"
+            :class="[
+              'px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300',
+              activeCategory === category.name
+                ? 'text-white shadow-lg'
+                : 'text-gray-300 hover:text-white hover:bg-white/10'
+            ]"
+            :style="activeCategory === category.name ? { background: category.gradient } : {}"
+          >
+            <div class="flex items-center space-x-2">
+              <span>{{ category.name }}</span>
+              <span class="bg-white/20 px-2 py-0.5 rounded-full text-xs font-bold">
+                {{ category.count }}
+              </span>
+            </div>
           </button>
         </div>
-      </div>
-    </div>
 
-    <!-- Statistics -->
-    <div class="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4">
-      <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-4 text-white">
-        <div class="text-2xl font-bold">{{ totalCertifications }}</div>
-        <div class="text-sm opacity-90">Total Certifications</div>
-      </div>
-      <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-4 text-white">
-        <div class="text-2xl font-bold">{{ platforms.length - 1 }}</div>
-        <div class="text-sm opacity-90">Learning Platforms</div>
-      </div>
-      <div class="bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg p-4 text-white">
-        <div class="text-2xl font-bold">2</div>
-        <div class="text-sm opacity-90">Years of Learning</div>
-      </div>
-      <div class="bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg p-4 text-white">
-        <div class="text-2xl font-bold">8+</div>
-        <div class="text-sm opacity-90">Skill Categories</div>
+        <!-- Certifications Grid -->
+        <div class="grid gap-6">
+          <div v-for="cert in filteredCertifications" :key="cert.id"
+               class="modern-card p-6 hover:scale-105 transition-all duration-300 cursor-pointer">
+            <div class="flex justify-between items-start mb-4">
+              <div class="flex-1">
+                <div class="flex items-center mb-3">
+                  <div class="w-12 h-12 rounded-xl mr-4 flex items-center justify-center text-white font-bold text-lg backdrop-blur-sm"
+                       :style="{ background: getPlatformColor(cert.platform) }">
+                    {{ cert.platform.charAt(0) }}
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-white mb-1">
+                      {{ cert.title }}
+                    </h3>
+                    <div class="flex items-center text-sm text-gray-300">
+                      <span class="font-medium">{{ cert.platform }}</span>
+                      <span v-if="cert.issuedDate" class="ml-2 text-gray-400">
+                        • {{ cert.issuedDate }}
+                      </span>
+                      <span class="ml-2 text-gray-400">• {{ cert.duration }}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span v-for="tag in cert.tags" :key="tag"
+                        class="modern-badge text-xs font-medium">
+                    {{ tag }}
+                  </span>
+                </div>
+
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center text-sm text-gray-400">
+                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span v-if="cert.credentialId">Credential ID: {{ cert.credentialId }}</span>
+                    <span v-else>Self-paced learning</span>
+                  </div>
+                  <div class="text-blue-400 hover:text-blue-300 text-sm font-semibold transition-colors">
+                    View Details →
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -114,8 +161,9 @@
 <script setup>
 import { ref, computed } from 'vue'
 
-const activePlatform = ref('All')
+const activeCategory = ref('All')
 
+// Enhanced certifications data with categories
 const certifications = ref([
   {
     id: 1,
@@ -124,7 +172,8 @@ const certifications = ref([
     issuedDate: "Jun 2017",
     credentialId: "KBW4QAEWLFV9",
     duration: "4 weeks",
-    tags: ["Python", "Data Science", "Machine Learning"]
+    tags: ["Python", "Data Science", "Machine Learning"],
+    category: "Data Science"
   },
   {
     id: 2,
@@ -132,7 +181,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "4 hours",
-    tags: ["pandas", "Data Analysis", "Python"]
+    tags: ["pandas", "Data Analysis", "Python"],
+    category: "Data Analysis"
   },
   {
     id: 3,
@@ -140,7 +190,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "4 hours",
-    tags: ["Data Cleaning", "Python", "pandas"]
+    tags: ["Data Cleaning", "Python", "pandas"],
+    category: "Data Analysis"
   },
   {
     id: 4,
@@ -148,7 +199,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "3 hours",
-    tags: ["Cloud Computing", "AWS", "Technology"]
+    tags: ["Cloud Computing", "AWS", "Technology"],
+    category: "Cloud Computing"
   },
   {
     id: 5,
@@ -156,7 +208,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "2 hours",
-    tags: ["Conda", "Environment Management", "Python"]
+    tags: ["Conda", "Environment Management", "Python"],
+    category: "Development Tools"
   },
   {
     id: 6,
@@ -164,7 +217,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "20 hours",
-    tags: ["Machine Learning", "Python", "scikit-learn"]
+    tags: ["Machine Learning", "Python", "scikit-learn"],
+    category: "Machine Learning"
   },
   {
     id: 7,
@@ -172,7 +226,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "4 hours",
-    tags: ["Data Import", "Python", "pandas"]
+    tags: ["Data Import", "Python", "pandas"],
+    category: "Data Analysis"
   },
   {
     id: 8,
@@ -180,7 +235,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "4 hours",
-    tags: ["Data Import", "Python", "Advanced"]
+    tags: ["Data Import", "Python", "Advanced"],
+    category: "Data Analysis"
   },
   {
     id: 9,
@@ -188,7 +244,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "4 hours",
-    tags: ["Python", "Intermediate", "Data Science"]
+    tags: ["Python", "Intermediate", "Data Science"],
+    category: "Programming"
   },
   {
     id: 10,
@@ -196,7 +253,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "4 hours",
-    tags: ["SQL", "Database", "Data Science"]
+    tags: ["SQL", "Database", "Data Science"],
+    category: "Database"
   },
   {
     id: 11,
@@ -204,7 +262,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "3 hours",
-    tags: ["AWS", "Boto", "Cloud Services"]
+    tags: ["AWS", "Boto", "Cloud Services"],
+    category: "Cloud Computing"
   },
   {
     id: 12,
@@ -212,7 +271,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "4 hours",
-    tags: ["Data Visualization", "Python", "Matplotlib"]
+    tags: ["Data Visualization", "Python", "Matplotlib"],
+    category: "Data Visualization"
   },
   {
     id: 13,
@@ -220,7 +280,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "4 hours",
-    tags: ["Python", "Programming", "Basics"]
+    tags: ["Python", "Programming", "Basics"],
+    category: "Programming"
   },
   {
     id: 14,
@@ -228,7 +289,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "4 hours",
-    tags: ["Machine Learning", "Fundamentals", "AI"]
+    tags: ["Machine Learning", "Fundamentals", "AI"],
+    category: "Machine Learning"
   },
   {
     id: 15,
@@ -236,7 +298,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "4 hours",
-    tags: ["pandas", "DataFrames", "Data Manipulation"]
+    tags: ["pandas", "DataFrames", "Data Manipulation"],
+    category: "Data Analysis"
   },
   {
     id: 16,
@@ -244,7 +307,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "4 hours",
-    tags: ["pandas", "Data Merging", "Data Analysis"]
+    tags: ["pandas", "Data Merging", "Data Analysis"],
+    category: "Data Analysis"
   },
   {
     id: 17,
@@ -252,7 +316,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "4 hours",
-    tags: ["pandas", "Foundation", "Data Analysis"]
+    tags: ["pandas", "Foundation", "Data Analysis"],
+    category: "Data Analysis"
   },
   {
     id: 18,
@@ -260,7 +325,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "4 hours",
-    tags: ["Python", "Data Science", "Toolbox"]
+    tags: ["Python", "Data Science", "Toolbox"],
+    category: "Data Science"
   },
   {
     id: 19,
@@ -268,7 +334,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "4 hours",
-    tags: ["Statistics", "Python", "Data Analysis"]
+    tags: ["Statistics", "Python", "Data Analysis"],
+    category: "Statistics"
   },
   {
     id: 20,
@@ -276,7 +343,8 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "4 hours",
-    tags: ["Supervised Learning", "scikit-learn", "Machine Learning"]
+    tags: ["Supervised Learning", "scikit-learn", "Machine Learning"],
+    category: "Machine Learning"
   },
   {
     id: 21,
@@ -284,10 +352,25 @@ const certifications = ref([
     platform: "DataCamp",
     issuedDate: "2017",
     duration: "4 hours",
-    tags: ["Unsupervised Learning", "Python", "Machine Learning"]
+    tags: ["Unsupervised Learning", "Python", "Machine Learning"],
+    category: "Machine Learning"
   }
 ])
 
+// Category definitions with gradients
+const categoryDefinitions = {
+  'Data Science': { gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' },
+  'Data Analysis': { gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' },
+  'Machine Learning': { gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' },
+  'Programming': { gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)' },
+  'Data Visualization': { gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)' },
+  'Cloud Computing': { gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)' },
+  'Database': { gradient: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)' },
+  'Statistics': { gradient: 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)' },
+  'Development Tools': { gradient: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)' }
+}
+
+// Computed properties
 const platforms = computed(() => {
   const platformCounts = {}
   certifications.value.forEach(cert => {
@@ -303,12 +386,73 @@ const platforms = computed(() => {
   ]
 })
 
+const categoryStats = computed(() => {
+  const categoryCounts = {}
+  certifications.value.forEach(cert => {
+    categoryCounts[cert.category] = (categoryCounts[cert.category] || 0) + 1
+  })
+
+  return Object.entries(categoryCounts)
+    .map(([name, count]) => ({
+      name,
+      count,
+      percentage: Math.round((count / certifications.value.length) * 100),
+      gradient: categoryDefinitions[name]?.gradient || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+    }))
+    .sort((a, b) => b.count - a.count)
+})
+
+const allCategories = computed(() => {
+  const categoryCounts = {}
+  certifications.value.forEach(cert => {
+    categoryCounts[cert.category] = (categoryCounts[cert.category] || 0) + 1
+  })
+
+  return [
+    { name: 'All', count: certifications.value.length, gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' },
+    ...Object.entries(categoryCounts)
+      .map(([name, count]) => ({
+        name,
+        count,
+        gradient: categoryDefinitions[name]?.gradient || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+      }))
+      .sort((a, b) => b.count - a.count)
+  ]
+})
+
 const filteredCertifications = computed(() => {
-  if (activePlatform.value === 'All') {
+  if (activeCategory.value === 'All') {
     return certifications.value
   }
-  return certifications.value.filter(cert => cert.platform === activePlatform.value)
+  return certifications.value.filter(cert => cert.category === activeCategory.value)
 })
 
 const totalCertifications = computed(() => certifications.value.length)
+
+const topFocusAreas = computed(() => {
+  const focusCounts = {}
+  certifications.value.forEach(cert => {
+    cert.tags.forEach(tag => {
+      focusCounts[tag] = (focusCounts[tag] || 0) + 1
+    })
+  })
+
+  return Object.entries(focusCounts)
+    .map(([name, count]) => ({
+      name,
+      count,
+      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+    }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 5)
+})
+
+// Helper functions
+const getPlatformColor = (platform) => {
+  const colors = {
+    'Coursera': 'linear-gradient(135deg, #0056D2 0%, #0056D2 100%)',
+    'DataCamp': 'linear-gradient(135deg, #05192D 0%, #05192D 100%)'
+  }
+  return colors[platform] || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+}
 </script>
