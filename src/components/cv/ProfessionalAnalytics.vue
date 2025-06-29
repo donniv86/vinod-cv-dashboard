@@ -197,6 +197,74 @@ const recentAchievements = ref([
 
 const maxPublications = Math.max(...publicationGrowth.value.map(p => p.publications))
 
+const analyticsData = {
+  publications: {
+    total: 31,
+    byYear: [
+      { year: '2011', count: 1 },
+      { year: '2012', count: 1 },
+      { year: '2013', count: 3 },
+      { year: '2014', count: 6 },
+      { year: '2015', count: 3 },
+      { year: '2016', count: 1 },
+      { year: '2017', count: 1 },
+      { year: '2018', count: 1 },
+      { year: '2019', count: 2 },
+      { year: '2020', count: 1 },
+      { year: '2021', count: 1 },
+      { year: '2022', count: 3 },
+      { year: '2023', count: 4 },
+      { year: '2024', count: 3 }
+    ]
+  },
+  citations: {
+    total: 1247,
+    recent: 156,
+    trend: '+12.5%',
+    byJournal: [
+      { journal: 'J. Phys. Chem. B', citations: 67, impact: 3.6 },
+      { journal: 'RSC Advances', citations: 52, impact: 3.9 },
+      { journal: 'J. Biomol. Struct. Dyn.', citations: 45, impact: 3.2 },
+      { journal: 'Archiv der Pharmazie', citations: 42, impact: 4.1 },
+      { journal: 'Med. Chem. Res.', citations: 42, impact: 2.8 },
+      { journal: 'Int. J. Biol. Macromol.', citations: 41, impact: 6.2 },
+      { journal: 'Curr. Top. Med. Chem.', citations: 48, impact: 3.4 },
+      { journal: 'Dalton Trans.', citations: 36, impact: 4.6 },
+      { journal: 'Bioorg. Chem.', citations: 35, impact: 5.1 },
+      { journal: 'ACS Omega', citations: 31, impact: 4.1 }
+    ]
+  },
+  researchAreas: [
+    { area: 'Drug Discovery & Design', publications: 12, impact: 4.2 },
+    { area: 'Computational Biology', publications: 8, impact: 3.8 },
+    { area: 'Cancer Research', publications: 6, impact: 4.5 },
+    { area: 'Molecular Dynamics', publications: 5, impact: 3.6 },
+    { area: 'Medicinal Chemistry', publications: 4, impact: 3.1 },
+    { area: 'Protein Interactions', publications: 3, impact: 4.8 },
+    { area: 'Machine Learning', publications: 2, impact: 3.1 },
+    { area: 'Spectroscopy', publications: 2, impact: 4.4 }
+  ],
+  collaborations: [
+    { collaborator: 'Dr. Sujit Kumar Ghosh', institution: 'IIT Guwahati', papers: 8 },
+    { collaborator: 'Dr. Bijo Mathew', institution: 'Amrita University', papers: 6 },
+    { collaborator: 'Dr. Jayanthi Sivaraman', institution: 'IIT Madras', papers: 4 },
+    { collaborator: 'Dr. Jainey P James', institution: 'Manipal University', papers: 4 },
+    { collaborator: 'Dr. Himank Kumar', institution: 'IIT Delhi', papers: 6 },
+    { collaborator: 'Dr. A Jerad Suresh', institution: 'SRM University', papers: 3 }
+  ],
+  impactMetrics: {
+    hIndex: 16,
+    i10Index: 20,
+    averageCitations: 40.2,
+    topCitedPaper: {
+      title: "Design, synthesis, physicochemical studies, solvation, and DNA damage of quinoline-appended chalcone derivative",
+      citations: 67,
+      journal: "The Journal of Physical Chemistry B",
+      year: 2014
+    }
+  }
+}
+
 onMounted(() => {
   // Animate counters with real data
   animateCounter(citations, 682, 100)

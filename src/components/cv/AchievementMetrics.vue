@@ -93,5 +93,72 @@
 </template>
 
 <script setup lang="ts">
-// Component logic can be added here for dynamic data
+const metrics = [
+  {
+    id: 1,
+    title: "Total Publications",
+    value: "31",
+    change: "+3",
+    changeType: "positive",
+    description: "Peer-reviewed research papers",
+    icon: "📚",
+    color: "blue",
+    details: "Published in high-impact journals including ACS, RSC, Elsevier, and Springer"
+  },
+  {
+    id: 2,
+    title: "Total Citations",
+    value: "1,247",
+    change: "+156",
+    changeType: "positive",
+    description: "Citations across all publications",
+    icon: "📊",
+    color: "green",
+    details: "Average of 40+ citations per publication"
+  },
+  {
+    id: 3,
+    title: "H-Index",
+    value: "16",
+    change: "+2",
+    changeType: "positive",
+    description: "Hirsch index based on citations",
+    icon: "🎯",
+    color: "purple",
+    details: "Consistent research impact over 13+ years"
+  },
+  {
+    id: 4,
+    title: "Research Years",
+    value: "13+",
+    change: "Active",
+    changeType: "positive",
+    description: "Years of active research",
+    icon: "⏰",
+    color: "orange",
+    details: "Continuous research from 2011 to present"
+  },
+  {
+    id: 5,
+    title: "Avg Impact Factor",
+    value: "3.2",
+    change: "+0.3",
+    changeType: "positive",
+    description: "Average journal impact factor",
+    icon: "⭐",
+    color: "indigo",
+    details: "Publications in journals with IF 1.2-6.2"
+  },
+  {
+    id: 6,
+    title: "Research Areas",
+    value: "8+",
+    change: "Diverse",
+    changeType: "positive",
+    description: "Different research domains",
+    icon: "🔬",
+    color: "teal",
+    details: "Drug discovery, computational biology, cancer research, and more"
+  }
+]
 </script>
