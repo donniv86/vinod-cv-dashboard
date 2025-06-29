@@ -10,10 +10,10 @@
           :key="filter"
           @click="selectedFilter = filter"
           :class="[
-            'px-3 py-1 rounded-full text-sm font-medium transition-colors',
+            'px-3 py-1 rounded-full text-sm font-medium transition-all duration-300',
             selectedFilter === filter
-              ? 'bg-primary text-white'
-              : 'bg-gray-100 dark:bg-gray-700 text-bodydark2 hover:bg-gray-200 dark:hover:bg-gray-600'
+              ? 'bg-primary text-white shadow-lg scale-105'
+              : 'bg-gray-100 dark:bg-gray-700 text-bodydark2 hover:bg-gray-200 dark:hover:bg-gray-600 hover:scale-105'
           ]"
         >
           {{ filter }}
@@ -26,26 +26,27 @@
       <div
         v-for="project in filteredProjects"
         :key="project.id"
-        class="bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
+        class="bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 group"
       >
         <!-- Project Image -->
-        <div class="h-48 bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-          <div class="text-white text-6xl font-bold">
+        <div class="h-48 bg-gradient-to-br from-primary to-secondary flex items-center justify-center relative overflow-hidden">
+          <div class="text-white text-6xl font-bold group-hover:scale-110 transition-transform duration-300">
             {{ project.title.charAt(0) }}
           </div>
+          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
 
         <!-- Project Content -->
         <div class="p-6">
           <div class="flex justify-between items-start mb-3">
-            <h4 class="text-xl font-bold text-black dark:text-white">
+            <h4 class="text-xl font-bold text-black dark:text-white group-hover:text-primary transition-colors duration-300">
               {{ project.title }}
             </h4>
             <span
               v-if="project.featured"
-              class="px-2 py-1 bg-warning/20 text-warning rounded-full text-xs"
+              class="px-2 py-1 bg-warning/20 text-warning rounded-full text-xs animate-pulse"
             >
-              Featured
+              ⭐ Featured
             </span>
           </div>
 
@@ -59,7 +60,7 @@
               <span
                 v-for="tech in project.technologies.slice(0, 3)"
                 :key="tech"
-                class="px-2 py-1 bg-primary/10 text-primary rounded text-xs"
+                class="px-2 py-1 bg-primary/10 text-primary rounded text-xs hover:bg-primary hover:text-white transition-all duration-300 cursor-default"
               >
                 {{ tech }}
               </span>
@@ -77,17 +78,17 @@
             <a
               :href="project.github"
               target="_blank"
-              class="flex-1 bg-gray-800 dark:bg-gray-600 text-white text-center py-2 px-4 rounded hover:bg-gray-700 dark:hover:bg-gray-500 transition-colors"
+              class="flex-1 bg-gray-800 dark:bg-gray-600 text-white text-center py-2 px-4 rounded hover:bg-gray-700 dark:hover:bg-gray-500 transition-all duration-300 hover:scale-105 flex items-center justify-center"
             >
-              <GithubIcon class="w-4 h-4 mr-2 inline" />
+              <span class="mr-2">📁</span>
               Code
             </a>
             <a
               :href="project.live"
               target="_blank"
-              class="flex-1 bg-primary text-white text-center py-2 px-4 rounded hover:bg-primary/90 transition-colors"
+              class="flex-1 bg-primary text-white text-center py-2 px-4 rounded hover:bg-primary/90 transition-all duration-300 hover:scale-105 flex items-center justify-center"
             >
-              <ExternalLinkIcon class="w-4 h-4 mr-2 inline" />
+              <span class="mr-2">🔗</span>
               Live
             </a>
           </div>
@@ -99,7 +100,6 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { GithubIcon, ExternalLinkIcon } from 'lucide-vue-next'
 
 const projects = ref([
   {

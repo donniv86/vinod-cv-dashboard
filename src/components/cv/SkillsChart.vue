@@ -10,10 +10,10 @@
           :key="category"
           @click="selectedCategory = category"
           :class="[
-            'px-3 py-1 rounded-full text-sm font-medium transition-colors',
+            'px-3 py-1 rounded-full text-sm font-medium transition-all duration-300',
             selectedCategory === category
-              ? 'bg-primary text-white'
-              : 'bg-gray-100 dark:bg-gray-700 text-bodydark2 hover:bg-gray-200 dark:hover:bg-gray-600'
+              ? 'bg-primary text-white shadow-lg scale-105'
+              : 'bg-gray-100 dark:bg-gray-700 text-bodydark2 hover:bg-gray-200 dark:hover:bg-gray-600 hover:scale-105'
           ]"
         >
           {{ category }}
@@ -26,45 +26,45 @@
       <div
         v-for="skill in filteredSkills"
         :key="skill.name"
-        class="p-4 border border-stroke dark:border-strokedark rounded-lg hover:shadow-md transition-shadow"
+        class="p-4 border border-stroke dark:border-strokedark rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105 hover:border-primary/50"
       >
         <div class="flex justify-between items-center mb-2">
           <span class="font-medium text-black dark:text-white">{{ skill.name }}</span>
-          <span class="text-sm text-bodydark2">{{ skill.level }}%</span>
+          <span class="text-sm text-bodydark2 font-semibold">{{ skill.level }}%</span>
         </div>
 
         <!-- Progress Bar -->
-        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
           <div
             :class="getColorByLevel(skill.level)"
-            class="h-2 rounded-full transition-all duration-300"
+            class="h-3 rounded-full transition-all duration-1000 ease-out"
             :style="{ width: skill.level + '%' }"
           ></div>
         </div>
 
-        <div class="mt-1">
-          <span class="text-xs text-bodydark2">{{ skill.category }}</span>
+        <div class="mt-2">
+          <span class="text-xs text-bodydark2 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">{{ skill.category }}</span>
         </div>
       </div>
     </div>
 
     <!-- Skills Summary -->
-    <div class="mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-      <h4 class="font-semibold text-black dark:text-white mb-2">Skills Summary</h4>
+    <div class="mt-6 p-4 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-lg">
+      <h4 class="font-semibold text-black dark:text-white mb-4">Skills Summary</h4>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-        <div class="text-center">
-          <div class="text-2xl font-bold text-primary">{{ skills.filter(s => s.level >= 90).length }}</div>
+        <div class="text-center p-3 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
+          <div class="text-2xl font-bold text-success">{{ skills.filter(s => s.level >= 90).length }}</div>
           <div class="text-bodydark2">Expert</div>
         </div>
-        <div class="text-center">
-          <div class="text-2xl font-bold text-success">{{ skills.filter(s => s.level >= 80 && s.level < 90).length }}</div>
+        <div class="text-center p-3 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
+          <div class="text-2xl font-bold text-primary">{{ skills.filter(s => s.level >= 80 && s.level < 90).length }}</div>
           <div class="text-bodydark2">Advanced</div>
         </div>
-        <div class="text-center">
+        <div class="text-center p-3 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
           <div class="text-2xl font-bold text-warning">{{ skills.filter(s => s.level >= 70 && s.level < 80).length }}</div>
           <div class="text-bodydark2">Intermediate</div>
         </div>
-        <div class="text-center">
+        <div class="text-center p-3 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
           <div class="text-2xl font-bold text-danger">{{ skills.filter(s => s.level < 70).length }}</div>
           <div class="text-bodydark2">Learning</div>
         </div>

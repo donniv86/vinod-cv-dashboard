@@ -6,7 +6,7 @@
         <img
           src="/vinod.png"
           alt="Vinod Devaraji"
-          class="w-32 h-32 rounded-full object-cover shadow-lg border-4 border-white dark:border-boxdark"
+          class="w-32 h-32 rounded-full object-cover shadow-lg border-4 border-white dark:border-boxdark hover:scale-105 transition-transform duration-300"
         />
       </div>
 
@@ -19,35 +19,41 @@
           {{ personalInfo.title }}
         </p>
         <p class="text-bodydark2 mb-4 flex items-center justify-center lg:justify-start">
-          <MapPinIcon class="w-4 h-4 mr-2" />
+          <span class="w-4 h-4 mr-2">📍</span>
           {{ personalInfo.location }}
         </p>
-        <p class="text-bodydark leading-relaxed">
+        <p class="text-bodydark leading-relaxed mb-4">
           {{ personalInfo.summary }}
         </p>
+
+        <!-- Download CV Button -->
+        <button class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-lg hover:opacity-90 transition-all duration-300 flex items-center mx-auto lg:mx-0">
+          <span class="mr-2">📄</span>
+          Download CV (PDF)
+        </button>
       </div>
 
       <!-- Contact Info -->
       <div class="flex-shrink-0">
         <div class="space-y-3">
           <a :href="`mailto:${personalInfo.email}`"
-             class="flex items-center text-bodydark2 hover:text-primary transition-colors">
+             class="flex items-center text-bodydark2 hover:text-primary transition-colors p-2 rounded hover:bg-gray-50 dark:hover:bg-gray-800">
             <MailIcon class="w-4 h-4 mr-2" />
             {{ personalInfo.email }}
           </a>
           <a :href="`tel:${personalInfo.phone}`"
-             class="flex items-center text-bodydark2 hover:text-primary transition-colors">
-            <PhoneIcon class="w-4 h-4 mr-2" />
+             class="flex items-center text-bodydark2 hover:text-primary transition-colors p-2 rounded hover:bg-gray-50 dark:hover:bg-gray-800">
+            <span class="w-4 h-4 mr-2">📞</span>
             {{ personalInfo.phone }}
           </a>
           <a :href="`https://${personalInfo.linkedin}`" target="_blank"
-             class="flex items-center text-bodydark2 hover:text-primary transition-colors">
-            <LinkedinIcon class="w-4 h-4 mr-2" />
+             class="flex items-center text-bodydark2 hover:text-primary transition-colors p-2 rounded hover:bg-gray-50 dark:hover:bg-gray-800">
+            <span class="w-4 h-4 mr-2">💼</span>
             LinkedIn
           </a>
           <a :href="`https://orcid.org/${personalInfo.orcid}`" target="_blank"
-             class="flex items-center text-bodydark2 hover:text-primary transition-colors">
-            <GlobeIcon class="w-4 h-4 mr-2" />
+             class="flex items-center text-bodydark2 hover:text-primary transition-colors p-2 rounded hover:bg-gray-50 dark:hover:bg-gray-800">
+            <span class="w-4 h-4 mr-2">🔬</span>
             ORCID
           </a>
         </div>
@@ -58,8 +64,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { MapPinIcon, MailIcon, PhoneIcon } from '@heroicons/vue/24/outline'
-import { LinkedinIcon, GlobeIcon } from 'lucide-vue-next'
+import { MailIcon } from '../../icons'
 
 const personalInfo = ref({
   name: 'Vinod Devaraji',
