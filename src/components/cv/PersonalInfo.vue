@@ -68,12 +68,12 @@ import { MailIcon } from '../../icons'
 
 const personalInfo = ref({
   name: 'Vinod Devaraji',
-  title: 'Innovative Drug Hunter | Champion of AI/ML-Driven Drug Discovery',
+  title: 'Application Scientist | CADD Expert | Molecular Modeling Specialist',
   location: 'Bangalore, India',
-  summary: 'Strategic computational chemist with 13+ years of experience advancing drug discovery through AI/ML, cheminformatics, and physics-based molecular modeling. Proven track record in hit-to-lead optimization, DMTA cycle automation, and predictive model development across oncology, metabolic, and infectious diseases.',
+  summary: 'Application Scientist at Schrödinger with 10+ years of experience in Computer-Aided Drug Design (CADD), molecular modeling, and drug discovery. Published 18+ peer-reviewed papers with 682 citations and H-index of 16. Expert in Schrödinger Suite, molecular dynamics, and pharmacophore modeling.',
   email: 'donniv86@gmail.com',
   phone: '+91-6364817778',
-  linkedin: 'linkedin.com/in/vinod-devaraji',
+  linkedin: 'linkedin.com/in/vinod-d-ph-d-8bb57a36',
   orcid: '0000-0002-9355-3995'
 })
 </script>

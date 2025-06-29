@@ -52,19 +52,19 @@
     <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
       <div class="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg border border-blue-200 dark:border-blue-800">
         <div class="text-2xl mb-2">🧬</div>
-        <h4 class="font-semibold text-blue-800 dark:text-blue-200">Molecular Modeling</h4>
+        <h4 class="font-semibold text-blue-800 dark:text-blue-200">CADD</h4>
         <p class="text-xs text-blue-600 dark:text-blue-400">Expert Level</p>
       </div>
 
       <div class="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-lg border border-green-200 dark:border-green-800">
-        <div class="text-2xl mb-2">🤖</div>
-        <h4 class="font-semibold text-green-800 dark:text-green-200">AI/ML</h4>
+        <div class="text-2xl mb-2">💻</div>
+        <h4 class="font-semibold text-green-800 dark:text-green-200">Schrödinger Suite</h4>
         <p class="text-xs text-green-600 dark:text-green-400">Advanced Level</p>
       </div>
 
       <div class="text-center p-4 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg border border-purple-200 dark:border-purple-800">
-        <div class="text-2xl mb-2">💻</div>
-        <h4 class="font-semibold text-purple-800 dark:text-purple-200">Programming</h4>
+        <div class="text-2xl mb-2">⚡</div>
+        <h4 class="font-semibold text-purple-800 dark:text-purple-200">Python Programming</h4>
         <p class="text-xs text-purple-600 dark:text-purple-400">Proficient Level</p>
       </div>
     </div>
@@ -77,43 +77,43 @@ import { ref, onMounted } from 'vue'
 const radarCanvas = ref<HTMLCanvasElement>()
 
 const skills = ref([
-  { name: 'Molecular Modeling', level: 95, color: '#3B82F6' },
-  { name: 'AI/ML', level: 90, color: '#10B981' },
-  { name: 'Cheminformatics', level: 92, color: '#8B5CF6' },
+  { name: 'CADD', level: 95, color: '#3B82F6' },
+  { name: 'Molecular Modeling', level: 92, color: '#10B981' },
+  { name: 'Schrödinger Suite', level: 90, color: '#8B5CF6' },
   { name: 'Drug Discovery', level: 88, color: '#F59E0B' },
-  { name: 'Programming', level: 85, color: '#EF4444' },
-  { name: 'Data Analysis', level: 87, color: '#06B6D4' }
+  { name: 'Python Programming', level: 85, color: '#EF4444' },
+  { name: 'Pharmacophore Modeling', level: 87, color: '#06B6D4' }
 ])
 
 const skillCategories = ref([
   {
-    name: 'Core Competencies',
+    name: 'Core Research Skills',
     icon: '🧬',
     skills: [
-      { name: 'Molecular Dynamics', proficiency: 95 },
-      { name: 'Docking & Scoring', proficiency: 92 },
-      { name: 'QSAR Modeling', proficiency: 88 },
+      { name: 'Computer-Aided Drug Design', proficiency: 95 },
+      { name: 'Molecular Dynamics', proficiency: 92 },
+      { name: 'Docking & Scoring', proficiency: 88 },
       { name: 'Structure-Based Design', proficiency: 90 }
     ]
   },
   {
-    name: 'AI & Machine Learning',
-    icon: '🤖',
+    name: 'Software & Tools',
+    icon: '💻',
     skills: [
-      { name: 'Deep Learning', proficiency: 85 },
-      { name: 'Predictive Modeling', proficiency: 90 },
-      { name: 'Neural Networks', proficiency: 82 },
-      { name: 'Feature Engineering', proficiency: 88 }
+      { name: 'Schrödinger Suite', proficiency: 90 },
+      { name: 'Maestro', proficiency: 88 },
+      { name: 'Glide', proficiency: 85 },
+      { name: 'Prime', proficiency: 87 }
     ]
   },
   {
-    name: 'Programming & Tools',
-    icon: '💻',
+    name: 'Programming & Analysis',
+    icon: '⚡',
     skills: [
-      { name: 'Python', proficiency: 90 },
-      { name: 'R', proficiency: 85 },
-      { name: 'Schrödinger Suite', proficiency: 95 },
-      { name: 'OpenMM', proficiency: 88 }
+      { name: 'Python', proficiency: 85 },
+      { name: 'R', proficiency: 80 },
+      { name: 'Data Analysis', proficiency: 88 },
+      { name: 'Statistical Modeling', proficiency: 82 }
     ]
   }
 ])

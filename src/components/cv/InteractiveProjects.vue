@@ -198,9 +198,9 @@ interface Project {
   }
   achievements: string[]
   links: {
-    paper?: string
-    github?: string
-    demo?: string
+    paper?: string | null
+    github?: string | null
+    demo?: string | null
   }
 }
 
@@ -212,80 +212,137 @@ const categories = ['All', 'AI/ML', 'Drug Discovery', 'Research', 'Tools']
 const projects = ref<Project[]>([
   {
     id: 1,
-    title: 'AI-Driven Drug Target Prediction',
-    description: 'Developed a deep learning model for predicting novel drug targets with 85% accuracy across multiple disease areas.',
-    fullDescription: 'This project involved developing a comprehensive deep learning framework for predicting novel drug targets. The model integrates multiple data sources including protein sequences, gene expression data, and known drug-target interactions to identify promising therapeutic targets.',
-    icon: '🧬',
+    title: 'Antihypertensive Activity of Quinoline Chalcone',
+    description: 'Developed novel quinoline-appended chalcone derivatives with antihypertensive activity and site-specific binding interactions.',
+    fullDescription: 'This research focused on the design and synthesis of quinoline-appended chalcone derivatives with potential antihypertensive activity. The study involved comprehensive molecular modeling, binding interaction analysis, and biological evaluation. The work demonstrated significant binding affinity to target carrier proteins and established structure-activity relationships.',
+    icon: '💊',
     status: 'Completed',
-    category: 'AI/ML',
-    technologies: ['Python', 'TensorFlow', 'PyTorch', 'Bioinformatics', 'AWS'],
+    category: 'Drug Discovery',
+    technologies: ['Molecular Modeling', 'Binding Studies', 'RSC Advances', 'Spectroscopy'],
     impact: {
-      metric1: '85%',
-      label1: 'Prediction Accuracy',
-      metric2: '40%',
-      label2: 'Time Reduction'
+      metric1: '103',
+      label1: 'Citations',
+      metric2: '2015',
+      label2: 'Publication Year'
     },
     achievements: [
-      'Reduced target identification time by 40%',
-      'Achieved 85% prediction accuracy across 5 disease areas',
-      'Published in Nature Biotechnology',
-      'Deployed as cloud service for research teams'
+      'Published in RSC Advances (Impact Factor: 3.9)',
+      'Achieved 103 citations demonstrating high impact',
+      'Established structure-activity relationships',
+      'Demonstrated site-specific protein binding'
     ],
     links: {
-      paper: 'https://example.com/paper',
-      github: 'https://github.com/example/repo',
-      demo: 'https://demo.example.com'
+      paper: 'https://pubs.rsc.org/en/content/articlelanding/2015/ra/c5ra10706a',
+      github: null,
+      demo: null
     }
   },
   {
     id: 2,
-    title: 'Automated DMTA Pipeline',
-    description: 'Built an end-to-end pipeline automating Design-Make-Test-Analyze cycles, reducing cycle time by 60%.',
-    fullDescription: 'Developed a comprehensive automation pipeline that streamlines the entire DMTA (Design-Make-Test-Analyze) cycle in drug discovery. The system integrates molecular modeling, synthesis planning, and data analysis.',
-    icon: '⚙️',
-    status: 'Active',
-    category: 'Drug Discovery',
-    technologies: ['Python', 'Schrödinger', 'RDKit', 'PostgreSQL', 'Docker'],
+    title: 'Oxovanadium-Salphen Complexes for Cancer',
+    description: 'Investigated oxovanadium(IV)–salphen complexes interaction with bovine serum albumin and cytotoxicity against cancer cells.',
+    fullDescription: 'This project explored the interaction of oxovanadium(IV)–salphen complexes with bovine serum albumin (BSA) and evaluated their cytotoxicity against cancer cells. The research involved spectroscopic studies, molecular docking, and in vitro cytotoxicity assays. The complexes showed promising binding interactions and selective cytotoxicity.',
+    icon: '🔬',
+    status: 'Completed',
+    category: 'Research',
+    technologies: ['Spectroscopy', 'Molecular Docking', 'Cytotoxicity Assays', 'Dalton Transactions'],
     impact: {
-      metric1: '60%',
-      label1: 'Cycle Time Reduction',
-      metric2: '50+',
-      label2: 'Compounds Processed'
+      metric1: '86',
+      label1: 'Citations',
+      metric2: '2014',
+      label2: 'Publication Year'
     },
     achievements: [
-      'Automated 60% of manual processes',
-      'Processed 50+ compounds per cycle',
-      'Integrated with existing lab infrastructure',
-      'Reduced human error by 90%'
+      'Published in Dalton Transactions (Impact Factor: 4.1)',
+      'Achieved 86 citations showing research impact',
+      'Demonstrated selective cytotoxicity',
+      'Established protein binding mechanisms'
     ],
     links: {
-      github: 'https://github.com/example/dmta-pipeline'
+      paper: 'https://pubs.rsc.org/en/content/articlelanding/2014/dt/c3dt53076a',
+      github: null,
+      demo: null
     }
   },
   {
     id: 3,
-    title: 'Molecular Dynamics Optimization',
-    description: 'Optimized molecular dynamics simulations achieving 10x performance improvement on GPU clusters.',
-    fullDescription: 'Led the optimization of molecular dynamics simulations for large-scale drug discovery projects. Implemented GPU acceleration and parallel processing techniques.',
-    icon: '⚡',
+    title: 'MAO-B Inhibitors: Fluorinated Chalcones',
+    description: 'Designed potent and highly selective dual-targeting monoamine oxidase-B inhibitors using fluorinated chalcones.',
+    fullDescription: 'This research focused on the design and synthesis of fluorinated chalcones as potent and highly selective monoamine oxidase-B (MAO-B) inhibitors. The study involved pharmacophore modeling, molecular docking, and biological evaluation. The compounds showed excellent selectivity and potency.',
+    icon: '🧠',
     status: 'Completed',
-    category: 'Research',
-    technologies: ['CUDA', 'OpenMM', 'Python', 'HPC', 'Slurm'],
+    category: 'Drug Discovery',
+    technologies: ['Pharmacophore Modeling', 'Molecular Docking', 'MAO-B Inhibition', 'Archiv der Pharmazie'],
     impact: {
-      metric1: '10x',
-      label1: 'Performance Gain',
-      metric2: '1000+',
-      label2: 'Simulations/Day'
+      metric1: '61',
+      label1: 'Citations',
+      metric2: '2019',
+      label2: 'Publication Year'
     },
     achievements: [
-      'Achieved 10x performance improvement',
-      'Scaled to 1000+ simulations per day',
-      'Reduced computational costs by 70%',
-      'Published optimization methodology'
+      'Published in Archiv der Pharmazie (Impact Factor: 4.7)',
+      'Achieved 61 citations demonstrating impact',
+      'Developed highly selective MAO-B inhibitors',
+      'Established structure-selectivity relationships'
     ],
     links: {
-      paper: 'https://example.com/md-paper',
-      github: 'https://github.com/example/md-optimization'
+      paper: 'https://onlinelibrary.wiley.com/doi/abs/10.1002/ardp.201800309',
+      github: null,
+      demo: null
+    }
+  },
+  {
+    id: 4,
+    title: 'Quinoline Chalcone DNA Interaction',
+    description: 'Comprehensive spectroscopic study of quinoline-appended chalcone derivative DNA damage and drug discovery applications.',
+    fullDescription: 'This comprehensive study investigated the interaction of quinoline-appended chalcone derivatives with DNA using various spectroscopic techniques. The research provided insights into DNA binding mechanisms and potential drug discovery applications.',
+    icon: '🧬',
+    status: 'Completed',
+    category: 'Research',
+    technologies: ['Spectroscopy', 'DNA Binding', 'J. Phys. Chem. B', 'Molecular Modeling'],
+    impact: {
+      metric1: '36',
+      label1: 'Citations',
+      metric2: '2014',
+      label2: 'Publication Year'
+    },
+    achievements: [
+      'Published in J. Phys. Chem. B (Impact Factor: 3.3)',
+      'Comprehensive spectroscopic analysis',
+      'Established DNA binding mechanisms',
+      'Advanced drug discovery understanding'
+    ],
+    links: {
+      paper: 'https://pubs.acs.org/doi/abs/10.1021/jp503145r',
+      github: null,
+      demo: null
+    }
+  },
+  {
+    id: 5,
+    title: 'PAR2 Structure for Breast Cancer',
+    description: 'Molecular modeling study of protease activated receptor 2 (PAR2) structure and signaling mechanism for breast cancer targeting.',
+    fullDescription: 'This computational study focused on the structure and putative signaling mechanism of protease activated receptor 2 (PAR2) as a promising target for breast cancer therapy. The research involved molecular modeling, structure prediction, and signaling pathway analysis.',
+    icon: '🎯',
+    status: 'Completed',
+    category: 'Research',
+    technologies: ['Molecular Modeling', 'PAR2 Structure', 'J. Mol. Graphics', 'Breast Cancer'],
+    impact: {
+      metric1: '30',
+      label1: 'Citations',
+      metric2: '2014',
+      label2: 'Publication Year'
+    },
+    achievements: [
+      'Published in J. Mol. Graphics and Modelling',
+      'Identified PAR2 as breast cancer target',
+      'Predicted signaling mechanisms',
+      'Advanced therapeutic target understanding'
+    ],
+    links: {
+      paper: 'https://www.sciencedirect.com/science/article/abs/pii/S1093326314000894',
+      github: null,
+      demo: null
     }
   }
 ])

@@ -12,13 +12,13 @@
       <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 p-4 rounded-lg border border-emerald-200 dark:border-emerald-800">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm text-emerald-600 dark:text-emerald-400 font-medium">Citations</p>
+            <p class="text-sm text-emerald-600 dark:text-emerald-400 font-medium">Total Citations</p>
             <p class="text-2xl font-bold text-emerald-800 dark:text-emerald-200">{{ citations }}</p>
           </div>
           <div class="text-3xl">📚</div>
         </div>
         <div class="mt-2 text-xs text-emerald-600 dark:text-emerald-400">
-          +{{ citationsGrowth }}% this year
+          +{{ citationsGrowth }}% recent (2020+)
         </div>
       </div>
 
@@ -31,33 +31,33 @@
           <div class="text-3xl">🎯</div>
         </div>
         <div class="mt-2 text-xs text-blue-600 dark:text-blue-400">
-          Top 10% in field
+          Recent: {{ recentHIndex }} (2020+)
         </div>
       </div>
 
       <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm text-purple-600 dark:text-purple-400 font-medium">Patents</p>
-            <p class="text-2xl font-bold text-purple-800 dark:text-purple-200">{{ patents }}</p>
+            <p class="text-sm text-purple-600 dark:text-purple-400 font-medium">i10-Index</p>
+            <p class="text-2xl font-bold text-purple-800 dark:text-purple-200">{{ i10Index }}</p>
           </div>
-          <div class="text-3xl">⚡</div>
+          <div class="text-3xl">📊</div>
         </div>
         <div class="mt-2 text-xs text-purple-600 dark:text-purple-400">
-          {{ patentsPending }} pending
+          Papers with 10+ citations
         </div>
       </div>
 
       <div class="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm text-orange-600 dark:text-orange-400 font-medium">Industry Impact</p>
-            <p class="text-2xl font-bold text-orange-800 dark:text-orange-200">{{ industryImpact }}</p>
+            <p class="text-sm text-orange-600 dark:text-orange-400 font-medium">Recent Citations</p>
+            <p class="text-2xl font-bold text-orange-800 dark:text-orange-200">{{ recentCitations }}</p>
           </div>
-          <div class="text-3xl">🏢</div>
+          <div class="text-3xl">🚀</div>
         </div>
         <div class="mt-2 text-xs text-orange-600 dark:text-orange-400">
-          Companies influenced
+          Since 2020
         </div>
       </div>
     </div>
@@ -146,66 +146,75 @@ import { ref, onMounted } from 'vue'
 const citations = ref(0)
 const citationsGrowth = ref(0)
 const hIndex = ref(0)
+const i10Index = ref(0)
+const recentCitations = ref(0)
+const recentHIndex = ref(0)
 const patents = ref(0)
 const patentsPending = ref(0)
 const industryImpact = ref(0)
 
 const publicationGrowth = ref([
-  { year: '2019', publications: 3 },
-  { year: '2020', publications: 5 },
-  { year: '2021', publications: 7 },
-  { year: '2022', publications: 9 },
-  { year: '2023', publications: 12 }
+  { year: '2014', publications: 8 },
+  { year: '2015', publications: 3 },
+  { year: '2017', publications: 1 },
+  { year: '2018', publications: 1 },
+  { year: '2019', publications: 2 },
+  { year: '2021', publications: 1 },
+  { year: '2023', publications: 1 },
+  { year: '2024', publications: 1 }
 ])
 
 const skillEvolution = ref([
-  { name: 'AI/ML', progress: 0 },
+  { name: 'CADD', progress: 0 },
   { name: 'Molecular Modeling', progress: 0 },
   { name: 'Drug Discovery', progress: 0 },
-  { name: 'Programming', progress: 0 }
+  { name: 'Schrödinger Suite', progress: 0 }
 ])
 
 const recentAchievements = ref([
   {
     id: 1,
     icon: '🏆',
-    title: 'Published in Nature',
-    description: 'Breakthrough paper on AI-driven drug discovery',
-    date: 'Dec 2023'
+    title: 'Application Scientist',
+    description: 'Leading CADD applications at Schrödinger',
+    date: 'Current'
   },
   {
     id: 2,
-    icon: '⚡',
-    title: 'Patent Granted',
-    description: 'Novel computational method for target identification',
-    date: 'Nov 2023'
+    icon: '📚',
+    title: '682 Total Citations',
+    description: 'Strong research impact in drug discovery',
+    date: '2024'
   },
   {
     id: 3,
     icon: '🎯',
-    title: 'Industry Award',
-    description: 'Best Innovation in Pharmaceutical Research',
-    date: 'Oct 2023'
+    title: 'H-index: 16',
+    description: 'Established researcher in molecular modeling',
+    date: '2024'
   }
 ])
 
 const maxPublications = Math.max(...publicationGrowth.value.map(p => p.publications))
 
 onMounted(() => {
-  // Animate counters
-  animateCounter(citations, 1250, 100)
-  animateCounter(hIndex, 18, 50)
+  // Animate counters with real data
+  animateCounter(citations, 682, 100)
+  animateCounter(hIndex, 16, 50)
+  animateCounter(i10Index, 20, 60)
+  animateCounter(recentCitations, 457, 80)
+  animateCounter(recentHIndex, 12, 70)
+  animateCounter(citationsGrowth, 67, 120) // 457/682 * 100
   animateCounter(patents, 8, 80)
-  animateCounter(industryImpact, 15, 60)
-  animateCounter(citationsGrowth, 25, 100)
   animateCounter(patentsPending, 3, 120)
+  animateCounter(industryImpact, 15, 60)
 
   // Animate skill progress
   setTimeout(() => {
-    skillEvolution.value[0].progress = 90
-    skillEvolution.value[1].progress = 95
-    skillEvolution.value[2].progress = 88
-    skillEvolution.value[3].progress = 85
+    skillEvolution.value[0].progress = 95 // CADD
+    skillEvolution.value[1].progress = 92 // Molecular Modeling
+    skillEvolution.value[2].progress = 88 // Drug Discovery
+    skillEvolution.value[3].progress = 90 // Schrödinger Suite
   }, 500)
 })
 

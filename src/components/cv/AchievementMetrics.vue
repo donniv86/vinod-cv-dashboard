@@ -13,76 +13,79 @@
         <div class="flex items-center justify-between">
           <div>
             <p class="text-sm text-blue-600 dark:text-blue-400 font-medium">Experience</p>
-            <p class="text-2xl font-bold text-blue-800 dark:text-blue-200">13+ Years</p>
+            <p class="text-2xl font-bold text-blue-800 dark:text-blue-200">10+ Years</p>
           </div>
           <div class="text-3xl">⏰</div>
         </div>
-        <p class="text-xs text-blue-600 dark:text-blue-400 mt-2">Drug Discovery & AI/ML</p>
-      </div>
-
-      <!-- Projects Delivered -->
-      <div class="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm text-green-600 dark:text-green-400 font-medium">Projects</p>
-            <p class="text-2xl font-bold text-green-800 dark:text-green-200">50+</p>
-          </div>
-          <div class="text-3xl">🚀</div>
-        </div>
-        <p class="text-xs text-green-600 dark:text-green-400 mt-2">Successfully Delivered</p>
+        <p class="text-xs text-blue-600 dark:text-blue-400 mt-2">CADD & Molecular Modeling</p>
       </div>
 
       <!-- Publications -->
-      <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+      <div class="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm text-purple-600 dark:text-purple-400 font-medium">Publications</p>
-            <p class="text-2xl font-bold text-purple-800 dark:text-purple-200">15+</p>
+            <p class="text-sm text-green-600 dark:text-green-400 font-medium">Publications</p>
+            <p class="text-2xl font-bold text-green-800 dark:text-green-200">18+</p>
           </div>
           <div class="text-3xl">📚</div>
         </div>
-        <p class="text-xs text-purple-600 dark:text-purple-400 mt-2">Peer-Reviewed Papers</p>
+        <p class="text-xs text-green-600 dark:text-green-400 mt-2">Peer-Reviewed Papers</p>
       </div>
 
-      <!-- Technologies -->
+      <!-- Citations -->
+      <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-purple-600 dark:text-purple-400 font-medium">Citations</p>
+            <p class="text-2xl font-bold text-purple-800 dark:text-purple-200">682</p>
+          </div>
+          <div class="text-3xl">📊</div>
+        </div>
+        <p class="text-xs text-purple-600 dark:text-purple-400 mt-2">Google Scholar</p>
+      </div>
+
+      <!-- H-Index -->
       <div class="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm text-orange-600 dark:text-orange-400 font-medium">Technologies</p>
-            <p class="text-2xl font-bold text-orange-800 dark:text-orange-200">25+</p>
+            <p class="text-sm text-orange-600 dark:text-orange-400 font-medium">H-Index</p>
+            <p class="text-2xl font-bold text-orange-800 dark:text-orange-200">16</p>
           </div>
-          <div class="text-3xl">⚡</div>
+          <div class="text-3xl">🎯</div>
         </div>
-        <p class="text-xs text-orange-600 dark:text-orange-400 mt-2">Tools & Platforms</p>
+        <p class="text-xs text-orange-600 dark:text-orange-400 mt-2">Research Impact</p>
       </div>
     </div>
 
     <!-- Impact Metrics -->
     <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-4">
       <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-        <h4 class="font-semibold text-black dark:text-white mb-2">💡 Innovation Impact</h4>
+        <h4 class="font-semibold text-black dark:text-white mb-2">🧬 Research Focus</h4>
         <ul class="text-sm text-bodydark2 space-y-1">
-          <li>• Automated DMTA cycles by 60%</li>
-          <li>• Reduced drug discovery time by 40%</li>
-          <li>• Improved hit rates by 35%</li>
+          <li>• Computer-Aided Drug Design (CADD)</li>
+          <li>• Molecular Modeling & Dynamics</li>
+          <li>• Cancer Therapeutics</li>
+          <li>• Pharmacophore Modeling</li>
         </ul>
       </div>
 
       <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-        <h4 class="font-semibold text-black dark:text-white mb-2">🎯 Disease Areas</h4>
+        <h4 class="font-semibold text-black dark:text-white mb-2">🏢 Current Position</h4>
         <ul class="text-sm text-bodydark2 space-y-1">
-          <li>• Oncology & Cancer Research</li>
-          <li>• Metabolic Disorders</li>
-          <li>• Infectious Diseases</li>
+          <li>• Application Scientist</li>
+          <li>• Schrödinger Inc.</li>
+          <li>• CADD Applications</li>
+          <li>• Industry Leadership</li>
         </ul>
       </div>
 
       <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-        <h4 class="font-semibold text-black dark:text-white mb-2">🏢 Industry Experience</h4>
+        <h4 class="font-semibold text-black dark:text-white mb-2">💻 Technical Expertise</h4>
         <ul class="text-sm text-bodydark2 space-y-1">
-          <li>• Pharmaceutical R&D</li>
-          <li>• Biotech Innovation</li>
-          <li>• AI/ML Integration</li>
+          <li>• Schrödinger Suite</li>
+          <li>• Molecular Dynamics</li>
+          <li>• Python Programming</li>
+          <li>• Drug Discovery Pipeline</li>
         </ul>
       </div>
     </div>
