@@ -12,7 +12,7 @@
 
       <!-- Personal Details -->
       <div class="flex-1 text-center lg:text-left">
-        <h2 class="text-3xl font-bold text-white mb-2 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">
+        <h2 class="text-3xl font-bold text-white mb-2 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important; text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); font-weight: 900;">
           {{ personalInfo.name }}
         </h2>
         <p class="text-xl text-yellow-300 mb-3 font-medium">
@@ -22,7 +22,7 @@
           <span class="w-4 h-4 mr-2">📍</span>
           {{ personalInfo.location }}
         </p>
-        <p class="text-white/80 leading-relaxed mb-4">
+        <p class="text-white/80 leading-relaxed mb-4" style="text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);">
           {{ personalInfo.summary }}
         </p>
 

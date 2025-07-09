@@ -1,12 +1,12 @@
 <template>
-  <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-    <h3 class="text-xl font-semibold text-white mb-6 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">Education & Certifications</h3>
+  <div class="rounded-sm border border-stroke bg-gray-900 px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+    <h3 class="text-xl font-semibold text-white mb-6 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important; text-shadow: 0 0 15px rgba(255, 255, 255, 1); font-weight: 900;">Education & Certifications</h3>
 
     <div class="space-y-8">
       <!-- Education History -->
       <div>
-        <h4 class="text-lg font-semibold text-black dark:text-white mb-4 flex items-center">
-          <span class="w-5 h-5 mr-2 text-primary">🎓</span>
+        <h4 class="text-lg font-semibold text-white mb-4 flex items-center" style="text-shadow: 0 0 12px rgba(255, 255, 255, 0.9); color: white !important; font-weight: 900;">
+          <span class="w-5 h-5 mr-2 text-cyan-400">🎓</span>
           Academic Background
         </h4>
 
@@ -14,17 +14,17 @@
           <div
             v-for="education in educationHistory"
             :key="education.id"
-            class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 hover:bg-white dark:hover:bg-gray-700 group"
+            class="bg-gray-700/80 backdrop-blur-sm border border-gray-600 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 hover:bg-gray-600 group"
           >
             <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start">
               <div class="flex-1">
-                <h5 class="text-xl font-bold text-black dark:text-white group-hover:text-primary transition-colors duration-300 mb-2">
+                <h5 class="text-xl font-bold text-white group-hover:text-cyan-100 transition-colors duration-300 mb-2 drop-shadow-lg" style="text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); color: white !important; font-weight: 900;">
                   {{ education.degree }}
                 </h5>
-                <p class="text-lg text-primary font-medium mb-2">
+                <p class="text-lg text-cyan-400 font-medium mb-2">
                   {{ education.institution }}
                 </p>
-                <div class="flex flex-wrap items-center gap-4 text-bodydark2 mb-3">
+                <div class="flex flex-wrap items-center gap-4 text-gray-300 mb-3">
                   <span class="flex items-center">
                     <span class="mr-1">📅</span>
                     {{ education.year }}
@@ -38,14 +38,14 @@
                     GPA: {{ education.gpa }}
                   </span>
                 </div>
-                <p class="text-bodydark leading-relaxed mb-3">
+                <p class="text-gray-200 leading-relaxed mb-3">
                   {{ education.description }}
                 </p>
                 <div class="flex flex-wrap gap-2">
                   <span
                     v-for="achievement in education.achievements"
                     :key="achievement"
-                    class="px-3 py-1 bg-success/10 text-success rounded-full text-sm hover:bg-success hover:text-white transition-all duration-300 cursor-default"
+                    class="px-3 py-1 bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 rounded-full text-sm hover:bg-cyan-500 hover:text-white transition-all duration-300 cursor-default shadow-lg"
                   >
                     {{ achievement }}
                   </span>
@@ -58,8 +58,8 @@
 
       <!-- Certifications -->
       <div>
-        <h4 class="text-lg font-semibold text-black dark:text-white mb-4 flex items-center">
-          <span class="w-5 h-5 mr-2 text-primary">🏆</span>
+        <h4 class="text-lg font-semibold text-white mb-4 flex items-center" style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);">
+          <span class="w-5 h-5 mr-2 text-cyan-400">🏆</span>
           Certifications
         </h4>
 
@@ -67,28 +67,28 @@
           <div
             v-for="cert in certifications"
             :key="cert.id"
-            class="bg-gradient-to-br from-primary/5 to-secondary/5 border border-primary/20 rounded-lg p-4 hover:shadow-lg transition-all duration-300 hover:scale-105 hover:from-primary/10 hover:to-secondary/10 group"
+            class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-4 hover:shadow-lg transition-all duration-300 hover:scale-105 hover:bg-gray-800 group"
           >
             <div class="flex items-start justify-between mb-3">
-              <h5 class="font-semibold text-black dark:text-white group-hover:text-primary transition-colors duration-300">
+              <h5 class="font-semibold text-white group-hover:text-cyan-300 transition-colors duration-300">
                 {{ cert.name }}
               </h5>
-              <span class="text-xs text-bodydark2 bg-white dark:bg-gray-700 px-2 py-1 rounded">
+              <span class="text-xs text-gray-300 bg-gray-700/50 border border-gray-600 px-2 py-1 rounded">
                 {{ cert.year }}
               </span>
             </div>
-            <p class="text-bodydark text-sm mb-3">
+            <p class="text-gray-200 text-sm mb-3">
               {{ cert.issuer }}
             </p>
             <div class="flex items-center justify-between">
-              <span class="text-xs text-bodydark2">
+              <span class="text-xs text-gray-400">
                 ID: {{ cert.id }}
               </span>
               <a
                 v-if="cert.url"
                 :href="cert.url"
                 target="_blank"
-                class="text-primary hover:text-primary/80 transition-colors duration-300 text-sm font-medium"
+                class="text-cyan-400 hover:text-cyan-300 transition-colors duration-300 text-sm font-medium"
               >
                 View Certificate →
               </a>
@@ -99,15 +99,15 @@
 
       <!-- Additional Training -->
       <div>
-        <h4 class="text-lg font-semibold text-black dark:text-white mb-4 flex items-center">
-          <span class="w-5 h-5 mr-2 text-primary">📚</span>
+        <h4 class="text-lg font-semibold text-white mb-4 flex items-center" style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);">
+          <span class="w-5 h-5 mr-2 text-cyan-400">📚</span>
           Additional Training
         </h4>
 
-        <div class="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-lg p-6">
-          <ul class="space-y-3 text-bodydark">
-            <li v-for="training in additionalTraining" :key="training" class="flex items-center hover:text-primary transition-colors duration-300">
-              <span class="mr-3 text-primary">✓</span>
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-6">
+          <ul class="space-y-3 text-gray-200">
+            <li v-for="training in additionalTraining" :key="training" class="flex items-center hover:text-cyan-300 transition-colors duration-300">
+              <span class="mr-3 text-cyan-400">✓</span>
               {{ training }}
             </li>
           </ul>

@@ -26,7 +26,7 @@
              class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-700 dark:to-gray-600 rounded-xl p-6 border border-blue-100 dark:border-gray-600 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
           <div class="flex justify-between items-start mb-4">
             <div class="flex-1">
-              <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2 leading-tight">
+              <h3 class="text-lg font-semibold text-blue-200 mb-2 leading-tight" style="text-shadow: 0 0 8px rgba(191, 219, 254, 0.8); color: #bfdbfe !important;">
                 {{ publication.title }}
               </h3>
               <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">

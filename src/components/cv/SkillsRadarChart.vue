@@ -17,8 +17,8 @@
           <div v-for="skill in skills" :key="skill.name"
                class="flex items-center space-x-2 p-2 rounded bg-gray-800/50 border border-gray-700/50">
             <div class="w-3 h-3 rounded-full" :style="{ backgroundColor: skill.color }"></div>
-            <span class="text-sky-300">{{ skill.name }}</span>
-                          <span class="ml-auto font-semibold text-cyan-300">{{ skill.level }}%</span>
+            <span class="text-white font-medium">{{ skill.name }}</span>
+                          <span class="ml-auto font-semibold text-cyan-400">{{ skill.level }}%</span>
           </div>
         </div>
       </div>
@@ -34,13 +34,13 @@
           <div class="space-y-2">
             <div v-for="skill in category.skills" :key="skill.name"
                  class="flex items-center justify-between">
-              <span class="text-sm text-sky-300">{{ skill.name }}</span>
+              <span class="text-sm text-white font-medium">{{ skill.name }}</span>
               <div class="flex items-center space-x-2">
                 <div class="w-20 bg-gray-700 rounded-full h-2">
                   <div class="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-500"
                        :style="{ width: skill.proficiency + '%' }"></div>
                 </div>
-                <span class="text-xs font-medium text-blue-300 w-8">{{ skill.proficiency }}%</span>
+                <span class="text-xs font-medium text-cyan-400 w-8">{{ skill.proficiency }}%</span>
               </div>
             </div>
           </div>
@@ -50,22 +50,22 @@
 
     <!-- Skill Highlights -->
     <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div class="text-center p-4 bg-gradient-to-br from-blue-900/20 to-blue-800/20 rounded-lg border border-blue-700/50">
+      <div class="text-center p-4 bg-gradient-to-br from-blue-900/50 to-blue-800/50 rounded-lg border border-blue-500/50 shadow-lg">
         <div class="text-2xl mb-2">🧬</div>
-        <h4 class="font-semibold text-blue-200">CADD</h4>
-        <p class="text-xs text-blue-400">Expert Level</p>
+        <h4 class="font-bold text-white text-xl drop-shadow-lg" style="text-shadow: 3px 3px 6px rgba(0,0,0,1); color: white !important;">CADD</h4>
+        <p class="text-sm text-white font-bold drop-shadow-lg" style="text-shadow: 2px 2px 4px rgba(0,0,0,1); color: white !important;">Expert Level</p>
       </div>
 
-      <div class="text-center p-4 bg-gradient-to-br from-green-900/20 to-green-800/20 rounded-lg border border-green-700/50">
+      <div class="text-center p-4 bg-gradient-to-br from-green-900/50 to-green-800/50 rounded-lg border border-green-500/50 shadow-lg">
         <div class="text-2xl mb-2">💻</div>
-        <h4 class="font-semibold text-green-200">Schrödinger Suite</h4>
-        <p class="text-xs text-green-400">Advanced Level</p>
+        <h4 class="font-bold text-white text-xl drop-shadow-lg" style="text-shadow: 3px 3px 6px rgba(0,0,0,1); color: white !important;">Schrödinger Suite</h4>
+        <p class="text-sm text-white font-bold drop-shadow-lg" style="text-shadow: 2px 2px 4px rgba(0,0,0,1); color: white !important;">Advanced Level</p>
       </div>
 
-      <div class="text-center p-4 bg-gradient-to-br from-purple-900/20 to-purple-800/20 rounded-lg border border-purple-700/50">
+      <div class="text-center p-4 bg-gradient-to-br from-purple-900/50 to-purple-800/50 rounded-lg border border-purple-500/50 shadow-lg">
         <div class="text-2xl mb-2">⚡</div>
-        <h4 class="font-semibold text-purple-200">Python Programming</h4>
-        <p class="text-xs text-purple-400">Proficient Level</p>
+        <h4 class="font-bold text-white text-xl drop-shadow-lg" style="text-shadow: 3px 3px 6px rgba(0,0,0,1); color: white !important;">Python Programming</h4>
+        <p class="text-sm text-white font-bold drop-shadow-lg" style="text-shadow: 2px 2px 4px rgba(0,0,0,1); color: white !important;">Proficient Level</p>
       </div>
     </div>
   </div>
@@ -194,13 +194,13 @@ const drawRadarChart = () => {
     ctx.fillStyle = skill.color
     ctx.fill()
 
-    // Draw skill labels
+        // Draw skill labels
     const labelRadius = radius + 15
     const labelX = centerX + labelRadius * Math.cos(angle)
     const labelY = centerY + labelRadius * Math.sin(angle)
 
     ctx.font = '12px Arial'
-    ctx.fillStyle = '#374151'
+    ctx.fillStyle = '#FFFFFF'
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
     ctx.fillText(skill.name, labelX, labelY)

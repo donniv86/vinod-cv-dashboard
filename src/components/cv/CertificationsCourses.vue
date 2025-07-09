@@ -5,19 +5,19 @@
       <div class="gradient-card animate-fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
         <div class="flex flex-col lg:flex-row items-center justify-between mb-8">
           <div class="text-center lg:text-left">
-            <h1 class="text-4xl lg:text-6xl font-black mb-4 text-white drop-shadow-lg bg-black/20 px-4 py-2 rounded-lg" style="color: white !important;">
+            <h1 class="text-4xl lg:text-6xl font-black mb-4 text-white drop-shadow-lg bg-black/20 px-4 py-2 rounded-lg" style="color: white !important; text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); font-weight: 900;">
               Certifications & Courses
             </h1>
-            <p class="text-xl lg:text-2xl mb-6 text-white/90 font-medium">
+            <p class="text-xl lg:text-2xl mb-6 text-white/90 font-medium" style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);">
               Continuous Learning Journey
             </p>
-            <p class="text-lg mb-8 text-white/80 font-light">
+            <p class="text-lg mb-8 text-white/80 font-light" style="text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);">
               {{ totalCertifications }} certifications across {{ platforms.length - 1 }} platforms
             </p>
           </div>
           <div class="text-center lg:text-right mt-8 lg:mt-0">
-            <div class="text-6xl lg:text-8xl font-black text-white/90 mb-2">{{ totalCertifications }}</div>
-            <div class="text-xl text-white/80 font-medium">Total Certifications</div>
+            <div class="text-6xl lg:text-8xl font-black text-white/90 mb-2" style="text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);">{{ totalCertifications }}</div>
+            <div class="text-xl text-white/80 font-medium" style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);">Total Certifications</div>
           </div>
         </div>
 
@@ -36,7 +36,7 @@
         <!-- Platform Distribution -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="modern-card p-6">
-            <h3 class="text-xl font-bold text-white mb-4 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">Platform Distribution</h3>
+            <h3 class="text-xl font-bold text-white mb-4 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important; text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); font-weight: 900;">Platform Distribution</h3>
             <div class="space-y-3">
               <div v-for="platform in platforms.slice(1)" :key="platform.name"
                    class="flex items-center justify-between">
@@ -60,7 +60,7 @@
           </div>
 
           <div class="modern-card p-6">
-            <h3 class="text-xl font-bold text-white mb-4 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">Learning Focus Areas</h3>
+            <h3 class="text-xl font-bold text-white mb-4 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important; text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); font-weight: 900;">Learning Focus Areas</h3>
             <div class="space-y-3">
               <div v-for="focus in topFocusAreas" :key="focus.name"
                    class="flex items-center justify-between">
@@ -117,7 +117,7 @@
                     {{ cert.platform.charAt(0) }}
                   </div>
                   <div>
-                    <h3 class="text-xl font-bold text-white mb-1 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">
+                    <h3 class="text-xl font-bold text-white mb-1 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important; text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); font-weight: 900;">
                       {{ cert.title }}
                     </h3>
                     <div class="flex items-center text-sm text-gray-300">
@@ -132,7 +132,7 @@
 
                 <div class="flex flex-wrap gap-2 mb-4">
                   <span v-for="tag in cert.tags" :key="tag"
-                        class="modern-badge text-xs font-medium">
+                        class="bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full text-xs font-medium border border-cyan-500/30 hover:bg-cyan-500/30 transition-colors" style="text-shadow: 0 0 5px rgba(34, 211, 238, 0.4);">
                     {{ tag }}
                   </span>
                 </div>

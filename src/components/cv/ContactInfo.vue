@@ -1,6 +1,6 @@
 <template>
   <div class="modern-card p-6">
-    <h3 class="text-xl font-semibold text-white mb-6 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">Contact Information</h3>
+    <h3 class="text-xl font-semibold text-white mb-6 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important; text-shadow: 0 0 12px rgba(255, 255, 255, 0.8); font-weight: 900;">Contact Information</h3>
 
     <!-- Contact Details -->
     <div class="space-y-4 mb-6">
@@ -10,7 +10,7 @@
         </div>
         <div>
           <p class="text-sm text-sky-300">Email</p>
-          <a :href="`mailto:${contactInfo.email}`" class="text-white hover:text-cyan-300 transition-colors font-medium">
+          <a :href="`mailto:${contactInfo.email}`" class="text-white hover:text-cyan-300 transition-colors font-medium" style="text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);">
             {{ contactInfo.email }}
           </a>
         </div>
@@ -22,7 +22,7 @@
         </div>
         <div>
           <p class="text-sm text-sky-300">Phone</p>
-          <a :href="`tel:${contactInfo.phone}`" class="text-white hover:text-green-300 transition-colors font-medium">
+          <a :href="`tel:${contactInfo.phone}`" class="text-white hover:text-green-300 transition-colors font-medium" style="text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);">
             {{ contactInfo.phone }}
           </a>
         </div>
@@ -34,14 +34,14 @@
         </div>
         <div>
           <p class="text-sm text-sky-300">Location</p>
-          <p class="text-white font-medium">{{ contactInfo.location }}</p>
+          <p class="text-white font-medium" style="text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);">{{ contactInfo.location }}</p>
         </div>
       </div>
     </div>
 
     <!-- Social Links -->
     <div>
-      <h4 class="font-semibold text-white mb-4">Connect With Me</h4>
+      <h4 class="font-semibold text-white mb-4" style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);">Connect With Me</h4>
       <div class="grid grid-cols-2 gap-3">
         <a
           v-for="social in socialLinks"

@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+  <div class="rounded-sm border border-gray-700 bg-gray-900/50 backdrop-blur-sm px-5 pt-6 pb-2.5 shadow-default sm:px-7.5 xl:pb-1">
     <h3 class="text-xl font-semibold text-white mb-6 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">Professional Experience</h3>
 
     <div class="space-y-8">
@@ -9,38 +9,38 @@
         class="relative group"
       >
         <!-- Timeline Line -->
-        <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-stroke dark:bg-strokedark group-hover:bg-primary transition-colors duration-300"></div>
+        <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-600 group-hover:bg-cyan-400 transition-colors duration-300"></div>
 
         <!-- Timeline Dot -->
-        <div class="absolute left-4 top-6 w-4 h-4 bg-primary rounded-full border-4 border-white dark:border-boxdark group-hover:scale-125 transition-transform duration-300"></div>
+        <div class="absolute left-4 top-6 w-4 h-4 bg-cyan-400 rounded-full border-4 border-gray-800 group-hover:scale-125 transition-transform duration-300"></div>
 
         <!-- Content -->
         <div class="ml-12">
-          <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 hover:bg-white dark:hover:bg-gray-700">
+          <div class="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 hover:bg-gray-800/70 border border-gray-700/50">
             <!-- Header -->
             <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
               <div>
-                <h4 class="text-xl font-bold text-black dark:text-white group-hover:text-primary transition-colors duration-300">
+                <h4 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-300">
                   {{ experience.position }}
                 </h4>
-                <p class="text-lg text-primary font-medium">
+                <p class="text-lg text-cyan-400 font-medium">
                   {{ experience.company }}
                 </p>
               </div>
               <div class="text-right mt-2 md:mt-0">
-                <p class="text-bodydark2 font-medium">{{ experience.duration }}</p>
-                <p class="text-sm text-bodydark2">{{ experience.location }}</p>
+                <p class="text-gray-300 font-medium">{{ experience.duration }}</p>
+                <p class="text-sm text-gray-400">{{ experience.location }}</p>
               </div>
             </div>
 
             <!-- Description -->
-            <p class="text-bodydark mb-4 leading-relaxed">
+            <p class="text-gray-300 mb-4 leading-relaxed">
               {{ experience.description }}
             </p>
 
             <!-- Technologies -->
             <div class="mb-4">
-              <h5 class="font-semibold text-black dark:text-white mb-2 flex items-center">
+              <h5 class="font-semibold text-white mb-2 flex items-center">
                 <span class="mr-2">🛠️</span>
                 Technologies:
               </h5>
@@ -48,7 +48,7 @@
                 <span
                   v-for="tech in experience.technologies"
                   :key="tech"
-                  class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm hover:bg-primary hover:text-white transition-all duration-300 cursor-default"
+                  class="px-3 py-1 bg-cyan-900/50 text-cyan-300 rounded-full text-sm hover:bg-cyan-600 hover:text-white transition-all duration-300 cursor-default border border-cyan-700/50"
                 >
                   {{ tech }}
                 </span>
@@ -57,12 +57,12 @@
 
             <!-- Achievements -->
             <div>
-              <h5 class="font-semibold text-black dark:text-white mb-2 flex items-center">
+              <h5 class="font-semibold text-white mb-2 flex items-center">
                 <span class="mr-2">🏆</span>
                 Key Achievements:
               </h5>
-              <ul class="list-disc list-inside space-y-1 text-bodydark">
-                <li v-for="achievement in experience.achievements" :key="achievement" class="hover:text-primary transition-colors duration-300">
+              <ul class="list-disc list-inside space-y-1 text-gray-300">
+                <li v-for="achievement in experience.achievements" :key="achievement" class="hover:text-cyan-400 transition-colors duration-300">
                   {{ achievement }}
                 </li>
               </ul>

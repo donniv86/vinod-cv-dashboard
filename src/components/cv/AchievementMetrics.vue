@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+  <div class="rounded-sm border border-gray-700 bg-gray-900/50 backdrop-blur-sm px-5 pt-6 pb-2.5 shadow-default sm:px-7.5 xl:pb-1">
     <div class="mb-6">
       <h3 class="text-xl font-semibold text-white mb-2 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">
         🏆 Key Achievements & Impact
@@ -59,9 +59,9 @@
 
     <!-- Impact Metrics -->
     <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-4">
-      <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-        <h4 class="font-semibold text-black dark:text-white mb-2">🧬 Research Focus</h4>
-        <ul class="text-sm text-bodydark2 space-y-1">
+      <div class="bg-gray-800/50 backdrop-blur-sm p-4 rounded-lg border border-gray-700">
+        <h4 class="font-semibold text-white mb-2">🧬 Research Focus</h4>
+        <ul class="text-sm text-gray-300 space-y-1">
           <li>• Computer-Aided Drug Design (CADD)</li>
           <li>• Molecular Modeling & Dynamics</li>
           <li>• Cancer Therapeutics</li>
@@ -69,9 +69,9 @@
         </ul>
       </div>
 
-      <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-        <h4 class="font-semibold text-black dark:text-white mb-2">🏢 Current Position</h4>
-        <ul class="text-sm text-bodydark2 space-y-1">
+      <div class="bg-gray-800/50 backdrop-blur-sm p-4 rounded-lg border border-gray-700">
+        <h4 class="font-semibold text-white mb-2">🏢 Current Position</h4>
+        <ul class="text-sm text-gray-300 space-y-1">
           <li>• Application Scientist</li>
           <li>• Schrödinger Inc.</li>
           <li>• CADD Applications</li>
@@ -79,9 +79,9 @@
         </ul>
       </div>
 
-      <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
-        <h4 class="font-semibold text-black dark:text-white mb-2">💻 Technical Expertise</h4>
-        <ul class="text-sm text-bodydark2 space-y-1">
+      <div class="bg-gray-800/50 backdrop-blur-sm p-4 rounded-lg border border-gray-700">
+        <h4 class="font-semibold text-white mb-2">💻 Technical Expertise</h4>
+        <ul class="text-sm text-gray-300 space-y-1">
           <li>• Schrödinger Suite</li>
           <li>• Molecular Dynamics</li>
           <li>• Python Programming</li>
