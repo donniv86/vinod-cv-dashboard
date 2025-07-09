@@ -5,7 +5,7 @@
       <div class="gradient-card animate-fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
         <div class="flex flex-col lg:flex-row items-center justify-between mb-8">
           <div class="text-center lg:text-left">
-            <h1 class="text-4xl lg:text-6xl font-black mb-4 text-white drop-shadow-lg">
+            <h1 class="text-4xl lg:text-6xl font-black mb-4 text-white drop-shadow-lg bg-black/20 px-4 py-2 rounded-lg" style="color: white !important;">
               Certifications & Courses
             </h1>
             <p class="text-xl lg:text-2xl mb-6 text-white/90 font-medium">
@@ -36,7 +36,7 @@
         <!-- Platform Distribution -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="modern-card p-6">
-            <h3 class="text-xl font-bold text-white mb-4">Platform Distribution</h3>
+            <h3 class="text-xl font-bold text-white mb-4 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">Platform Distribution</h3>
             <div class="space-y-3">
               <div v-for="platform in platforms.slice(1)" :key="platform.name"
                    class="flex items-center justify-between">
@@ -60,7 +60,7 @@
           </div>
 
           <div class="modern-card p-6">
-            <h3 class="text-xl font-bold text-white mb-4">Learning Focus Areas</h3>
+            <h3 class="text-xl font-bold text-white mb-4 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">Learning Focus Areas</h3>
             <div class="space-y-3">
               <div v-for="focus in topFocusAreas" :key="focus.name"
                    class="flex items-center justify-between">
@@ -117,7 +117,7 @@
                     {{ cert.platform.charAt(0) }}
                   </div>
                   <div>
-                    <h3 class="text-xl font-bold text-white mb-1">
+                    <h3 class="text-xl font-bold text-white mb-1 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">
                       {{ cert.title }}
                     </h3>
                     <div class="flex items-center text-sm text-gray-300">

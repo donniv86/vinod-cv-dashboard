@@ -1,47 +1,47 @@
 <template>
-  <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-    <h3 class="text-xl font-semibold text-black dark:text-white mb-6">Contact Information</h3>
+  <div class="modern-card p-6">
+    <h3 class="text-xl font-semibold text-white mb-6 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">Contact Information</h3>
 
     <!-- Contact Details -->
     <div class="space-y-4 mb-6">
-      <div class="flex items-center p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300">
-        <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-          <MailIcon class="w-5 h-5 text-primary" />
+      <div class="flex items-center p-3 rounded-lg hover:bg-white/10 transition-all duration-300">
+        <div class="w-10 h-10 bg-cyan-500/20 rounded-full flex items-center justify-center mr-3">
+          <MailIcon class="w-5 h-5 text-cyan-300" />
         </div>
         <div>
-          <p class="text-sm text-bodydark2">Email</p>
-          <a :href="`mailto:${contactInfo.email}`" class="text-black dark:text-white hover:text-primary transition-colors font-medium">
+          <p class="text-sm text-sky-300">Email</p>
+          <a :href="`mailto:${contactInfo.email}`" class="text-white hover:text-cyan-300 transition-colors font-medium">
             {{ contactInfo.email }}
           </a>
         </div>
       </div>
 
-      <div class="flex items-center p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300">
-        <div class="w-10 h-10 bg-success/10 rounded-full flex items-center justify-center mr-3">
-          <span class="text-success text-lg">📞</span>
+      <div class="flex items-center p-3 rounded-lg hover:bg-white/10 transition-all duration-300">
+        <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center mr-3">
+          <span class="text-green-300 text-lg">📞</span>
         </div>
         <div>
-          <p class="text-sm text-bodydark2">Phone</p>
-          <a :href="`tel:${contactInfo.phone}`" class="text-black dark:text-white hover:text-success transition-colors font-medium">
+          <p class="text-sm text-sky-300">Phone</p>
+          <a :href="`tel:${contactInfo.phone}`" class="text-white hover:text-green-300 transition-colors font-medium">
             {{ contactInfo.phone }}
           </a>
         </div>
       </div>
 
-      <div class="flex items-center p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300">
-        <div class="w-10 h-10 bg-warning/10 rounded-full flex items-center justify-center mr-3">
-          <span class="text-warning text-lg">📍</span>
+      <div class="flex items-center p-3 rounded-lg hover:bg-white/10 transition-all duration-300">
+        <div class="w-10 h-10 bg-yellow-500/20 rounded-full flex items-center justify-center mr-3">
+          <span class="text-yellow-300 text-lg">📍</span>
         </div>
         <div>
-          <p class="text-sm text-bodydark2">Location</p>
-          <p class="text-black dark:text-white font-medium">{{ contactInfo.location }}</p>
+          <p class="text-sm text-sky-300">Location</p>
+          <p class="text-white font-medium">{{ contactInfo.location }}</p>
         </div>
       </div>
     </div>
 
     <!-- Social Links -->
     <div>
-      <h4 class="font-semibold text-black dark:text-white mb-4">Connect With Me</h4>
+      <h4 class="font-semibold text-white mb-4">Connect With Me</h4>
       <div class="grid grid-cols-2 gap-3">
         <a
           v-for="social in socialLinks"
@@ -58,17 +58,17 @@
 
     <!-- Download CV Button -->
     <div class="mt-6">
-      <button class="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 px-4 rounded-lg hover:opacity-90 transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg">
+      <button class="w-full modern-btn bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 px-4 rounded-lg hover:opacity-90 transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg">
         <span class="mr-2">📄</span>
         Download CV (PDF)
       </button>
     </div>
 
     <!-- Availability Status -->
-    <div class="mt-4 p-3 bg-success/10 rounded-lg border border-success/20">
+    <div class="mt-4 p-3 bg-green-500/20 rounded-lg border border-green-500/30">
       <div class="flex items-center">
-        <div class="w-3 h-3 bg-success rounded-full mr-2 animate-pulse"></div>
-        <span class="text-success text-sm font-medium">
+        <div class="w-3 h-3 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+        <span class="text-green-300 text-sm font-medium">
           Available for new opportunities
         </span>
       </div>

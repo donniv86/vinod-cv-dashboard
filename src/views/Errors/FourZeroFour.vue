@@ -11,12 +11,7 @@
         ERROR
       </h1>
 
-      <img src="/images/error/404.svg" alt="404" class="dark:hidden" />
-      <img
-        src="/images/error/404-dark.svg"
-        alt="404"
-        class="hidden dark:block"
-      />
+      <img src="/images/error/404.svg" alt="404" />
 
       <p
         class="mt-10 mb-6 text-base text-gray-700 dark:text-gray-400 sm:text-lg"
@@ -35,7 +30,7 @@
     <p
       class="absolute text-sm text-center text-gray-500 -translate-x-1/2 bottom-6 left-1/2 dark:text-gray-400"
     >
-      &copy; {{ currentYear }} - TailAdmin
+      &copy; {{ currentYear }} - Dr. Vinod Devaraji
     </p>
   </div>
 </template>

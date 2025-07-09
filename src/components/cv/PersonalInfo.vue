@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+  <div class="modern-card p-6">
     <div class="flex flex-col lg:flex-row items-center lg:items-start gap-6">
       <!-- Profile Picture -->
       <div class="flex-shrink-0">
@@ -12,22 +12,22 @@
 
       <!-- Personal Details -->
       <div class="flex-1 text-center lg:text-left">
-        <h2 class="text-3xl font-bold text-black dark:text-white mb-2">
+        <h2 class="text-3xl font-bold text-white mb-2 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">
           {{ personalInfo.name }}
         </h2>
-        <p class="text-xl text-primary mb-3">
+        <p class="text-xl text-yellow-300 mb-3 font-medium">
           {{ personalInfo.title }}
         </p>
-        <p class="text-bodydark2 mb-4 flex items-center justify-center lg:justify-start">
+        <p class="text-sky-300 mb-4 flex items-center justify-center lg:justify-start">
           <span class="w-4 h-4 mr-2">📍</span>
           {{ personalInfo.location }}
         </p>
-        <p class="text-bodydark leading-relaxed mb-4">
+        <p class="text-white/80 leading-relaxed mb-4">
           {{ personalInfo.summary }}
         </p>
 
         <!-- Download CV Button -->
-        <button class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-lg hover:opacity-90 transition-all duration-300 flex items-center mx-auto lg:mx-0">
+        <button class="modern-btn bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-2 rounded-lg hover:opacity-90 transition-all duration-300 flex items-center mx-auto lg:mx-0">
           <span class="mr-2">📄</span>
           Download CV (PDF)
         </button>
@@ -37,22 +37,22 @@
       <div class="flex-shrink-0">
         <div class="space-y-3">
           <a :href="`mailto:${personalInfo.email}`"
-             class="flex items-center text-bodydark2 hover:text-primary transition-colors p-2 rounded hover:bg-gray-50 dark:hover:bg-gray-800">
+             class="flex items-center text-sky-300 hover:text-cyan-300 transition-colors p-2 rounded hover:bg-white/10">
             <MailIcon class="w-4 h-4 mr-2" />
             {{ personalInfo.email }}
           </a>
           <a :href="`tel:${personalInfo.phone}`"
-             class="flex items-center text-bodydark2 hover:text-primary transition-colors p-2 rounded hover:bg-gray-50 dark:hover:bg-gray-800">
+             class="flex items-center text-sky-300 hover:text-cyan-300 transition-colors p-2 rounded hover:bg-white/10">
             <span class="w-4 h-4 mr-2">📞</span>
             {{ personalInfo.phone }}
           </a>
           <a :href="`https://${personalInfo.linkedin}`" target="_blank"
-             class="flex items-center text-bodydark2 hover:text-primary transition-colors p-2 rounded hover:bg-gray-50 dark:hover:bg-gray-800">
+             class="flex items-center text-sky-300 hover:text-cyan-300 transition-colors p-2 rounded hover:bg-white/10">
             <span class="w-4 h-4 mr-2">💼</span>
             LinkedIn
           </a>
           <a :href="`https://orcid.org/${personalInfo.orcid}`" target="_blank"
-             class="flex items-center text-bodydark2 hover:text-primary transition-colors p-2 rounded hover:bg-gray-50 dark:hover:bg-gray-800">
+             class="flex items-center text-sky-300 hover:text-cyan-300 transition-colors p-2 rounded hover:bg-white/10">
             <span class="w-4 h-4 mr-2">🔬</span>
             ORCID
           </a>

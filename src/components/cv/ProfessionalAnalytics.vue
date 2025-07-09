@@ -1,7 +1,7 @@
 <template>
   <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
     <div class="mb-6">
-      <h3 class="text-xl font-semibold text-black dark:text-white mb-2">
+      <h3 class="text-xl font-semibold text-white mb-2 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">
         📊 Professional Analytics
       </h3>
       <p class="text-bodydark2">Real-time insights into career progression and impact</p>

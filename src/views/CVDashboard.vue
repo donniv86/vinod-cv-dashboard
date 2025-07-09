@@ -1,6 +1,6 @@
 <template>
   <admin-layout>
-    <div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-6">
+    <div class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6">
       <div class="space-y-8">
         <!-- Hero Section with Modern Design -->
         <div class="gradient-card animate-fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
@@ -9,10 +9,10 @@
               <h1 class="text-4xl lg:text-6xl font-black mb-4 text-white drop-shadow-lg">
                 Dr. Vinod Devaraji
               </h1>
-              <p class="text-xl lg:text-2xl mb-6 text-white/90 font-medium">
+              <p class="text-xl lg:text-2xl mb-6 text-yellow-300 font-medium">
                 Senior Scientist at Schrödinger
               </p>
-              <p class="text-lg mb-8 text-white/80 font-light">
+              <p class="text-lg mb-8 text-sky-300 font-light">
                 Computational Drug Discovery • AI/ML • Molecular Modeling • CADD Expert
               </p>
               <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
@@ -33,8 +33,8 @@
               </div>
             </div>
             <div class="text-center lg:text-right mt-8 lg:mt-0">
-              <div class="text-6xl lg:text-8xl font-black text-white/90 mb-2">13+</div>
-              <div class="text-xl text-white/80 font-medium">Years Experience</div>
+                              <div class="text-6xl lg:text-8xl font-black text-yellow-300 mb-2">13+</div>
+                              <div class="text-xl text-sky-300 font-medium">Years Experience</div>
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@
               <div>
                 <div class="text-3xl font-black text-transparent bg-clip-text"
                      :style="{ backgroundImage: stat.gradient }">{{ stat.value }}</div>
-                <div class="text-sm text-gray-300 font-medium">{{ stat.label }}</div>
+                <div class="text-sm text-sky-300 font-medium">{{ stat.label }}</div>
               </div>
               <div class="w-16 h-16 rounded-2xl flex items-center justify-center backdrop-blur-sm"
                    :style="{ background: stat.iconBg }">
@@ -65,8 +65,8 @@
                  class="group cursor-pointer">
               <div class="modern-card p-4 text-center transition-all duration-300 hover:scale-105"
                    :style="{ background: modality.gradient }">
-                <div class="text-sm font-bold text-white">{{ modality.name }}</div>
-                <div class="text-xs text-white/80 mt-1">{{ modality.desc }}</div>
+                                  <div class="text-sm font-bold text-yellow-300">{{ modality.name }}</div>
+                <div class="text-xs text-sky-300 mt-1">{{ modality.desc }}</div>
               </div>
             </div>
           </div>
@@ -78,8 +78,37 @@
             <div v-for="tech in computationalTechniques" :key="tech.title"
                  class="gradient-card cursor-pointer group"
                  :style="{ background: tech.gradient }">
-              <div class="text-sm font-bold text-white mb-1">{{ tech.title }}</div>
-              <div class="text-xs text-white/80">{{ tech.subtitle }}</div>
+                              <div class="text-sm font-bold text-yellow-300 mb-1">{{ tech.title }}</div>
+              <div class="text-xs text-sky-300">{{ tech.subtitle }}</div>
+            </div>
+          </div>
+        </Card>
+
+        <!-- Recent GitHub Activity -->
+        <Card title="Recent GitHub Activity">
+          <div class="space-y-4">
+            <div v-for="activity in recentActivity" :key="activity.id"
+                 class="modern-card p-4 border-l-4 transition-all duration-300 hover:scale-105"
+                 :style="{ borderLeftColor: activity.color }">
+              <div class="flex items-center justify-between">
+                <div class="flex-1">
+                  <div class="font-bold text-yellow-300 mb-1">{{ activity.title }}</div>
+                  <div class="text-sm text-sky-300">{{ activity.description }}</div>
+                  <div class="flex flex-wrap gap-2 mt-2">
+                    <span v-for="tech in activity.technologies" :key="tech"
+                          class="bg-cyan-600/30 px-3 py-1 rounded-full text-xs text-cyan-100 font-medium">
+                      {{ tech }}
+                    </span>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <div class="text-xs text-cyan-100 bg-cyan-600/40 px-3 py-1 rounded-full font-medium">{{ activity.date }}</div>
+                  <a :href="activity.url" target="_blank"
+                     class="text-xs text-cyan-300 hover:text-cyan-200 mt-1 block font-medium">
+                    View →
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </Card>
@@ -93,10 +122,10 @@
                    :style="{ borderLeftColor: area.color }">
                 <div class="flex items-center justify-between">
                   <div>
-                    <div class="font-bold text-white mb-1">{{ area.title }}</div>
-                    <div class="text-sm text-gray-300">{{ area.subtitle }}</div>
+                    <div class="font-bold text-yellow-300 mb-1">{{ area.title }}</div>
+                    <div class="text-sm text-sky-300">{{ area.subtitle }}</div>
                   </div>
-                  <div class="text-xs text-gray-400 bg-gray-800/50 px-2 py-1 rounded-full">{{ area.years }}</div>
+                  <div class="text-xs text-cyan-100 bg-cyan-600/40 px-3 py-1 rounded-full font-medium">{{ area.years }}</div>
                 </div>
               </div>
             </div>
@@ -109,10 +138,10 @@
                    :style="{ borderLeftColor: target.color }">
                 <div class="flex items-center justify-between">
                   <div>
-                    <div class="font-bold text-white mb-1">{{ target.title }}</div>
-                    <div class="text-sm text-gray-300">{{ target.subtitle }}</div>
+                    <div class="font-bold text-yellow-300 mb-1">{{ target.title }}</div>
+                    <div class="text-sm text-sky-300">{{ target.subtitle }}</div>
                   </div>
-                  <div class="text-xs text-gray-400 bg-gray-800/50 px-2 py-1 rounded-full">{{ target.context }}</div>
+                  <div class="text-xs text-cyan-100 bg-cyan-600/40 px-3 py-1 rounded-full font-medium">{{ target.context }}</div>
                 </div>
               </div>
             </div>
@@ -129,13 +158,13 @@
                        :style="{ background: cat.iconBg }">
                     <component :is="cat.icon" class="w-8 h-8 text-white" />
                   </div>
-                  <svg class="w-6 h-6 text-gray-400 group-hover:text-blue-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-6 h-6 text-cyan-400 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                   </svg>
                 </div>
-                <h3 class="text-xl font-bold text-white mb-2">{{ cat.title }}</h3>
-                <p class="text-sm text-gray-300 mb-4">{{ cat.description }}</p>
-                <div class="flex items-center text-sm text-blue-400 font-medium">
+                <h3 class="text-xl font-bold text-yellow-300 mb-2">{{ cat.title }}</h3>
+                <p class="text-sm text-sky-300 mb-4">{{ cat.description }}</p>
+                <div class="flex items-center text-sm text-cyan-300 font-medium">
                   <span>{{ cat.cta }}</span>
                   <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -200,13 +229,13 @@ const caddModalities = [
 
 const computationalTechniques = [
   { title: 'AI/Deep Learning', subtitle: 'Machine Learning', gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' },
-  { title: 'Large Language Models', subtitle: 'LLM Applications', gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' },
-  { title: 'Cheminformatics', subtitle: 'Molecular Informatics', gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' },
-  { title: 'Quantum Mechanics', subtitle: 'QM Calculations', gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)' },
-  { title: 'Molecular Mechanics', subtitle: 'Force Fields', gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)' },
-  { title: 'Enhanced Sampling MD', subtitle: 'FEP+, Umbrella Sampling', gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)' },
-  { title: 'Targeted MD', subtitle: 'Advanced Dynamics', gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' },
-  { title: 'Biologics Formulations', subtitle: 'Protein Therapeutics', gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' },
+  { title: 'RAG Systems', subtitle: 'Retrieval-Augmented Generation', gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' },
+  { title: 'Large Language Models', subtitle: 'LLM Applications', gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' },
+  { title: 'Cheminformatics', subtitle: 'Molecular Informatics', gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)' },
+  { title: 'Quantum Mechanics', subtitle: 'QM Calculations', gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)' },
+  { title: 'Molecular Mechanics', subtitle: 'Force Fields', gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)' },
+  { title: 'Enhanced Sampling MD', subtitle: 'FEP+, Umbrella Sampling', gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' },
+  { title: 'Targeted MD', subtitle: 'Advanced Dynamics', gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' },
 ]
 
 const therapeuticAreas = [
@@ -222,6 +251,45 @@ const molecularTargets = [
   { title: 'Plasma Carrier Protein', subtitle: 'Drug-protein binding mechanisms', context: 'Binding', color: '#14b8a6' },
 ]
 
+const recentActivity = [
+  {
+    id: 1,
+    title: "Tox2020Analysis",
+    description: "Advanced toxicity data analysis and modeling",
+    technologies: ["Python", "Data Analysis", "Toxicology"],
+    date: "July 2025",
+    color: "#ef4444",
+    url: "https://github.com/donniv86/Tox2020Analysis"
+  },
+  {
+    id: 2,
+    title: "Chembyl_processing",
+    description: "Chemical data processing and cheminformatics workflows",
+    technologies: ["Python", "Cheminformatics", "Data Processing"],
+    date: "July 2025",
+    color: "#3b82f6",
+    url: "https://github.com/donniv86/Chembyl_processing"
+  },
+  {
+    id: 3,
+    title: "chemgan-learning",
+    description: "Generative Adversarial Networks for chemical compounds",
+    technologies: ["Python", "GAN", "Deep Learning", "Drug Discovery"],
+    date: "June 2025",
+    color: "#10b981",
+    url: "https://github.com/donniv86/chemgan-learning"
+  },
+  {
+    id: 4,
+    title: "RAG_CHROMA_DB",
+    description: "Retrieval-Augmented Generation with ChromaDB",
+    technologies: ["Python", "RAG", "ChromaDB", "LLM"],
+    date: "June 2025",
+    color: "#8b5cf6",
+    url: "https://github.com/donniv86/RAG_CHROMA_DB"
+  }
+]
+
 const categories = [
   {
     title: 'Research Publications',
@@ -233,7 +301,7 @@ const categories = [
   },
   {
     title: 'GitHub Projects',
-    description: '10 repositories showcasing technical skills',
+    description: '11 repositories showcasing AI/ML, RAG, and computational chemistry',
     link: '/github-projects',
     icon: ArchiveIcon,
     iconBg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',

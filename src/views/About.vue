@@ -6,7 +6,7 @@
         <div class="gradient-card animate-fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
           <div class="flex flex-col lg:flex-row items-center justify-between">
             <div class="text-center lg:text-left">
-              <h1 class="text-4xl lg:text-6xl font-black mb-4 text-white drop-shadow-lg">
+              <h1 class="text-4xl lg:text-6xl font-black mb-4 text-white drop-shadow-lg bg-black/20 px-4 py-2 rounded-lg" style="color: white !important;">
                 About Me
               </h1>
               <p class="text-xl lg:text-2xl mb-6 text-white/90 font-medium">
@@ -25,7 +25,7 @@
 
         <!-- Personal Info Section -->
         <div class="modern-card p-8 animate-fade-in-up">
-          <h2 class="text-3xl font-bold text-white mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+          <h2 class="text-3xl font-bold text-white mb-6 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">
             Personal Information
           </h2>
           <personal-info />
@@ -35,7 +35,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div class="lg:col-span-2">
             <div class="modern-card p-8 animate-fade-in-up">
-              <h2 class="text-3xl font-bold text-white mb-6 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400">
+              <h2 class="text-3xl font-bold text-white mb-6 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">
                 Technical Skills Radar
               </h2>
               <skills-radar-chart />
@@ -43,7 +43,7 @@
           </div>
           <div class="lg:col-span-1">
             <div class="modern-card p-8 animate-fade-in-up">
-              <h2 class="text-3xl font-bold text-white mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+              <h2 class="text-3xl font-bold text-white mb-6 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">
                 Contact Information
               </h2>
               <contact-info />
@@ -53,7 +53,7 @@
 
         <!-- Experience Timeline -->
         <div class="modern-card p-8 animate-fade-in-up">
-          <h2 class="text-3xl font-bold text-white mb-6 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-400">
+          <h2 class="text-3xl font-bold text-white mb-6 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">
             Professional Experience
           </h2>
           <experience-timeline />
@@ -61,7 +61,7 @@
 
         <!-- Education Section -->
         <div class="modern-card p-8 animate-fade-in-up">
-          <h2 class="text-3xl font-bold text-white mb-6 text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400">
+          <h2 class="text-3xl font-bold text-white mb-6 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">
             Education & Qualifications
           </h2>
           <education-section />

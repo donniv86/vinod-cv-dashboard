@@ -1,7 +1,7 @@
 <template>
   <div class="modern-card animate-fade-in-up">
     <slot name="header">
-      <h3 v-if="title" class="text-xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">{{ title }}</h3>
+      <h3 v-if="title" class="text-2xl font-bold mb-6 text-white !important border-b border-white/20 pb-3 drop-shadow-lg bg-black/20 px-4 py-2 rounded-lg" style="color: white !important;">{{ title }}</h3>
     </slot>
     <slot />
   </div>

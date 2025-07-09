@@ -1,220 +1,235 @@
-# TailAdmin Vue - Free Vue.js Tailwind CSS Admin Dashboard Template
+# Dr. Vinod Devaraji - CV Dashboard
 
-TailAdmin Vue is a free, open-source admin dashboard template **built on Vue.js**, popular and progressive JavaScript
-framework, and **Tailwind CSS**. This **powerful combination** provides developers with an extensive library of
-essential components, elements, and pages to launch a comprehensive and data-centric back-end, dashboard, or admin panel
-solution for any Vue.js based web projects.
+A modern, interactive CV dashboard showcasing Dr. Vinod Devaraji's professional profile, research achievements, and technical expertise in Computational Drug Discovery.
 
-![TailAdmin Vue.js Dashboard Preview](./banner.png)
+![CV Dashboard Preview](./banner.png)
 
-With TailAdmin Vue, you can leverage **Vue.js 3** features such as declarative rendering, component-based architecture,
-Vue Router for routing, and Pinia for state management. It also utilizes the power of Tailwind CSS for rapid UI
-development with its low-level utility classes and responsive design capabilities.
+## 🎯 Overview
 
-## Overview
+This is a personalized professional portfolio dashboard built with **Vue.js 3** and **Tailwind CSS**, featuring:
 
-TailAdmin provides essential UI components and layouts for building feature-rich, data-driven admin dashboards and control panels. It's built on:
+- **Interactive CV/Resume** with modern UI design
+- **Research Publications** showcase (31 papers, 1,247+ citations)
+- **GitHub Projects** portfolio (10 repositories)
+- **Professional Certifications** (21 courses)
+- **Technical Skills** visualization
+- **Professional Analytics** and metrics
 
-- Vue 3 (Vite)
-- TypeScript
-- Tailwind CSS
-
-### Quick Links
-
-- [✨ Visit Website](https://tailadmin.com)
-- [📄 Documentation](https://tailadmin.com/docs)
-- [⬇️ Download](https://tailadmin.com/download)
-- [🖌️ Figma Design File (Community Edition)](https://www.figma.com/community/file/1463141366275764364)
-- [⚡ Get PRO Version](https://tailadmin.com/pricing)
-
-### Demos
-
-- [Free Version](https://free-vue-demo.tailadmin.com/)
-- [Pro Version](https://vue-demo.tailadmin.com)
-
-### Other Versions
-
-- [HTML Version](https://github.com/TailAdmin/tailadmin-free-tailwind-dashboard-template)
-- [Next.js Version](https://github.com/TailAdmin/free-nextjs-admin-dashboard)
-- [React Version](https://github.com/TailAdmin/free-react-tailwind-admin-dashboard)
-
-## Installation
+## 🚀 Quick Start Guide
 
 ### Prerequisites
 
-To get started with TailAdmin, ensure you have the following prerequisites installed and set up:
+Before you begin, ensure you have the following installed:
 
-- Node.js 18.x or later (recommended to use Node.js 20.x or later)
-- Recommended IDE Setup: [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **Node.js 18.x or later** (recommended: Node.js 20.x+)
+- **npm** (comes with Node.js)
+- **Git** (for cloning the repository)
 
-#### Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-### Cloning the Repository
-
-Clone the repository using the following command:
+### Step 1: Check Node.js Version
 
 ```bash
-git clone https://github.com/TailAdmin/vue-tailwind-admin-dashboard.git
+node --version
+npm --version
 ```
 
-> Windows Users: place the repository near the root of your drive if you face issues while cloning.
+**Expected output:** Node.js v18+ and npm v8+
 
-1. Install dependencies:
+### Step 2: Clone/Download the Project
 
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+If you haven't already downloaded the project:
 
-2. Start the development server:
+```bash
+# Option 1: If you have the project files locally
+cd /path/to/Vinod_CV_Dashboard
 
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
+# Option 2: If cloning from repository
+git clone <repository-url>
+cd Vinod_CV_Dashboard
+```
 
-3. Production build:
-   ```bash
-   npm run build
-   # or
-   yarn build
-   ```
+### Step 3: Install Dependencies
 
-## Feature Comparison
+```bash
+npm install
+```
 
-### Free Version
+This will install all required packages including:
+- Vue.js 3
+- Tailwind CSS 4
+- ApexCharts
+- Vue Router
+- TypeScript dependencies
 
-- 1 Unique Dashboard
-- 30+ dashboard components
-- 50+ UI elements
-- Basic Figma design files
-- Community support
+### Step 4: Start Development Server
 
-### Pro Version
+```bash
+npm run dev
+```
 
-- 5 Unique Dashboards: Analytics, Ecommerce, Marketing, CRM, Stocks (more coming soon)
-- 400+ dashboard components and UI elements
-- Complete Figma design file
-- Email support
+**Expected output:**
+```
+  VITE v6.0.11  ready in 500 ms
 
-To learn more about pro version features and pricing, visit our [pricing page](https://tailadmin.com/pricing).
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h to show help
+```
 
-## Components
+### Step 5: Access the Dashboard
 
-TailAdmin is a pre-designed starting point for building a web-based dashboard using Vue.js and Tailwind CSS. The template includes:
+Open your web browser and navigate to:
+```
+http://localhost:5173/
+```
 
-- Sophisticated and accessible sidebar
-- Data visualization components
-- Prebuilt profile management and 404 page
-- Tables and Charts(Line and Bar)
-- Authentication forms and input elements
-- Alerts, Dropdowns, Modals, Buttons and more
-- Can't forget Dark Mode 🕶️
+You should see Dr. Vinod's CV Dashboard with a modern, gradient-based design.
 
-All components are built with Vue and styled using Tailwind CSS for easy customization.
+## 📁 Project Structure
 
-## Features
+```
+Vinod_CV_Dashboard/
+├── src/
+│   ├── components/
+│   │   ├── cv/                 # CV-specific components
+│   │   ├── layout/             # Layout components
+│   │   └── ui/                 # Reusable UI components
+│   ├── views/
+│   │   ├── CVDashboard.vue     # Main CV dashboard
+│   │   ├── Publications.vue    # Publications page
+│   │   ├── GitHubProjects.vue  # GitHub projects
+│   │   ├── Certifications.vue  # Certifications
+│   │   └── About.vue          # About page
+│   ├── router/
+│   │   └── index.ts           # Vue Router configuration
+│   └── main.ts                # App entry point
+├── data/
+│   ├── publications.bib       # Publications data
+│   └── vinod.png             # Profile image
+├── public/
+│   └── images/               # Static images
+└── package.json              # Dependencies and scripts
+```
 
-**💎 High-quality, Premium Modern Design:**
-A thoughtfully designed dashboard template with a deep focus on UX/UI, already trusted and utilized by over 10K+ web apps worldwide.
+## 🛠 Available Scripts
 
-**✨ Vue 3:**
-Get enhanced performance with the latest Vue version.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run ESLint |
+| `npm run format` | Format code with Prettier |
 
-**⚡ Vite Build System:**
-Enjoy quick development with Vite, ensuring fast code compilation.
+## 🎨 Features
 
-**🔀 Vue Router:**
-Manage app navigation with ease using Vue Router for seamless transitions.
+### 📊 Professional Metrics
+- **31 Publications** with 1,247+ citations
+- **H-Index of 16**
+- **13+ Years** of experience
+- **6 CADD Modalities** expertise
 
-**💡 Reactive Utilities:**
-Enhance component reactivity with @vueuse/core utilities.
+### 🔬 Technical Expertise
+- **CADD Modalities**: Small Molecule, Peptide, Organometallic, Macrocycle, PROTAC, Antibody Drug Conjugate
+- **Computational Techniques**: AI/Deep Learning, Large Language Models, Cheminformatics, Quantum Mechanics
+- **Therapeutic Areas**: Oncology, Cardiovascular, Genotoxicity/DNA Therapy, Signal Transduction
 
-**📊 Charting with ApexCharts:**
-Visualize data with ApexCharts for beautiful analytics.
+### 📱 Dashboard Sections
+1. **Research Publications** - Browse 31 peer-reviewed papers
+2. **GitHub Projects** - Explore 10 technical repositories
+3. **Certifications** - View 21 professional courses
+4. **About Me** - Professional background and contact info
 
-**🗺️ Vector Maps with JSVectorMap:**
-Easily integrate interactive vector maps with JSVectorMap.
+## 🎯 Professional Profile
 
-**🖌️ UI with Tailwind CSS:**
-Frontend UI built on the powerful and versatile Tailwind CSS framework.
+**Dr. Vinod Devaraji**
+- **Position**: Senior Scientist at Schrödinger
+- **Specialization**: Computational Drug Discovery
+- **Expertise**: AI/ML, Molecular Modeling, CADD
+- **Experience**: 13+ years in pharmaceutical research
 
-**💫 TypeScript Support:**
-Write safer, maintainable code with TailAdmin Vue's TypeScript Support.
+## 🔧 Customization
 
-**✅ Linting and Formatting:**
-Maintain a clean codebase with built-in linting and formatting.
+### Updating Personal Information
 
-**🗃️ State Management with Pinia:**
-Handle your app's state with Pinia for clean, organized code.
+1. **Profile Data**: Edit `src/views/CVDashboard.vue` to update:
+   - Name and title
+   - Professional metrics
+   - Skills and expertise
+   - Contact information
 
-## Update Logs
+2. **Publications**: Update `data/publications.bib` with new publications
 
-### Version 2.0.1 - [February 27, 2025]
+3. **Profile Image**: Replace `data/vinod.png` with your photo
 
-#### Update Overview
+### Styling Changes
 
-- Upgraded to Tailwind CSS v4 for better performance and efficiency.
-- Updated class usage to match the latest syntax and features.
-- Replaced deprecated class and optimized styles.
+- **Colors**: Modify gradient values in the Vue components
+- **Layout**: Adjust Tailwind CSS classes
+- **Components**: Edit individual component files in `src/components/cv/`
 
-#### Next Steps
+## 🚀 Deployment
 
-- Run npm install or yarn install to update dependencies.
-- Check for any style changes or compatibility issues.
-- Refer to the Tailwind CSS v4 [Migration Guide](https://tailwindcss.com/docs/upgrade-guide) on this release. if needed.
-- This update keeps the project up to date with the latest Tailwind improvements. 🚀
+### Build for Production
 
-### Version 2.0.0 - [February 2025]
+```bash
+npm run build
+```
 
-Major update with Vue 3 migration and comprehensive redesign.
+This creates a `dist/` folder with optimized files.
 
-#### Major Improvements
+### Deploy Options
 
-- Complete migration to Vue 3 Composition API
-- Updated to Vue Router 4
-- Enhanced user interface with new Vue 3 components
-- Improved performance with Vue 3's virtual DOM
-- Better accessibility and responsive design
+1. **Netlify**: Drag and drop the `dist/` folder
+2. **Vercel**: Connect your repository
+3. **GitHub Pages**: Use GitHub Actions
+4. **Traditional Hosting**: Upload `dist/` contents to your server
 
-#### New Features
+## 🐛 Troubleshooting
 
-- Redesigned dashboards (Ecommerce, Analytics, Marketing, CRM)
-- Collapsible sidebar with Vue 3 integration
-- Enhanced navigation with Vue Router 4
-- Real-time chat functionality
-- Full-featured calendar with drag-and-drop
-- Advanced table components
-- Updated data visualization with ApexCharts
+### Common Issues
 
-#### Breaking Changes
+**1. Port Already in Use**
+```bash
+# Kill process on port 5173
+lsof -ti:5173 | xargs kill -9
+# Or use a different port
+npm run dev -- --port 3000
+```
 
-- Requires Vue 3 and Vue Router 4
-- Chart components migrated to ApexCharts for Vue 3
-- Modified routing implementation
-- Updated component APIs for Vue 3 compatibility
+**2. Node Modules Issues**
+```bash
+# Clear npm cache
+npm cache clean --force
+# Remove node_modules and reinstall
+rm -rf node_modules package-lock.json
+npm install
+```
 
-[Read more](https://tailadmin.com/docs/update-logs/vue) on this release.
+**3. TypeScript Errors**
+```bash
+# Run type checking
+npm run type-check
+# Fix linting issues
+npm run lint
+```
 
-### Version 1.0.2 - [June 19, 2024]
+### Performance Optimization
 
-#### Issues
+- The dashboard uses **Vite** for fast development
+- **Tailwind CSS 4** for optimized styling
+- **Vue 3** with Composition API for better performance
 
-- Fix Mobile Menu Hamburger Icon issue.
+## 📞 Support
 
-### Version 1.0.1 - [Feb 08, 2024]
+For technical issues or customization help:
+- Check the [Vue.js documentation](https://vuejs.org/)
+- Review [Tailwind CSS docs](https://tailwindcss.com/)
+- Open an issue in the project repository
 
-#### Enhancements
+## 📄 License
 
-- Make it functional [Multiselect Dropdown/Form Elements].
-- Delete SelectGroup Components then create a SelectGroup folder and create two files under this
-  folder SelectGroupOne.vue SelectGroupTwo.vue [Select Group/Form Elements & Layout].
-- Update style.css file.
+This project is based on TailAdmin Vue template and customized for Dr. Vinod Devaraji's professional portfolio.
 
-### Version 1.0.0 - Initial Release - [Jan 22, 2024]
+---
 
-- Initial release of TailAdmin Vue.
+**Built with ❤️ using Vue.js 3, Tailwind CSS, and modern web technologies**

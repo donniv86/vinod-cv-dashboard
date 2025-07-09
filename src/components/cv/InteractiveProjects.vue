@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
     <div class="flex items-center justify-between mb-6">
-      <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Research Publications</h2>
+      <h2 class="text-2xl font-bold text-white bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">Research Publications</h2>
       <div class="flex space-x-2">
         <button
           v-for="filter in filters"
