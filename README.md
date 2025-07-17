@@ -161,6 +161,8 @@ Vinod_CV_Dashboard/
 
 3. **Profile Image**: Replace `data/vinod.png` with your photo
 
+4. **Brand Logo**: To update the dashboard's branding, replace the logo SVG files located at `public/images/logo/vinod-cv-logo.svg` and `public/images/logo/vinod-cv-logo-dark.svg` with your own logo designs. These files are used throughout the application for light and dark themes, respectively.
+
 ### Styling Changes
 
 - **Colors**: Modify gradient values in the Vue components
