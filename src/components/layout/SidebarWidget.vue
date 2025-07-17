@@ -1,8 +1,8 @@
 <template>
   <div
-    class="mx-auto mb-10 w-full max-w-60 rounded-2xl bg-gray-50 px-4 py-5 text-center dark:bg-white/[0.03]"
+    class="mx-auto mb-10 w-full max-w-60 rounded-2xl bg-gray-900/80 px-4 py-5 text-center shadow-lg border border-gray-700/40"
   >
-    <h3 class="mb-2 font-semibold text-white bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">Dr. Vinod Devaraji</h3>
+    <h3 class="mb-2 font-semibold text-white bg-white/10 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important; text-shadow: 0 0 8px #fff, 0 0 16px #fff;">Dr. Vinod Devaraji</h3>
     <p class="mb-4 text-sky-300 text-theme-sm">
       Computational Drug Discovery Expert
     </p>

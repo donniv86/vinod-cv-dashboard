@@ -1,11 +1,11 @@
 <template>
   <div class="rounded-sm border border-stroke bg-gray-900 px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-    <h3 class="text-xl font-semibold text-white mb-6 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important; text-shadow: 0 0 15px rgba(255, 255, 255, 1); font-weight: 900;">Education & Certifications</h3>
+    <h3 class="glowing-section-title text-xl font-semibold mb-6 bg-black/20 px-4 py-2 rounded-lg">Education & Certifications</h3>
 
     <div class="space-y-8">
       <!-- Education History -->
       <div>
-        <h4 class="text-lg font-semibold text-white mb-4 flex items-center" style="text-shadow: 0 0 12px rgba(255, 255, 255, 0.9); color: white !important; font-weight: 900;">
+        <h4 class="glowing-section-title text-lg font-semibold mb-4 flex items-center">
           <span class="w-5 h-5 mr-2 text-cyan-400">🎓</span>
           Academic Background
         </h4>
@@ -18,7 +18,7 @@
           >
             <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start">
               <div class="flex-1">
-                <h5 class="text-xl font-bold text-white group-hover:text-cyan-100 transition-colors duration-300 mb-2 drop-shadow-lg" style="text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); color: white !important; font-weight: 900;">
+                <h5 class="glowing-card-title text-xl font-bold mb-2">
                   {{ education.degree }}
                 </h5>
                 <p class="text-lg text-cyan-400 font-medium mb-2">
@@ -58,7 +58,7 @@
 
       <!-- Certifications -->
       <div>
-        <h4 class="text-lg font-semibold text-white mb-4 flex items-center" style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);">
+        <h4 class="glowing-section-title text-lg font-semibold mb-4 flex items-center">
           <span class="w-5 h-5 mr-2 text-cyan-400">🏆</span>
           Certifications
         </h4>
@@ -70,7 +70,7 @@
             class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-4 hover:shadow-lg transition-all duration-300 hover:scale-105 hover:bg-gray-800 group"
           >
             <div class="flex items-start justify-between mb-3">
-              <h5 class="font-semibold text-white group-hover:text-cyan-300 transition-colors duration-300">
+              <h5 class="glowing-card-title font-semibold group-hover:text-cyan-300 transition-colors duration-300">
                 {{ cert.name }}
               </h5>
               <span class="text-xs text-gray-300 bg-gray-700/50 border border-gray-600 px-2 py-1 rounded">
@@ -99,7 +99,7 @@
 
       <!-- Additional Training -->
       <div>
-        <h4 class="text-lg font-semibold text-white mb-4 flex items-center" style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);">
+        <h4 class="glowing-section-title text-lg font-semibold mb-4 flex items-center">
           <span class="w-5 h-5 mr-2 text-cyan-400">📚</span>
           Additional Training
         </h4>

@@ -9,54 +9,54 @@
 
     <!-- Key Metrics Row -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-      <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 p-4 rounded-lg border border-emerald-200 dark:border-emerald-800">
+      <div class="card-metric p-4 rounded-lg">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm text-emerald-600 dark:text-emerald-400 font-medium">Total Citations</p>
-            <p class="text-2xl font-bold text-emerald-800 dark:text-emerald-200">{{ citations }}</p>
+            <p class="card-metric-label">Total Citations</p>
+            <p class="card-metric-value">{{ citations }}</p>
           </div>
           <div class="text-3xl">📚</div>
         </div>
-        <div class="mt-2 text-xs text-emerald-600 dark:text-emerald-400">
+        <div class="mt-2 text-xs card-metric-label">
           +{{ citationsGrowth }}% recent (2020+)
         </div>
       </div>
 
-      <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+      <div class="card-metric p-4 rounded-lg">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm text-blue-600 dark:text-blue-400 font-medium">H-Index</p>
-            <p class="text-2xl font-bold text-blue-800 dark:text-blue-200">{{ hIndex }}</p>
+            <p class="card-metric-label">H-Index</p>
+            <p class="card-metric-value">{{ hIndex }}</p>
           </div>
           <div class="text-3xl">🎯</div>
         </div>
-        <div class="mt-2 text-xs text-blue-600 dark:text-blue-400">
+        <div class="mt-2 text-xs card-metric-label">
           Recent: {{ recentHIndex }} (2020+)
         </div>
       </div>
 
-      <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+      <div class="card-metric p-4 rounded-lg">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm text-purple-600 dark:text-purple-400 font-medium">i10-Index</p>
-            <p class="text-2xl font-bold text-purple-800 dark:text-purple-200">{{ i10Index }}</p>
+            <p class="card-metric-label">i10-Index</p>
+            <p class="card-metric-value">{{ i10Index }}</p>
           </div>
           <div class="text-3xl">📊</div>
         </div>
-        <div class="mt-2 text-xs text-purple-600 dark:text-purple-400">
+        <div class="mt-2 text-xs card-metric-label">
           Papers with 10+ citations
         </div>
       </div>
 
-      <div class="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
+      <div class="card-metric p-4 rounded-lg">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm text-orange-600 dark:text-orange-400 font-medium">Recent Citations</p>
-            <p class="text-2xl font-bold text-orange-800 dark:text-orange-200">{{ recentCitations }}</p>
+            <p class="card-metric-label">Recent Citations</p>
+            <p class="card-metric-value">{{ recentCitations }}</p>
           </div>
           <div class="text-3xl">🚀</div>
         </div>
-        <div class="mt-2 text-xs text-orange-600 dark:text-orange-400">
+        <div class="mt-2 text-xs card-metric-label">
           Since 2020
         </div>
       </div>

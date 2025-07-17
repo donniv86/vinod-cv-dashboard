@@ -1,17 +1,17 @@
 <template>
   <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-    <div class="flex items-center justify-between mb-6">
-      <h2 class="text-2xl font-bold text-white bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important;">Research Publications</h2>
+    <div class="flex items-center justify-between mb-6 filter-bar rounded-xl p-4">
+      <h2 class="filter-bar-label text-2xl font-bold">Research Publications</h2>
       <div class="flex space-x-2">
         <button
           v-for="filter in filters"
           :key="filter.value"
           @click="activeFilter = filter.value"
           :class="[
-            'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200',
+            'filter-btn px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200',
             activeFilter === filter.value
-              ? 'bg-blue-600 text-white shadow-lg'
-              : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+              ? 'filter-btn-active'
+              : 'filter-btn-inactive'
           ]"
         >
           {{ filter.label }}
@@ -23,30 +23,30 @@
       <!-- 2024 Publications -->
       <div v-if="filteredPublications.length > 0" class="space-y-4">
         <div v-for="publication in filteredPublications" :key="publication.id"
-             class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-700 dark:to-gray-600 rounded-xl p-6 border border-blue-100 dark:border-gray-600 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+             class="card-publication rounded-xl p-6 border hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
           <div class="flex justify-between items-start mb-4">
             <div class="flex-1">
-              <h3 class="text-lg font-semibold text-blue-200 mb-2 leading-tight" style="text-shadow: 0 0 8px rgba(191, 219, 254, 0.8); color: #bfdbfe !important;">
+              <h3 class="card-publication-title text-lg font-semibold mb-2 leading-tight">
                 {{ publication.title }}
               </h3>
-              <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">
+              <p class="card-publication-meta text-sm mb-3">
                 <span class="font-medium">{{ publication.authors }}</span>
               </p>
               <div class="flex flex-wrap gap-2 mb-3">
-                <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-xs font-medium">
+                <span class="card-publication-tag px-3 py-1 rounded-full text-xs font-medium">
                   {{ publication.journal }}
                 </span>
-                <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-xs font-medium">
+                <span class="card-publication-tag px-3 py-1 rounded-full text-xs font-medium">
                   {{ publication.year }}
                 </span>
-                <span v-if="publication.volume" class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-xs font-medium">
+                <span v-if="publication.volume" class="card-publication-tag px-3 py-1 rounded-full text-xs font-medium">
                   Vol. {{ publication.volume }}
                 </span>
-                <span v-if="publication.pages" class="bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-3 py-1 rounded-full text-xs font-medium">
+                <span v-if="publication.pages" class="card-publication-tag px-3 py-1 rounded-full text-xs font-medium">
                   {{ publication.pages }}
                 </span>
               </div>
-              <div class="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
+              <div class="flex items-center space-x-4 text-sm card-publication-meta">
                 <span v-if="publication.citations" class="flex items-center">
                   <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -71,11 +71,11 @@
           <div class="flex justify-between items-center">
             <div class="flex space-x-2">
               <span v-for="(tag, index) in publication.tags" :key="index"
-                    class="bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-xs">
+                    class="card-publication-tag px-2 py-1 rounded text-xs">
                 {{ tag }}
               </span>
             </div>
-            <button class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium">
+            <button class="text-cyan-400 hover:text-cyan-300 text-sm font-medium">
               View Details →
             </button>
           </div>

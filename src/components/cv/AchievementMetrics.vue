@@ -9,51 +9,51 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       <!-- Years of Experience -->
-      <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+      <div class="card-metric p-4 rounded-lg">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm text-blue-600 dark:text-blue-400 font-medium">Experience</p>
-            <p class="text-2xl font-bold text-blue-800 dark:text-blue-200">10+ Years</p>
+            <p class="card-metric-label">Experience</p>
+            <p class="card-metric-value">10+ Years</p>
           </div>
           <div class="text-3xl">⏰</div>
         </div>
-        <p class="text-xs text-blue-600 dark:text-blue-400 mt-2">CADD & Molecular Modeling</p>
+        <p class="text-xs card-metric-label mt-2">CADD & Molecular Modeling</p>
       </div>
 
       <!-- Publications -->
-      <div class="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+      <div class="card-metric p-4 rounded-lg">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm text-green-600 dark:text-green-400 font-medium">Publications</p>
-            <p class="text-2xl font-bold text-green-800 dark:text-green-200">18+</p>
+            <p class="card-metric-label">Publications</p>
+            <p class="card-metric-value">18+</p>
           </div>
           <div class="text-3xl">📚</div>
         </div>
-        <p class="text-xs text-green-600 dark:text-green-400 mt-2">Peer-Reviewed Papers</p>
+        <p class="text-xs card-metric-label mt-2">Peer-Reviewed Papers</p>
       </div>
 
       <!-- Citations -->
-      <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+      <div class="card-metric p-4 rounded-lg">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm text-purple-600 dark:text-purple-400 font-medium">Citations</p>
-            <p class="text-2xl font-bold text-purple-800 dark:text-purple-200">682</p>
+            <p class="card-metric-label">Citations</p>
+            <p class="card-metric-value">682</p>
           </div>
           <div class="text-3xl">📊</div>
         </div>
-        <p class="text-xs text-purple-600 dark:text-purple-400 mt-2">Google Scholar</p>
+        <p class="text-xs card-metric-label mt-2">Google Scholar</p>
       </div>
 
       <!-- H-Index -->
-      <div class="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
+      <div class="card-metric p-4 rounded-lg">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm text-orange-600 dark:text-orange-400 font-medium">H-Index</p>
-            <p class="text-2xl font-bold text-orange-800 dark:text-orange-200">16</p>
+            <p class="card-metric-label">H-Index</p>
+            <p class="card-metric-value">16</p>
           </div>
           <div class="text-3xl">🎯</div>
         </div>
-        <p class="text-xs text-orange-600 dark:text-orange-400 mt-2">Research Impact</p>
+        <p class="text-xs card-metric-label mt-2">Research Impact</p>
       </div>
     </div>
 

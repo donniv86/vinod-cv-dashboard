@@ -24,13 +24,13 @@
           v-if="isExpanded || isHovered || isMobileOpen"
           src="/images/logo/logo.png?v=2"
           alt="Logo"
-          class="h-16 w-auto brightness-0 invert"
+          class="h-16 w-auto"
         />
         <img
           v-else
           src="/images/logo/logo.png?v=2"
           alt="Logo"
-          class="h-12 w-12 object-contain brightness-0 invert"
+          class="h-12 w-12 object-contain"
         />
       </router-link>
     </div>
