@@ -20,17 +20,20 @@
       ]"
     >
       <router-link to="/">
-        <img
+        <LazyImage
           v-if="isExpanded || isHovered || isMobileOpen"
           src="/images/logo/logo.png?v=2"
           alt="Logo"
-          class="h-16 w-auto"
+          height="64px"
+          image-class="h-16 w-auto"
         />
-        <img
+        <LazyImage
           v-else
           src="/images/logo/logo.png?v=2"
           alt="Logo"
-          class="h-12 w-12 object-contain"
+          width="48px"
+          height="48px"
+          image-class="h-12 w-12 object-contain"
         />
       </router-link>
     </div>
@@ -214,6 +217,7 @@ import {
 } from "../../icons";
 import SidebarWidget from "./SidebarWidget.vue";
 import BoxCubeIcon from "@/icons/BoxCubeIcon.vue";
+import LazyImage from "../ui/LazyImage.vue";
 import { useSidebar } from "@/composables/useSidebar";
 
 const route = useRoute();

@@ -3,10 +3,12 @@
     <div class="flex flex-col lg:flex-row items-center lg:items-start gap-6">
       <!-- Profile Picture -->
       <div class="flex-shrink-0">
-        <img
+        <LazyImage
           src="/vinod.png"
           alt="Vinod Devaraji"
-          class="w-32 h-32 rounded-full object-cover shadow-lg border-4 border-white dark:border-boxdark hover:scale-105 transition-transform duration-300"
+          width="128px"
+          height="128px"
+          image-class="w-32 h-32 rounded-full object-cover shadow-lg border-4 border-white dark:border-boxdark hover:scale-105 transition-transform duration-300"
         />
       </div>
 
@@ -65,6 +67,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { MailIcon } from '../../icons'
+import LazyImage from '../ui/LazyImage.vue'
 
 const personalInfo = ref({
   name: "Dr. Vinod Devaraji",

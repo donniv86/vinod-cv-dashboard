@@ -11,7 +11,7 @@
         ERROR
       </h1>
 
-      <img src="/images/error/404.svg" alt="404" />
+      <LazyImage src="/images/error/404.svg" alt="404" />
 
       <p
         class="mt-10 mb-6 text-base text-gray-700 dark:text-gray-400 sm:text-lg"
@@ -35,9 +35,10 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 import CommonGridShape from "../../components/common/CommonGridShape.vue";
+import LazyImage from "../../components/ui/LazyImage.vue";
 
 const currentYear = ref(new Date().getFullYear());
 </script>

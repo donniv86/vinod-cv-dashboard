@@ -1,19 +1,26 @@
 import './assets/main.css'
-// Import Swiper styles
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-import 'jsvectormap/dist/jsvectormap.css'
-import 'flatpickr/dist/flatpickr.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import VueApexCharts from 'vue3-apexcharts'
 
 const app = createApp(App)
 
 app.use(router)
-app.use(VueApexCharts)
 
+// Lazy load heavy libraries only when needed
+const loadHeavyLibraries = async () => {
+  try {
+    // Load ApexCharts only when charts are used
+    const { default: VueApexCharts } = await import('vue3-apexcharts')
+    app.use(VueApexCharts)
+  } catch (error) {
+    console.warn('Failed to load ApexCharts:', error)
+  }
+}
+
+// Load heavy libraries after app is mounted
 app.mount('#app')
+
+// Load heavy libraries in the background
+loadHeavyLibraries()

@@ -5,7 +5,13 @@
       @click.prevent="toggleDropdown"
     >
       <span class="mr-3 overflow-hidden rounded-full h-11 w-11">
-        <img src="/vinod.png" alt="Vinod Devaraji" />
+        <LazyImage
+          src="/vinod.png"
+          alt="Vinod Devaraji"
+          width="44px"
+          height="44px"
+          image-class="w-full h-full object-cover"
+        />
       </span>
 
       <span class="block mr-1 font-medium text-theme-sm">Vinod </span>
@@ -57,6 +63,7 @@
 import { UserCircleIcon, ChevronDownIcon } from '@/icons'
 import { RouterLink } from 'vue-router'
 import { ref, onMounted, onUnmounted } from 'vue'
+import LazyImage from '../../ui/LazyImage.vue'
 
 const dropdownOpen = ref(false)
 const dropdownRef = ref(null)

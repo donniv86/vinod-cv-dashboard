@@ -1,9 +1,15 @@
 <template>
   <router-link to="/" class="lg:hidden">
-    <img src="/images/logo/logo.png?v=2" alt="Logo" class="h-12 brightness-0 invert" />
+    <LazyImage
+      src="/images/logo/logo.png?v=2"
+      alt="Logo"
+      height="48px"
+      image-class="h-12 brightness-0 invert"
+    />
   </router-link>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import LazyImage from '../../ui/LazyImage.vue'
 </script>

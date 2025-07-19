@@ -1,0 +1,144 @@
+{
+  "timestamp": "2025-07-19T09:15:09.782Z",
+  "totalSize": 876360,
+  "files": [
+    {
+      "path": "js/About-Bwn7HLEF.js",
+      "size": 20232,
+      "sizeKB": 19.76,
+      "type": "js"
+    },
+    {
+      "path": "js/AdminLayout-DuRsU4Er.js",
+      "size": 19068,
+      "sizeKB": 18.62,
+      "type": "js"
+    },
+    {
+      "path": "js/CVDashboard-Qo0dXJVR.js",
+      "size": 18401,
+      "sizeKB": 17.97,
+      "type": "js"
+    },
+    {
+      "path": "js/Certifications-CbLVSeEO.js",
+      "size": 12464,
+      "sizeKB": 12.17,
+      "type": "js"
+    },
+    {
+      "path": "js/FourZeroFour-tqexyBfq.js",
+      "size": 1732,
+      "sizeKB": 1.69,
+      "type": "js"
+    },
+    {
+      "path": "js/GitHubProjects-D7vOo4jg.js",
+      "size": 2392,
+      "sizeKB": 2.34,
+      "type": "js"
+    },
+    {
+      "path": "js/LazyImage-BkOWtVP5.js",
+      "size": 2452,
+      "sizeKB": 2.39,
+      "type": "js"
+    },
+    {
+      "path": "js/Publications-BNdSoxli.js",
+      "size": 29149,
+      "sizeKB": 28.47,
+      "type": "js"
+    },
+    {
+      "path": "js/SkillsRadarChart.vue_vue_type_script_setup_true_lang-hGasAY0Q.js",
+      "size": 5724,
+      "sizeKB": 5.59,
+      "type": "js"
+    },
+    {
+      "path": "js/calendar-vendor-l0sNRNKZ.js",
+      "size": 1,
+      "sizeKB": 0,
+      "type": "js"
+    },
+    {
+      "path": "js/chart-vendor-C2mX2nuZ.js",
+      "size": 574623,
+      "sizeKB": 561.16,
+      "type": "js"
+    },
+    {
+      "path": "js/index-DjYtrZQn.js",
+      "size": 5341,
+      "sizeKB": 5.22,
+      "type": "js"
+    },
+    {
+      "path": "js/ui-vendor-l0sNRNKZ.js",
+      "size": 1,
+      "sizeKB": 0,
+      "type": "js"
+    },
+    {
+      "path": "js/utility-vendor-l0sNRNKZ.js",
+      "size": 1,
+      "sizeKB": 0,
+      "type": "js"
+    },
+    {
+      "path": "js/vue-vendor--KMU96MC.js",
+      "size": 90498,
+      "sizeKB": 88.38,
+      "type": "js"
+    },
+    {
+      "path": "css/LazyImage-DzjWCoYe.css",
+      "size": 818,
+      "sizeKB": 0.8,
+      "type": "css"
+    },
+    {
+      "path": "css/index-D8fyRB29.css",
+      "size": 93463,
+      "sizeKB": 91.27,
+      "type": "css"
+    }
+  ],
+  "chunks": {
+    "unknown": {
+      "size": 782079,
+      "files": [
+        "js/About-Bwn7HLEF.js",
+        "js/AdminLayout-DuRsU4Er.js",
+        "js/CVDashboard-Qo0dXJVR.js",
+        "js/Certifications-CbLVSeEO.js",
+        "js/FourZeroFour-tqexyBfq.js",
+        "js/GitHubProjects-D7vOo4jg.js",
+        "js/LazyImage-BkOWtVP5.js",
+        "js/Publications-BNdSoxli.js",
+        "js/SkillsRadarChart.vue_vue_type_script_setup_true_lang-hGasAY0Q.js",
+        "js/calendar-vendor-l0sNRNKZ.js",
+        "js/chart-vendor-C2mX2nuZ.js",
+        "js/index-DjYtrZQn.js",
+        "js/ui-vendor-l0sNRNKZ.js",
+        "js/utility-vendor-l0sNRNKZ.js",
+        "js/vue-vendor--KMU96MC.js"
+      ]
+    }
+  },
+  "recommendations": [
+    {
+      "type": "large-chunk",
+      "severity": "warning",
+      "message": "Chunk \"unknown\" is large (763.75KB). Consider splitting.",
+      "chunk": "unknown",
+      "size": 782079
+    },
+    {
+      "type": "vendor-splitting",
+      "severity": "info",
+      "message": "Consider further splitting vendor chunks for better caching."
+    }
+  ]
+}

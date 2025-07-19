@@ -6,7 +6,13 @@
           <div
             class="w-20 h-20 overflow-hidden border border-gray-200 rounded-full dark:border-gray-800"
           >
-            <img src="/images/user/owner.jpg" alt="user" />
+            <LazyImage
+              src="/images/user/owner.jpg"
+              alt="user"
+              width="80px"
+              height="80px"
+              image-class="w-full h-full object-cover"
+            />
           </div>
           <div class="order-3 xl:order-2">
             <h4
@@ -311,9 +317,10 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import Modal from './Modal.vue'
+import LazyImage from '../ui/LazyImage.vue'
 
 const isProfileInfoModal = ref(false)
 
