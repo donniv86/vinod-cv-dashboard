@@ -29,3 +29,25 @@ coverage
 
 *.tsbuildinfo
 .vercel
+
+# Environment variables and sensitive data
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.*.local
+
+# API keys and secrets
+*.key
+*.pem
+secrets/
+config/secrets.json
+
+# Backend specific
+server.log
+*.pid
+
+# Temporary files
+tmp/
+temp/
