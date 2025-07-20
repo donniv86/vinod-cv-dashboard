@@ -2,38 +2,88 @@
   <admin-layout>
     <div class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6">
       <div class="space-y-8">
-        <!-- Hero Section with Modern Design -->
-        <div v-if="showContent" class="gradient-card animate-fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
-          <div class="flex flex-col lg:flex-row items-center justify-between">
+        <!-- Hero Section with Enhanced Dynamic Background Effects -->
+        <div v-if="showContent" class="relative overflow-hidden gradient-card animate-fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
+          <!-- Animated Background Particles -->
+          <div class="absolute inset-0 overflow-hidden">
+            <div class="particles-container">
+              <div v-for="i in 20" :key="i"
+                   class="particle"
+                   :style="{
+                     left: `${Math.random() * 100}%`,
+                     top: `${Math.random() * 100}%`,
+                     animationDelay: `${Math.random() * 3}s`,
+                     animationDuration: `${3 + Math.random() * 4}s`
+                   }">
+              </div>
+            </div>
+
+            <!-- Floating Geometric Shapes -->
+            <div class="floating-shapes">
+              <div class="shape shape-1"></div>
+              <div class="shape shape-2"></div>
+              <div class="shape shape-3"></div>
+              <div class="shape shape-4"></div>
+            </div>
+
+            <!-- Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20"></div>
+          </div>
+
+          <!-- Main Content -->
+          <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between">
             <div class="text-center lg:text-left">
-              <h1 class="text-4xl lg:text-6xl font-black mb-4 text-white drop-shadow-lg" style="text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); color: white !important;">
+              <!-- Animated Name with Typewriter Effect -->
+              <h1 class="text-4xl lg:text-6xl font-black mb-4 text-white drop-shadow-lg typewriter-text"
+                  style="text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); color: white !important;">
                 Dr. Vinod Devaraji
               </h1>
-              <p class="text-xl lg:text-2xl mb-6 text-yellow-300 font-medium">
+
+              <!-- Animated Role with Fade-in -->
+              <p class="text-xl lg:text-2xl mb-6 text-yellow-300 font-medium animate-fade-in-up"
+                 style="animation-delay: 0.5s; animation-fill-mode: both;">
                 Senior Scientist at Schrödinger
               </p>
-              <p class="text-lg mb-8 text-sky-300 font-light">
+
+              <!-- Animated Expertise with Staggered Animation -->
+              <p class="text-lg mb-8 text-sky-300 font-light animate-fade-in-up"
+                 style="animation-delay: 0.8s; animation-fill-mode: both;">
                 Computational Drug Discovery • AI/ML • Molecular Modeling • CADD Expert
               </p>
-              <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+
+              <!-- Enhanced CTA Buttons with Hover Effects -->
+              <div class="flex flex-wrap gap-4 justify-center lg:justify-start animate-fade-in-up"
+                   style="animation-delay: 1.1s; animation-fill-mode: both;">
                 <a href="https://github.com/donniv86" target="_blank"
-                   class="modern-btn bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all duration-300">
+                   class="modern-btn bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 hover:scale-105 hover:shadow-lg transition-all duration-300 transform">
                   <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                   </svg>
                   <span style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); color: white !important;">GitHub</span>
                 </a>
                 <a href="https://www.linkedin.com/in/vinod-d-ph-d-8bb57a36/" target="_blank"
-                   class="modern-btn bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all duration-300">
+                   class="modern-btn bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 hover:scale-105 hover:shadow-lg transition-all duration-300 transform">
                   <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                   </svg>
                   <span style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); color: white !important;">LinkedIn</span>
                 </a>
+
+                <!-- New CV Download Button -->
+                <a href="/cv-download"
+                   class="modern-btn bg-yellow-500/20 backdrop-blur-sm border border-yellow-400/30 hover:bg-yellow-400/30 hover:scale-105 hover:shadow-lg transition-all duration-300 transform">
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                  </svg>
+                  <span style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); color: white !important;">Download CV</span>
+                </a>
               </div>
             </div>
-            <div class="text-center lg:text-right mt-8 lg:mt-0">
-              <div class="text-6xl lg:text-8xl font-black text-yellow-300 mb-2">13+</div>
+
+            <!-- Animated Experience Counter -->
+            <div class="text-center lg:text-right mt-8 lg:mt-0 animate-fade-in-up"
+                 style="animation-delay: 1.4s; animation-fill-mode: both;">
+              <div class="text-6xl lg:text-8xl font-black text-yellow-300 mb-2 counter-animation">13+</div>
               <div class="text-xl text-sky-300 font-medium">Years Experience</div>
             </div>
           </div>
@@ -409,3 +459,197 @@ const categories = [
   },
 ]
 </script>
+
+<style scoped>
+/* Animated Background Effects */
+.particles-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 0.8;
+  }
+}
+
+/* Floating Geometric Shapes */
+.floating-shapes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.shape {
+  position: absolute;
+  opacity: 0.1;
+  animation: float-shape 8s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  border-radius: 50%;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(45deg, #f093fb, #f5576c);
+  border-radius: 8px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.shape-3 {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(45deg, #4facfe, #00f2fe);
+  border-radius: 50%;
+  bottom: 30%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+.shape-4 {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(45deg, #43e97b, #38f9d7);
+  border-radius: 12px;
+  top: 40%;
+  right: 30%;
+  animation-delay: 6s;
+}
+
+@keyframes float-shape {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+    opacity: 0.1;
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg) scale(1.1);
+    opacity: 0.3;
+  }
+}
+
+/* Typewriter Effect */
+.typewriter-text {
+  overflow: hidden;
+  border-right: 3px solid rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+  animation: typewriter 3s steps(20) 0.5s both, blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* Counter Animation */
+.counter-animation {
+  animation: count-up 2s ease-out 1.4s both;
+}
+
+@keyframes count-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Enhanced Button Hover Effects */
+.modern-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.modern-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.modern-btn:hover::before {
+  left: 100%;
+}
+
+/* Fade-in Animation */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .particle {
+    width: 3px;
+    height: 3px;
+  }
+
+  .shape {
+    transform: scale(0.7);
+  }
+
+  .typewriter-text {
+    animation: none;
+    border-right: none;
+    white-space: normal;
+  }
+}
+</style>
