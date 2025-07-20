@@ -3,7 +3,7 @@
     <div class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6">
       <div class="space-y-8">
         <!-- Hero Section with Modern Design -->
-        <div v-if="!heroLoading.isVisible" class="gradient-card animate-fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
+        <div v-if="showContent" class="gradient-card animate-fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
           <div class="flex flex-col lg:flex-row items-center justify-between">
             <div class="text-center lg:text-left">
               <h1 class="text-4xl lg:text-6xl font-black mb-4 text-white drop-shadow-lg" style="text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); color: white !important;">
@@ -40,10 +40,10 @@
         </div>
 
         <!-- Hero Skeleton -->
-        <SkeletonLoader v-if="heroLoading.isVisible" variant="profile" size="large" :is-animated="true" />
+        <SkeletonLoader v-if="!showContent" variant="profile" size="large" :is-animated="true" />
 
         <!-- Quick Stats with Modern Cards -->
-        <div v-if="!statsLoading.isVisible" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div v-if="showContent" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div v-for="(stat, index) in stats" :key="stat.label"
                class="modern-card animate-fade-in-up"
                :style="{ animationDelay: `${index * 0.1}s` }">
@@ -62,12 +62,12 @@
         </div>
 
         <!-- Stats Skeleton -->
-        <div v-if="statsLoading.isVisible" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div v-if="!showContent" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <SkeletonLoader v-for="i in 4" :key="i" variant="card" size="medium" :is-animated="true" />
         </div>
 
         <!-- Content Sections -->
-        <div v-if="!contentLoading.isVisible">
+        <div v-if="showContent">
           <!-- CADD Modalities with Modern Design -->
           <Card title="CADD Modalities">
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -187,7 +187,7 @@
         </div>
 
         <!-- Content Skeleton -->
-        <div v-if="contentLoading.isVisible" class="space-y-8">
+        <div v-if="!showContent" class="space-y-8">
           <Card title="CADD Modalities">
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               <SkeletonLoader v-for="i in 6" :key="i" variant="card" size="small" :is-animated="true" />
@@ -240,7 +240,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import AdminLayout from '../components/layout/AdminLayout.vue'
 import Card from '../components/ui/Card.vue'
 import CriticalCSS from '../components/ui/CriticalCSS.vue'
@@ -254,29 +254,21 @@ import {
 
 const isDevelopment = computed(() => import.meta.env.DEV)
 
-// Skeleton loading states
-const heroLoading = useSkeletonLoading({ delay: 0, minDuration: 500 })
-const statsLoading = useSkeletonLoading({ delay: 100, minDuration: 300 })
-const contentLoading = useSkeletonLoading({ delay: 200, minDuration: 400 })
+// Simple test: Show content immediately without skeleton loading
+const showContent = ref(true)
+
+// Skeleton loading states - simplified approach
+const heroLoading = useSkeletonLoading({ delay: 0, minDuration: 200 })
+const statsLoading = useSkeletonLoading({ delay: 0, minDuration: 200 })
+const contentLoading = useSkeletonLoading({ delay: 0, minDuration: 200 })
 
 // Initialize loading states
 onMounted(() => {
-  heroLoading.startLoading()
-  statsLoading.startLoading()
-  contentLoading.startLoading()
+  console.log('CVDashboard mounted')
 
-  // Simulate loading completion
-  setTimeout(() => {
-    heroLoading.stopLoading()
-  }, 800)
-
-  setTimeout(() => {
-    statsLoading.stopLoading()
-  }, 1000)
-
-  setTimeout(() => {
-    contentLoading.stopLoading()
-  }, 1200)
+  // For testing: Show content immediately
+  showContent.value = true
+  console.log('Content should be visible now')
 })
 
 const stats = [

@@ -7,11 +7,13 @@
       :class="[isExpanded || isHovered ? 'lg:ml-[290px]' : 'lg:ml-[90px]']"
     >
       <app-header />
-      <div class="p-4 mx-auto max-w-(--breakpoint-2xl) md:p-6">
-        <BreadcrumbNavigation
-          :show-quick-actions="true"
-          @breadcrumb-click="handleBreadcrumbClick"
-        />
+      <div class="p-2 mx-auto max-w-(--breakpoint-2xl) md:p-3">
+        <!-- Minimal breadcrumb for navigation -->
+        <div class="flex items-center gap-2 mb-2 px-1">
+          <span class="text-xs text-gray-400">CV Dashboard</span>
+          <span class="text-xs text-gray-500">/</span>
+          <span class="text-xs text-white font-medium">{{ $route.meta?.title || 'Overview' }}</span>
+        </div>
         <slot></slot>
       </div>
     </div>

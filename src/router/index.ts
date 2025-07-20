@@ -26,6 +26,16 @@ const router = createRouter({
       }
     },
     {
+      path: '/cv',
+      name: 'cv',
+      component: CVDashboard,
+      meta: {
+        title: 'CV Dashboard',
+        transition: 'slide-left',
+        breadcrumb: 'Dashboard'
+      }
+    },
+    {
       path: '/about',
       name: 'about',
       component: About,

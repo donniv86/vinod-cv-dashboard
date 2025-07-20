@@ -203,11 +203,11 @@ defineExpose({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.5rem;
+  padding: 0.5rem 1rem;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -246,8 +246,8 @@ defineExpose({
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
   text-decoration: none;
   color: inherit;
   transition: all 0.2s ease;
@@ -266,8 +266,8 @@ defineExpose({
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
