@@ -1,565 +1,690 @@
 <template>
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-    <div class="flex items-center justify-between mb-6 filter-bar rounded-xl p-4">
-      <h2 class="filter-bar-label text-2xl font-bold">Research Publications</h2>
-      <div class="flex space-x-2">
+  <div class="card-responsive">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6 filter-bar rounded-xl p-4">
+      <h2 class="filter-bar-label text-2xl font-bold mb-4 lg:mb-0">Research Publications</h2>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 min-w-0">
+        <!-- Refresh Button -->
         <button
-          v-for="filter in filters"
-          :key="filter.value"
-          @click="activeFilter = filter.value"
-          :class="[
-            'filter-btn px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200',
-            activeFilter === filter.value
-              ? 'filter-btn-active'
-              : 'filter-btn-inactive'
-          ]"
+          @click="refreshData"
+          :disabled="isLoading"
+          class="px-4 py-2 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-400 text-white rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-2 flex-shrink-0 w-full sm:w-auto justify-center"
         >
-          {{ filter.label }}
+          <svg v-if="isLoading" class="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <svg v-else class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+          <span>{{ isLoading ? 'Loading...' : 'Refresh' }}</span>
         </button>
+
+        <!-- Year Filters -->
+        <div class="flex space-x-2 overflow-x-auto max-w-full min-w-0 w-full sm:w-auto">
+          <button
+            @click="activeFilter = 'all'"
+            :class="[
+              'filter-btn px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap flex-shrink-0',
+              activeFilter === 'all'
+                ? 'filter-btn-active'
+                : 'filter-btn-inactive'
+            ]"
+          >
+            All Publications
+          </button>
+          <button
+            v-for="year in availableYears"
+            :key="year"
+            @click="activeFilter = year"
+            :class="[
+              'filter-btn px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap flex-shrink-0',
+              activeFilter === year
+                ? 'filter-btn-active'
+                : 'filter-btn-inactive'
+            ]"
+          >
+            {{ year }}
+          </button>
+        </div>
       </div>
     </div>
 
-    <div class="grid gap-6">
-      <!-- 2024 Publications -->
-      <div v-if="filteredPublications.length > 0" class="space-y-4">
-        <div v-for="publication in filteredPublications" :key="publication.id"
-             class="card-publication rounded-xl p-6 border hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-          <div class="flex justify-between items-start mb-4">
-            <div class="flex-1">
-              <h3 class="card-publication-title text-lg font-semibold mb-2 leading-tight">
-                {{ publication.title }}
-              </h3>
-              <p class="card-publication-meta text-sm mb-3">
-                <span class="font-medium">{{ publication.authors }}</span>
-              </p>
-              <div class="flex flex-wrap gap-2 mb-3">
-                <span class="card-publication-tag px-3 py-1 rounded-full text-xs font-medium">
-                  {{ publication.journal }}
-                </span>
-                <span class="card-publication-tag px-3 py-1 rounded-full text-xs font-medium">
-                  {{ publication.year }}
-                </span>
-                <span v-if="publication.volume" class="card-publication-tag px-3 py-1 rounded-full text-xs font-medium">
-                  Vol. {{ publication.volume }}
-                </span>
-                <span v-if="publication.pages" class="card-publication-tag px-3 py-1 rounded-full text-xs font-medium">
-                  {{ publication.pages }}
-                </span>
-              </div>
-              <div class="flex items-center space-x-4 text-sm card-publication-meta">
-                <span v-if="publication.citations" class="flex items-center">
-                  <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg>
-                  {{ publication.citations }} citations
-                </span>
-                <span v-if="publication.impact" class="flex items-center">
-                  <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
-                  </svg>
-                  Impact: {{ publication.impact }}
-                </span>
-              </div>
-            </div>
-            <div class="ml-4">
-              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                {{ publication.year }}
-              </div>
-            </div>
-          </div>
-
-          <div class="flex justify-between items-center">
-            <div class="flex space-x-2">
-              <span v-for="(tag, index) in publication.tags" :key="index"
-                    class="card-publication-tag px-2 py-1 rounded text-xs">
-                {{ tag }}
-              </span>
-            </div>
-            <button class="text-cyan-400 hover:text-cyan-300 text-sm font-medium">
-              View Details →
-            </button>
-          </div>
-        </div>
+    <!-- Loading State -->
+    <div v-if="isLoading" class="text-center py-12">
+      <div class="w-16 h-16 mx-auto mb-4 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+        <svg class="animate-spin h-8 w-8 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
       </div>
+      <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">Loading Publications</h3>
+      <p class="text-gray-500 dark:text-gray-400">Fetching latest data from Google Scholar...</p>
+    </div>
 
-      <!-- No publications message -->
-      <div v-else class="text-center py-12">
-        <div class="w-24 h-24 mx-auto mb-4 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center">
-          <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+    <!-- Content (only show when not loading) -->
+    <div v-else>
+      <!-- Advanced Filtering System -->
+      <div class="mb-6 space-y-4">
+        <!-- Category Filters -->
+        <ResponsiveGrid :cols="1" :auto-fit="true" class="gap-4">
+          <!-- Research Area Filter -->
+          <div class="relative">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Research Area</label>
+            <select
+              v-model="selectedResearchArea"
+              @change="updateFilters"
+              class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="all">All Research Areas</option>
+              <option value="small-molecule">Small Molecule Drug Discovery</option>
+              <option value="biologics">Biologics & Peptides</option>
+              <option value="organometallics">Organometallics</option>
+              <option value="natural-products">Natural Products & Medicinal Plants</option>
+              <option value="cancer-research">Cancer Research</option>
+              <option value="infectious-diseases">Infectious Diseases</option>
+              <option value="neurodegenerative">Neurodegenerative Diseases</option>
+              <option value="metabolic-disorders">Metabolic Disorders</option>
+              <option value="formulation">Drug Formulation</option>
+            </select>
+          </div>
+
+          <!-- Technique Filter -->
+          <div class="relative">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Technique/Methodology</label>
+            <select
+              v-model="selectedTechnique"
+              @change="updateFilters"
+              class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="all">All Techniques</option>
+              <option value="molecular-docking">Molecular Docking</option>
+              <option value="molecular-dynamics">Molecular Dynamics</option>
+              <option value="quantum-mechanics">Quantum Mechanics</option>
+              <option value="machine-learning">Machine Learning & AI</option>
+              <option value="cheminformatics">Cheminformatics</option>
+              <option value="bioinformatics">Bioinformatics</option>
+              <option value="structure-based">Structure-Based Design</option>
+              <option value="ligand-based">Ligand-Based Design</option>
+              <option value="pharmacophore">Pharmacophore Modeling</option>
+              <option value="qsar">QSAR Modeling</option>
+            </select>
+          </div>
+
+          <!-- Target Type Filter -->
+          <div class="relative">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Target Type</label>
+            <select
+              v-model="selectedTarget"
+              @change="updateFilters"
+              class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="all">All Target Types</option>
+              <option value="enzymes">Enzymes</option>
+              <option value="receptors">Receptors</option>
+              <option value="ion-channels">Ion Channels</option>
+              <option value="transporters">Transporters</option>
+              <option value="nucleic-acids">Nucleic Acids</option>
+              <option value="proteins">Proteins</option>
+              <option value="pathways">Signaling Pathways</option>
+              <option value="metabolic">Metabolic Targets</option>
+            </select>
+          </div>
+        </ResponsiveGrid>
+
+        <!-- Search Bar -->
+        <div class="relative">
+          <input
+            v-model="searchQuery"
+            @input="updateFilters"
+            type="text"
+            placeholder="Search publications by title, authors, or keywords..."
+            class="w-full px-4 py-3 pl-10 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
         </div>
-        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">No publications found</h3>
-        <p class="text-gray-500 dark:text-gray-400">Try selecting a different filter to view publications.</p>
-      </div>
-    </div>
 
-    <!-- Publication Statistics -->
-    <div class="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4">
-      <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-4 text-white">
-        <div class="text-2xl font-bold">{{ totalPublications }}</div>
-        <div class="text-sm opacity-90">Total Publications</div>
+        <!-- Active Filters Display -->
+        <div v-if="hasActiveFilters" class="flex flex-wrap items-center gap-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Active Filters:</span>
+          <span
+            v-for="filter in activeFiltersList"
+            :key="filter"
+            class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200"
+          >
+            {{ filter }}
+          </span>
+          <button
+            @click="clearAllFilters"
+            class="text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+          >
+            Clear All
+          </button>
+        </div>
       </div>
-      <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-4 text-white">
-        <div class="text-2xl font-bold">{{ totalCitations }}</div>
-        <div class="text-sm opacity-90">Total Citations</div>
+
+      <!-- Statistics Cards -->
+      <ResponsiveGrid :cols="1" :auto-fit="true" class="mb-6 gap-4">
+        <div class="card-metric p-4 rounded-lg">
+          <div class="card-metric-label">Total Publications</div>
+          <div class="card-metric-value">{{ totalPublications }}</div>
+        </div>
+        <div class="card-metric p-4 rounded-lg">
+          <div class="card-metric-label">Total Citations</div>
+          <div class="card-metric-value">{{ totalCitations }}</div>
+        </div>
+        <div class="card-metric p-4 rounded-lg">
+          <div class="card-metric-label">Average Impact Factor</div>
+          <div class="card-metric-value">{{ averageImpact }}</div>
+        </div>
+        <div class="card-metric p-4 rounded-lg">
+          <div class="card-metric-label">Research Years</div>
+          <div class="card-metric-value">{{ researchYears }}</div>
+        </div>
+      </ResponsiveGrid>
+
+      <!-- Filtered Results Count -->
+      <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+        Showing {{ filteredPublications.length }} of {{ totalPublications }} publications
+        <span v-if="hasActiveFilters">
+          ({{ totalFilteredCitations }} total citations, {{ averageFilteredImpact }} avg. impact)
+        </span>
       </div>
-      <div class="bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg p-4 text-white">
-        <div class="text-2xl font-bold">{{ averageImpact }}</div>
-        <div class="text-sm opacity-90">Avg Impact Factor</div>
-      </div>
-      <div class="bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg p-4 text-white">
-        <div class="text-2xl font-bold">{{ researchYears }}</div>
-        <div class="text-sm opacity-90">Research Years</div>
+
+      <!-- Publications Grid -->
+      <ResponsiveGrid :cols="1" :auto-fit="true" class="gap-6">
+        <div
+          v-for="publication in filteredPublications"
+          :key="publication.id"
+          class="card-publication p-6 rounded-lg transition-all duration-300 hover:shadow-lg"
+        >
+          <div class="flex flex-col space-y-4">
+            <!-- Publication Header -->
+            <div>
+              <h3 class="card-publication-title text-lg font-bold mb-2 line-clamp-3">
+                {{ publication.title }}
+              </h3>
+              <p class="card-publication-meta text-sm mb-2">
+                <span class="font-medium">{{ publication.authors }}</span>
+              </p>
+              <p class="card-publication-meta text-sm">
+                <span class="font-medium">{{ publication.journal }}</span>
+                <span class="mx-2">•</span>
+                <span>{{ publication.year }}</span>
+                <span v-if="publication.volume" class="mx-2">•</span>
+                <span v-if="publication.volume">Vol. {{ publication.volume }}</span>
+                <span v-if="publication.pages" class="mx-2">•</span>
+                <span v-if="publication.pages">{{ publication.pages }}</span>
+              </p>
+            </div>
+
+            <!-- Publication Metrics -->
+            <div class="flex flex-wrap items-center gap-4 text-sm">
+              <div class="flex items-center space-x-1">
+                <svg class="h-4 w-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <span class="card-publication-meta">{{ publication.citations || 0 }} citations</span>
+              </div>
+              <div v-if="publication.impact" class="flex items-center space-x-1">
+                <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+                <span class="card-publication-meta">IF: {{ publication.impact }}</span>
+              </div>
+            </div>
+
+            <!-- Publication Tags -->
+            <div class="flex flex-wrap gap-2">
+              <span
+                v-for="category in publication.categories"
+                :key="category"
+                class="card-publication-tag px-2 py-1 rounded text-xs font-medium"
+              >
+                {{ category }}
+              </span>
+              <span
+                v-for="technique in publication.techniques"
+                :key="technique"
+                class="card-publication-tag px-2 py-1 rounded text-xs font-medium"
+              >
+                {{ technique }}
+              </span>
+              <span
+                v-for="target in publication.targets"
+                :key="target"
+                class="card-publication-tag px-2 py-1 rounded text-xs font-medium"
+              >
+                {{ target }}
+              </span>
+            </div>
+
+            <!-- Publication Link -->
+            <div class="flex justify-end">
+              <a
+                v-if="publication.link"
+                :href="publication.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center px-3 py-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 transition-colors duration-200"
+              >
+                View Publication
+                <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </ResponsiveGrid>
+
+      <!-- No Results Message -->
+      <div v-if="filteredPublications.length === 0 && !isLoading" class="text-center py-12">
+        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        </svg>
+        <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">No publications found</h3>
+        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+          Try adjusting your filters or search terms.
+        </p>
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
-import { ref, computed } from 'vue'
+<script setup lang="ts">
+import { ref, computed, onMounted, watch } from 'vue'
+import { useExternalData } from '../../composables/useExternalData'
+import ResponsiveGrid from '../ui/ResponsiveGrid.vue'
+
+// Use external data for consistent information
+const {
+  data,
+  publicationCount,
+  citationCount,
+  hIndex,
+  refreshData,
+  isLoading
+} = useExternalData()
 
 const activeFilter = ref('all')
+const searchQuery = ref('')
+const selectedResearchArea = ref('all')
+const selectedTechnique = ref('all')
+const selectedTarget = ref('all')
 
-const filters = [
-  { label: 'All Publications', value: 'all' },
-  { label: '2024', value: '2024' },
-  { label: '2023', value: '2023' },
-  { label: '2022', value: '2022' },
-  { label: '2021', value: '2021' },
-  { label: '2020', value: '2020' },
-  { label: '2019', value: '2019' },
-  { label: '2018', value: '2018' },
-  { label: '2017', value: '2017' },
-  { label: '2016', value: '2016' },
-  { label: '2015', value: '2015' },
-  { label: '2014', value: '2014' },
-  { label: '2013', value: '2013' },
-  { label: '2012', value: '2012' },
-  { label: '2011', value: '2011' }
-]
-
-const publications = [
-  {
-    id: 1,
-    title: "Large-scale computational screening of Indian medicinal plants reveals Cassia angustifolia to be a potentially anti-diabetic",
-    authors: "Devaraji, Vinod and Sivaraman, Jayanthi and Prabhu, S",
-    journal: "Journal of Biomolecular Structure and Dynamics",
-    year: "2024",
-    volume: "42",
-    pages: "194-210",
-    citations: 15,
-    impact: "3.2",
-    tags: ["Computational Biology", "Drug Discovery", "Medicinal Plants"],
-    publisher: "Taylor & Francis"
-  },
-  {
-    id: 2,
-    title: "Exploring the potential of machine learning to design antidiabetic molecules: a comprehensive study with experimental validation",
-    authors: "Devaraji, Vinod and Sivaraman, Jayanthi",
-    journal: "Journal of Biomolecular Structure and Dynamics",
-    year: "2024",
-    volume: "42",
-    pages: "13290-13311",
-    citations: 8,
-    impact: "3.2",
-    tags: ["Machine Learning", "Drug Design", "Diabetes"],
-    publisher: "Taylor & Francis"
-  },
-  {
-    id: 3,
-    title: "Design, synthesis of new 2, 4-thiazolidinediones: In-silico, in-vivo anti-diabetic and anti-inflammatory evaluation",
-    authors: "Gharge, Shankar and Alegaon, Shankar G and Ranade, Shriram D and Khatib, NA and Kavalapure, Rohini S and Kumar, BR Prashantha and Bavage, Nandkishor B and others",
-    journal: "European Journal of Medicinal Chemistry Reports",
-    year: "2024",
-    volume: "11",
-    pages: "100151",
-    citations: 5,
-    impact: "2.8",
-    tags: ["Synthesis", "Anti-diabetic", "Anti-inflammatory"],
-    publisher: "Elsevier Masson"
-  },
-  {
-    id: 4,
-    title: "Pharmacophore modeling, 3D QSAR, molecular dynamics studies and virtual screening on pyrazolopyrimidines as anti-breast cancer agents",
-    authors: "James, Jainey P and Devaraji, Vinod and Sasidharan, Pradija and Pavan, TS",
-    journal: "Polycyclic Aromatic Compounds",
-    year: "2023",
-    volume: "43",
-    pages: "7456-7473",
-    citations: 12,
-    impact: "2.9",
-    tags: ["Pharmacophore", "QSAR", "Cancer Research"],
-    publisher: "Taylor & Francis"
-  },
-  {
-    id: 5,
-    title: "Design, synthesis, molecular dynamics simulation, MM/GBSA studies and kinesin spindle protein inhibitory evaluation of some 4-aminoquinoline hybrids",
-    authors: "Ranade, Shriram D and Alegaon, Shankar G and Venkatasubramanian, U and Priya, A Soundarya and Kavalapure, Rohini S and Chand, Jagdish and Jalalpure, Sunil S and Vinod, D",
-    journal: "Computational Biology and Chemistry",
-    year: "2023",
-    volume: "105",
-    pages: "107881",
-    citations: 10,
-    impact: "2.7",
-    tags: ["Molecular Dynamics", "Drug Design", "Kinesin"],
-    publisher: "Elsevier"
-  },
-  {
-    id: 6,
-    title: "In silico Exploration of Dakshina Kannada Medicinal Plants as Anti-SARS-CoV-2 Agents by Molecular Docking and Simulation Approaches",
-    authors: "James, Jainey P and Jyothi, Divya and Devaraji, Vinod and Priya, Sneh",
-    journal: "Letters in Drug Design & Discovery",
-    year: "2023",
-    volume: "20",
-    pages: "1544-1556",
-    citations: 18,
-    impact: "1.8",
-    tags: ["COVID-19", "Medicinal Plants", "Molecular Docking"],
-    publisher: "Bentham Science Publishers"
-  },
-  {
-    id: 7,
-    title: "Computational formulation study of insulin on biodegradable polymers",
-    authors: "Devaraji, Vinod and Jayanthi, Sivaraman",
-    journal: "RSC advances",
-    year: "2023",
-    volume: "13",
-    pages: "20282-20297",
-    citations: 7,
-    impact: "3.9",
-    tags: ["Drug Formulation", "Polymers", "Insulin"],
-    publisher: "Royal Society of Chemistry"
-  },
-  {
-    id: 8,
-    title: "Investigating anti-inflammatory and apoptotic actions of fucoidan concentrating on computational and therapeutic applications",
-    authors: "Dubey, Akanksha and Dasgupta, Tiasha and Devaraji, Vinod and Ramasamy, Tamizhselvi and Sivaraman, Jayanthi",
-    journal: "3 Biotech",
-    year: "2023",
-    volume: "13",
-    pages: "355",
-    citations: 9,
-    impact: "2.6",
-    tags: ["Anti-inflammatory", "Apoptosis", "Fucoidan"],
-    publisher: "Springer"
-  },
-  {
-    id: 9,
-    title: "Severity prediction over Parkinson's disease prediction by using the deep brooke inception net classifier",
-    authors: "Sarankumar, R and Vinod, D and Anitha, K and Manohar, Gunaselvi and Vijayanand, Karunanithi Senthamilselvi and Pant, Bhaskar and Sundramurthy, Venkatesa Prabhu",
-    journal: "Computational Intelligence and Neuroscience",
-    year: "2022",
-    volume: "2022",
-    pages: "7223197",
-    citations: 25,
-    impact: "3.1",
-    tags: ["Machine Learning", "Parkinson's Disease", "Deep Learning"],
-    publisher: "Hindawi"
-  },
-  {
-    id: 10,
-    title: "A Computational Insight on the Inhibitory Potential of 8-Hydroxydihydrosanguinarine (8-HDS), a Pyridone Containing Analog of Sanguinarine, against SARS CoV2",
-    authors: "Jena, Atala Bihari and Kanungo, Namrata and Chainy, Gagan Bihari Nityananda and Devaraji, Vinod and Das, Sudipta Kumar and Dandapat, Jagneshwar",
-    journal: "Chemistry & Biodiversity",
-    year: "2022",
-    volume: "19",
-    pages: "e202200266",
-    citations: 22,
-    impact: "2.5",
-    tags: ["COVID-19", "Computational Chemistry", "SARS-CoV-2"],
-    publisher: "Wiley"
-  },
-  {
-    id: 11,
-    title: "Synthesis and in silico study of new azetidinones against non-small cell lung cancer by EGFR inhibition",
-    authors: "James, Jainey P and Aiswarya, TC and Shenoy, Swetha P and Devaraji, Vinod",
-    journal: "The Thai Journal of Pharmaceutical Sciences",
-    year: "2022",
-    volume: "46",
-    pages: "595-606",
-    citations: 8,
-    impact: "1.2",
-    tags: ["Cancer Research", "EGFR", "Synthesis"],
-    publisher: "Chulalongkorn University"
-  },
-  {
-    id: 12,
-    title: "Pharmacophore based drug design and synthesis of oxindole bearing hybrid as anticancer agents",
-    authors: "Pathak, Ankita and Pandey, Vivek and Pokharel, Yuba Raj and Devaraji, Vinod and Ali, Abuzer and Haider, Kashif and Saad, Suma and Dewangan, Rikeshwer Prasad and Siddiqui, Nadeem and Yar, M Shahar",
-    journal: "Bioorganic Chemistry",
-    year: "2021",
-    volume: "116",
-    pages: "105358",
-    citations: 35,
-    impact: "5.1",
-    tags: ["Drug Design", "Cancer", "Oxindole"],
-    publisher: "Academic Press"
-  },
-  {
-    id: 13,
-    title: "Peroxynitrite-induced conformational changes in DNA that lead to cell death: UV, CD spectral, molecular dynamics simulation and FACS analysis",
-    authors: "Anushree, G and Aravind, P and Vinod, D and Hemalatha, N and Girisha, ST and Devaraju, KS",
-    journal: "Nucleosides, Nucleotides & Nucleic Acids",
-    year: "2020",
-    volume: "40",
-    pages: "1-15",
-    citations: 18,
-    impact: "2.1",
-    tags: ["DNA Damage", "Molecular Dynamics", "Cell Death"],
-    publisher: "Taylor & Francis"
-  },
-  {
-    id: 14,
-    title: "A novel quinoline-appended chalcone derivative as potential Plasmodium falciparum gametocytocide",
-    authors: "Kumar, Himank and Wadi, Ishan and Devaraji, Vinod and Pillai, CR and Ghosh, Sujit Kumar",
-    journal: "Journal of Vector Borne Diseases",
-    year: "2019",
-    volume: "56",
-    pages: "189-199",
-    citations: 28,
-    impact: "1.8",
-    tags: ["Malaria", "Chalcone", "Antimalarial"],
-    publisher: "Medknow"
-  },
-  {
-    id: 15,
-    title: "Potent and highly selective dual-targeting monoamine oxidase-B inhibitors: Fluorinated chalcones of morpholine versus imidazole",
-    authors: "Mathew, Bijo and Baek, Seung C and Thomas Parambi, Della G and Lee, Jae P and Mathew, Githa E and Jayanthi, Sivaraman and Vinod, Devaraji and Rapheal, Clariya and Devikrishna, Vinod and Kondarath, Shahin Shad and others",
-    journal: "Archiv der Pharmazie",
-    year: "2019",
-    volume: "352",
-    pages: "1800309",
-    citations: 42,
-    impact: "4.1",
-    tags: ["MAO-B", "Chalcone", "Neurodegenerative"],
-    publisher: "Wiley"
-  },
-  {
-    id: 16,
-    title: "A Chalcone-based potential therapeutic small molecule that binds to subdomain IIA in HSA precisely controls the rotamerization of Trp-214",
-    authors: "Kumar, Himank and Devaraji, Vinod and Joshi, Ritika and Wankar, Sneha and Ghosh, Sujit Kumar",
-    journal: "ACS omega",
-    year: "2018",
-    volume: "3",
-    pages: "10114-10128",
-    citations: 31,
-    impact: "4.1",
-    tags: ["HSA Binding", "Chalcone", "Protein Dynamics"],
-    publisher: "American Chemical Society"
-  },
-  {
-    id: 17,
-    title: "Insights into the structural perturbations of spliced variants of CD44: A modeling and simulation approach",
-    authors: "Patel, Shanaya and Shaikh, Faraz and Devaraji, Vinod and Radadiya, Ashish and Shah, Kanisha and Shah, Anamik and Rawal, Rakesh",
-    journal: "Journal of Biomolecular Structure and Dynamics",
-    year: "2017",
-    volume: "35",
-    pages: "354-367",
-    citations: 45,
-    impact: "3.2",
-    tags: ["CD44", "Structural Biology", "Cancer"],
-    publisher: "Taylor & Francis"
-  },
-  {
-    id: 18,
-    title: "Discovery of a latent calcineurin inhibitory peptide from its autoinhibitory domain by docking, dynamic simulation, and in vitro methods",
-    authors: "Harish, BM and Saraswathi, R and Vinod, D and Devaraju, KS",
-    journal: "Journal of Biomolecular Structure and Dynamics",
-    year: "2016",
-    volume: "34",
-    pages: "983-992",
-    citations: 33,
-    impact: "3.2",
-    tags: ["Calcineurin", "Peptide", "Molecular Docking"],
-    publisher: "Taylor & Francis"
-  },
-  {
-    id: 19,
-    title: "Targeting protein kinase and DNA molecules by diimine--phthalate complexes in antiproliferative activity",
-    authors: "Pravin, Narayanaperumal and Devaraji, Vinod and Raman, Natarajan",
-    journal: "International journal of biological macromolecules",
-    year: "2015",
-    volume: "79",
-    pages: "837-855",
-    citations: 41,
-    impact: "6.2",
-    tags: ["Protein Kinase", "DNA Binding", "Antiproliferative"],
-    publisher: "Elsevier"
-  },
-  {
-    id: 20,
-    title: "Groove binding mediated structural modulation and DNA cleavage by quinoline appended chalcone derivative",
-    authors: "Kumar, Himank and Devaraji, Vinod and Prasath, Rangaraj and Jadhao, Manojkumar and Joshi, Ritika and Bhavana, Purushothaman and Ghosh, Sujit Kumar",
-    journal: "Spectrochimica Acta Part A: Molecular and Biomolecular Spectroscopy",
-    year: "2015",
-    volume: "151",
-    pages: "605-615",
-    citations: 38,
-    impact: "4.4",
-    tags: ["DNA Binding", "Chalcone", "Spectroscopy"],
-    publisher: "Elsevier"
-  },
-  {
-    id: 21,
-    title: "Antihypertensive activity of a quinoline appended chalcone derivative and its site specific binding interaction with a relevant target carrier protein",
-    authors: "Kumar, Himank and Devaraji, Vinod and Joshi, Ritika and Jadhao, Manojkumar and Ahirkar, Piyush and Prasath, R and Bhavana, P and Ghosh, Sujit Kumar",
-    journal: "RSC advances",
-    year: "2015",
-    volume: "5",
-    pages: "65496-65513",
-    citations: 52,
-    impact: "3.9",
-    tags: ["Antihypertensive", "Protein Binding", "Drug Design"],
-    publisher: "Royal Society of Chemistry"
-  },
-  {
-    id: 22,
-    title: "Virtual screening and discovery of novel aurora kinase inhibitors",
-    authors: "Raghu, R and Devaraji, Vinod and Leena, K and Riyaz, SD and Baby Rani, Polavaru and Kumar. B, Suneel and Kumar Naik, Pradeep and Dubey, PK and Velmurugan, Devadasan and Vijayalakshmi, M",
-    journal: "Current Topics in Medicinal Chemistry",
-    year: "2014",
-    volume: "14",
-    pages: "2006-2019",
-    citations: 48,
-    impact: "3.4",
-    tags: ["Virtual Screening", "Aurora Kinase", "Drug Discovery"],
-    publisher: "Bentham Science Publishers"
-  },
-  {
-    id: 23,
-    title: "Design, synthesis, physicochemical studies, solvation, and DNA damage of quinoline-appended chalcone derivative: comprehensive spectroscopic approach toward drug discovery",
-    authors: "Kumar, Himank and Chattopadhyay, Anjan and Prasath, R and Devaraji, Vinod and Joshi, Ritika and Bhavana, P and Saini, Praveen and Ghosh, Sujit Kumar",
-    journal: "The Journal of Physical Chemistry B",
-    year: "2014",
-    volume: "118",
-    pages: "7257-7266",
-    citations: 67,
-    impact: "3.6",
-    tags: ["Drug Discovery", "Spectroscopy", "DNA Damage"],
-    publisher: "American Chemical Society"
-  },
-  {
-    id: 24,
-    title: "Structure and putative signaling mechanism of protease activated receptor 2 (PAR2)--a promising target for breast cancer",
-    authors: "Kakarala, Kavita Kumari and Jamil, Kaiser and Devaraji, Vinod",
-    journal: "Journal of Molecular Graphics and Modelling",
-    year: "2014",
-    volume: "53",
-    pages: "179-199",
-    citations: 39,
-    impact: "2.3",
-    tags: ["PAR2", "Breast Cancer", "Molecular Modeling"],
-    publisher: "Elsevier"
-  },
-  {
-    id: 25,
-    title: "Interaction of oxovanadium (IV)--salphen complexes with bovine serum albumin and their cytotoxicity against cancer",
-    authors: "Sankareswari, Velusamy Gomathi and Vinod, Devaraj and Mahalakshmi, Ayyasamy and Alamelu, Meena and Kumaresan, Ganesan and Ramaraj, Ramasamy and Rajagopal, Seenivasan",
-    journal: "Dalton Transactions",
-    year: "2014",
-    volume: "43",
-    pages: "3260-3272",
-    citations: 36,
-    impact: "4.6",
-    tags: ["Oxovanadium", "BSA", "Cytotoxicity"],
-    publisher: "Royal Society of Chemistry"
-  },
-  {
-    id: 26,
-    title: "Combined structure-and ligand-based pharmacophore modeling and molecular dynamics simulation studies to identify selective inhibitors of MMP-8",
-    authors: "Kalva, Sukesh and Vinod, D and Saleena, Lilly M",
-    journal: "Journal of Molecular Modeling",
-    year: "2014",
-    volume: "20",
-    pages: "1-18",
-    citations: 29,
-    impact: "2.3",
-    tags: ["MMP-8", "Pharmacophore", "Molecular Dynamics"],
-    publisher: "Springer"
-  },
-  {
-    id: 27,
-    title: "Field-and Gaussian-based 3D-QSAR studies on barbiturate analogs as MMP-9 inhibitors",
-    authors: "Kalva, Sukesh and Vinod, D and Saleena, Lilly M",
-    journal: "Medicinal Chemistry Research",
-    year: "2013",
-    volume: "22",
-    pages: "5303-5313",
-    citations: 31,
-    impact: "2.8",
-    tags: ["QSAR", "MMP-9", "Barbiturates"],
-    publisher: "Springer"
-  },
-  {
-    id: 28,
-    title: "Antitumour activity of 5-[(2 E)-1-(1 H-benzimidazol-2-yl)-3-substituted phenylprop-2-en-1-ylidene] pyrimidine-2, 4, 6 (1 H, 3 H, 5 H)-triones against Dalton's ascitic lymphoma in mice",
-    authors: "Mathew, Bijo and Suresh, Jerad and Vinod, Devaraji",
-    journal: "Medicinal Chemistry Research",
-    year: "2013",
-    volume: "22",
-    pages: "3911-3917",
-    citations: 42,
-    impact: "2.8",
-    tags: ["Antitumour", "Benzimidazole", "Lymphoma"],
-    publisher: "Springer"
-  },
-  {
-    id: 29,
-    title: "Hypnotic Profile of Imines from Benzimidazole Chalcones: Mechanism of Synthesis, DFT Studies and in silico Screening",
-    authors: "Mathew, Bijo and Suresh, Jerad and Anbazhagan, Sockalingam and Devaraji, Vinod",
-    journal: "Central Nervous System Agents in Medicinal Chemistry",
-    year: "2013",
-    volume: "13",
-    pages: "207-216",
-    citations: 38,
-    impact: "2.1",
-    tags: ["Hypnotic", "Benzimidazole", "DFT"],
-    publisher: "Bentham Science Publishers"
-  },
-  {
-    id: 30,
-    title: "Discovery of aurora kinase: A inhibitors using virtual screening protocol",
-    authors: "Suresh, A Jerad and Vinod, D",
-    journal: "Journal of Chemical, Biological and Physical Sciences",
-    year: "2012",
-    volume: "2",
-    pages: "1333",
-    citations: 25,
-    impact: "1.5",
-    tags: ["Aurora Kinase", "Virtual Screening", "Drug Discovery"],
-    publisher: "Journal of Chemical, Biological and Physical Sciences"
-  },
-  {
-    id: 31,
-    title: "Design, synthesis, characterization and screening of thiophene derivatives for anti-inflammatory activity",
-    authors: "Suresh, A Jerad and Anitha, K and Vinod, D",
-    journal: "Journal of Chemical, Biological and Physical Sciences",
-    year: "2011",
-    volume: "1",
-    pages: "304",
-    citations: 22,
-    impact: "1.5",
-    tags: ["Thiophene", "Anti-inflammatory", "Synthesis"],
-    publisher: "Journal of Chemical, Biological and Physical Sciences"
-  }
-]
-
-const filteredPublications = computed(() => {
-  if (activeFilter.value === 'all') {
-    return publications
-  }
-  return publications.filter(pub => pub.year === activeFilter.value)
+// Force data refresh on component mount
+onMounted(async () => {
+  console.log('InteractiveProjects component mounted, refreshing data...')
+  await refreshData()
+  console.log('Data refreshed, publications count:', data.value.publicationsList?.length || 0)
 })
 
-const totalPublications = computed(() => publications.length)
-const totalCitations = computed(() => publications.reduce((sum, pub) => sum + (pub.citations || 0), 0))
+// Watch for data changes and log them
+watch(() => data.value.publicationsList, (newPublications) => {
+  console.log('Publications data updated:', newPublications?.length || 0, 'publications')
+  if (newPublications && newPublications.length > 0) {
+    console.log('Sample publication:', newPublications[0])
+  }
+}, { immediate: true })
+
+// Comprehensive categorization system
+const categorizePublication = (title: string, snippet: string, authors: string) => {
+  const content = (title + ' ' + snippet + ' ' + authors).toLowerCase()
+  const categories: string[] = []
+  const techniques: string[] = []
+  const targets: string[] = []
+
+  // Research Area Categorization
+  if (content.includes('small molecule') || content.includes('drug discovery') || content.includes('lead compound')) {
+    categories.push('Small Molecule Drug Discovery')
+  }
+  if (content.includes('peptide') || content.includes('protein') || content.includes('antibody') || content.includes('biologic')) {
+    categories.push('Biologics & Peptides')
+  }
+  if (content.includes('organometallic') || content.includes('metal complex') || content.includes('oxovanadium') || content.includes('chalcone')) {
+    categories.push('Organometallics')
+  }
+  if (content.includes('medicinal plant') || content.includes('natural product') || content.includes('herbal') || content.includes('cassia')) {
+    categories.push('Natural Products & Medicinal Plants')
+  }
+  if (content.includes('cancer') || content.includes('oncology') || content.includes('tumor') || content.includes('breast cancer')) {
+    categories.push('Cancer Research')
+  }
+  if (content.includes('covid') || content.includes('sars') || content.includes('tuberculosis') || content.includes('malaria')) {
+    categories.push('Infectious Diseases')
+  }
+  if (content.includes('parkinson') || content.includes('neurodegenerative') || content.includes('mao') || content.includes('monoamine')) {
+    categories.push('Neurodegenerative Diseases')
+  }
+  if (content.includes('diabetes') || content.includes('diabetic') || content.includes('metabolic') || content.includes('insulin')) {
+    categories.push('Metabolic Disorders')
+  }
+  if (content.includes('formulation') || content.includes('polymer') || content.includes('delivery') || content.includes('biodegradable')) {
+    categories.push('Drug Formulation')
+  }
+
+  // Technique/Methodology Categorization
+  if (content.includes('molecular docking') || content.includes('docking')) {
+    techniques.push('Molecular Docking')
+  }
+  if (content.includes('molecular dynamics') || content.includes('md simulation') || content.includes('dynamics simulation')) {
+    techniques.push('Molecular Dynamics')
+  }
+  if (content.includes('pharmacophore') || content.includes('pharmacophoric')) {
+    techniques.push('Pharmacophore Modeling')
+  }
+  if (content.includes('qsar') || content.includes('quantitative structure') || content.includes('3d-qsar')) {
+    techniques.push('QSAR & 3D-QSAR')
+  }
+  if (content.includes('virtual screening') || content.includes('virtual screen')) {
+    techniques.push('Virtual Screening')
+  }
+  if (content.includes('machine learning') || content.includes('ml') || content.includes('ai') || content.includes('artificial intelligence')) {
+    techniques.push('Machine Learning & AI')
+  }
+  if (content.includes('spectroscopy') || content.includes('spectroscopic') || content.includes('uv') || content.includes('cd')) {
+    techniques.push('Spectroscopy')
+  }
+  if (content.includes('synthesis') || content.includes('synthesized') || content.includes('chemical synthesis')) {
+    techniques.push('Chemical Synthesis')
+  }
+  if (content.includes('bioinformatics') || content.includes('genomic') || content.includes('proteomic')) {
+    techniques.push('Bioinformatics')
+  }
+
+  // Target Type Categorization
+  if (content.includes('enzyme') || content.includes('kinase') || content.includes('aurora') || content.includes('mmp')) {
+    targets.push('Enzymes')
+  }
+  if (content.includes('receptor') || content.includes('par2') || content.includes('g protein')) {
+    targets.push('Receptors')
+  }
+  if (content.includes('dna') || content.includes('rna') || content.includes('nucleic acid') || content.includes('groove binding')) {
+    targets.push('DNA/RNA')
+  }
+  if (content.includes('protein') || content.includes('albumin') || content.includes('bsa') || content.includes('serum')) {
+    targets.push('Proteins')
+  }
+  if (content.includes('ion channel') || content.includes('channel')) {
+    targets.push('Ion Channels')
+  }
+  if (content.includes('transporter') || content.includes('carrier')) {
+    targets.push('Transporters')
+  }
+
+  return {
+    categories: categories.length > 0 ? categories : ['Research'],
+    techniques: techniques.length > 0 ? techniques : ['Computational'],
+    targets: targets.length > 0 ? targets : ['Molecular Targets']
+  }
+}
+
+// Use real publications data from Google Scholar
+const publications = computed(() => {
+  console.log('Computing publications, data available:', !!data.value.publicationsList)
+  console.log('Publications count:', data.value.publicationsList?.length || 0)
+
+  if (!data.value.publicationsList || data.value.publicationsList.length === 0) {
+    console.log('No real data available, using fallback data')
+    // Fallback to sample data if no real data available
+    return [
+      {
+        id: 1,
+        title: "Large-scale computational screening of Indian medicinal plants reveals Cassia angustifolia to be a potentially anti-diabetic",
+        authors: "Devaraji, Vinod and Sivaraman, Jayanthi and Prabhu, S",
+        journal: "Journal of Biomolecular Structure and Dynamics",
+        year: "2024",
+        volume: "42",
+        pages: "194-210",
+        citations: 15,
+        impact: "3.2",
+        tags: ["Computational Biology", "Drug Discovery", "Medicinal Plants"],
+        publisher: "Taylor & Francis",
+        link: "#",
+        categories: ["Natural Products & Medicinal Plants", "Metabolic Disorders"],
+        techniques: ["Machine Learning & AI", "Virtual Screening"],
+        targets: ["Enzymes"]
+      },
+      {
+        id: 2,
+        title: "Exploring the potential of machine learning to design antidiabetic molecules: a comprehensive study with experimental validation",
+        authors: "Devaraji, Vinod and Sivaraman, Jayanthi",
+        journal: "Journal of Biomolecular Structure and Dynamics",
+        year: "2024",
+        volume: "42",
+        pages: "13290-13311",
+        citations: 8,
+        impact: "3.2",
+        tags: ["Machine Learning", "Drug Design", "Diabetes"],
+        publisher: "Taylor & Francis",
+        link: "#",
+        categories: ["Small Molecule Drug Discovery", "Metabolic Disorders"],
+        techniques: ["Machine Learning & AI", "Molecular Docking"],
+        targets: ["Enzymes"]
+      }
+    ]
+  }
+
+  console.log('Using real Google Scholar data')
+  // Convert Google Scholar data to our format with comprehensive categorization
+  return data.value.publicationsList.map((pub: any, index: number) => {
+    const categorization = categorizePublication(pub.title, pub.snippet || '', pub.authors || '')
+    return {
+      id: index + 1,
+      title: pub.title,
+      authors: pub.authors || 'N/A',
+      journal: pub.publication || 'N/A',
+      year: pub.year || 'N/A',
+      volume: pub.volume || '',
+      pages: pub.pages || '',
+      citations: pub.citations || 0,
+      impact: "3.2", // Default impact factor
+      tags: generateTags(pub.title, pub.snippet || ''),
+      publisher: extractPublisher(pub.publication || ''),
+      link: pub.link || '#',
+      categories: categorization.categories,
+      techniques: categorization.techniques,
+      targets: categorization.targets
+    }
+  })
+})
+
+// Generate tags based on publication content
+const generateTags = (title: string, snippet: string) => {
+  const content = (title + ' ' + snippet).toLowerCase()
+  const tags = []
+
+  if (content.includes('machine learning') || content.includes('ml') || content.includes('ai')) {
+    tags.push('Machine Learning')
+  }
+  if (content.includes('drug discovery') || content.includes('drug design')) {
+    tags.push('Drug Discovery')
+  }
+  if (content.includes('molecular') || content.includes('docking')) {
+    tags.push('Molecular Modeling')
+  }
+  if (content.includes('cancer') || content.includes('oncology')) {
+    tags.push('Cancer Research')
+  }
+  if (content.includes('diabetes') || content.includes('diabetic')) {
+    tags.push('Diabetes')
+  }
+  if (content.includes('covid') || content.includes('sars')) {
+    tags.push('COVID-19')
+  }
+  if (content.includes('medicinal') || content.includes('plant')) {
+    tags.push('Medicinal Plants')
+  }
+
+  return tags.length > 0 ? tags : ['Research', 'Peer-reviewed']
+}
+
+// Extract publisher from journal name
+const extractPublisher = (journal: string) => {
+  if (journal.includes('Taylor & Francis') || journal.includes('Journal of Biomolecular Structure and Dynamics')) {
+    return 'Taylor & Francis'
+  }
+  if (journal.includes('RSC') || journal.includes('Royal Society')) {
+    return 'Royal Society of Chemistry'
+  }
+  if (journal.includes('Elsevier') || journal.includes('Bioorganic')) {
+    return 'Elsevier'
+  }
+  if (journal.includes('Springer') || journal.includes('Molecular')) {
+    return 'Springer'
+  }
+  return 'Academic Publisher'
+}
+
+// Advanced filtering system
+const filteredPublications = computed(() => {
+  let filtered = publications.value
+
+  // Filter by year
+  if (activeFilter.value !== 'all') {
+    filtered = filtered.filter(pub => pub.year === activeFilter.value)
+  }
+
+  // Filter by research area
+  if (selectedResearchArea.value !== 'all') {
+    filtered = filtered.filter(pub =>
+      pub.categories.some(cat =>
+        cat.toLowerCase().includes(selectedResearchArea.value.replace('-', ' '))
+      )
+    )
+  }
+
+  // Filter by technique
+  if (selectedTechnique.value !== 'all') {
+    filtered = filtered.filter(pub =>
+      pub.techniques.some(tech =>
+        tech.toLowerCase().includes(selectedTechnique.value.replace('-', ' '))
+      )
+    )
+  }
+
+  // Filter by target type
+  if (selectedTarget.value !== 'all') {
+    filtered = filtered.filter(pub =>
+      pub.targets.some(target =>
+        target.toLowerCase().includes(selectedTarget.value.replace('-', ' '))
+      )
+    )
+  }
+
+  // Filter by search query
+  if (searchQuery.value) {
+    const query = searchQuery.value.toLowerCase()
+    filtered = filtered.filter(pub =>
+      pub.title.toLowerCase().includes(query) ||
+      pub.authors.toLowerCase().includes(query) ||
+      pub.journal.toLowerCase().includes(query) ||
+      pub.tags.some(tag => tag.toLowerCase().includes(query)) ||
+      pub.categories.some(cat => cat.toLowerCase().includes(query)) ||
+      pub.techniques.some(tech => tech.toLowerCase().includes(query))
+    )
+  }
+
+  return filtered
+})
+
+// Filter management
+const updateFilters = () => {
+  // This function is called when filters change
+  // The computed properties handle the filtering automatically
+}
+
+const clearAllFilters = () => {
+  activeFilter.value = 'all'
+  selectedResearchArea.value = 'all'
+  selectedTechnique.value = 'all'
+  selectedTarget.value = 'all'
+  searchQuery.value = ''
+}
+
+const hasActiveFilters = computed(() => {
+  return activeFilter.value !== 'all' ||
+         selectedResearchArea.value !== 'all' ||
+         selectedTechnique.value !== 'all' ||
+         selectedTarget.value !== 'all' ||
+         searchQuery.value !== ''
+})
+
+const activeFiltersList = computed(() => {
+  const filters: string[] = []
+  if (activeFilter.value !== 'all') filters.push(`Year: ${activeFilter.value}`)
+  if (selectedResearchArea.value !== 'all') filters.push(`Research Area: ${selectedResearchArea.value.replace('-', ' ')}`)
+  if (selectedTechnique.value !== 'all') filters.push(`Technique: ${selectedTechnique.value.replace('-', ' ')}`)
+  if (selectedTarget.value !== 'all') filters.push(`Target: ${selectedTarget.value.replace('-', ' ')}`)
+  if (searchQuery.value) filters.push(`Search: "${searchQuery.value}"`)
+  return filters
+})
+
+// Statistics
+const totalPublications = computed(() => publications.value.length)
+const totalCitations = computed(() => publications.value.reduce((sum, pub) => sum + (pub.citations || 0), 0))
+const totalFilteredCitations = computed(() => filteredPublications.value.reduce((sum, pub) => sum + (pub.citations || 0), 0))
 const averageImpact = computed(() => {
-  const impacts = publications.map(pub => parseFloat(pub.impact)).filter(impact => !isNaN(impact))
+  const impacts = publications.value.map(pub => parseFloat(pub.impact)).filter(impact => !isNaN(impact))
+  return impacts.length > 0 ? (impacts.reduce((sum, impact) => sum + impact, 0) / impacts.length).toFixed(1) : '0.0'
+})
+const averageFilteredImpact = computed(() => {
+  const impacts = filteredPublications.value.map(pub => parseFloat(pub.impact)).filter(impact => !isNaN(impact))
   return impacts.length > 0 ? (impacts.reduce((sum, impact) => sum + impact, 0) / impacts.length).toFixed(1) : '0.0'
 })
 const researchYears = computed(() => {
-  const years = publications.map(pub => parseInt(pub.year))
-  return Math.max(...years) - Math.min(...years) + 1
+  const years = publications.value.map(pub => parseInt(pub.year)).filter(year => !isNaN(year))
+  return years.length > 0 ? Math.max(...years) - Math.min(...years) + 1 : 0
+})
+
+// Get unique years for filter buttons
+const availableYears = computed(() => {
+  const years = [...new Set(publications.value.map(pub => pub.year))]
+    .filter(year => year && year !== 'N/A' && year !== 'n/a' && !isNaN(parseInt(year)))
+    .sort((a, b) => parseInt(b) - parseInt(a))
+  return years
 })
 </script>
+
+<style scoped>
+/* Year filter scrolling styles */
+.overflow-x-auto {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+.overflow-x-auto::-webkit-scrollbar {
+  height: 4px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 2px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.7);
+}
+
+/* Ensure filters don't overflow on small screens */
+@media (max-width: 768px) {
+  .filter-bar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .filter-bar > div {
+    width: 100%;
+  }
+
+  .overflow-x-auto {
+    max-width: 100%;
+  }
+}
+</style>

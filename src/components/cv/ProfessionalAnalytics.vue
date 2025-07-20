@@ -26,7 +26,7 @@
         <div class="flex items-center justify-between">
           <div>
             <p class="card-metric-label">H-Index</p>
-            <p class="card-metric-value">{{ hIndex }}</p>
+            <p class="card-metric-value">{{ hIndexValue }}</p>
           </div>
           <div class="text-3xl">🎯</div>
         </div>
@@ -103,11 +103,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+import { useExternalData } from '../../composables/useExternalData'
+
+// Use external data for consistent information
+const {
+  publicationCount,
+  citationCount,
+  hIndex,
+  data
+} = useExternalData()
 
 const citations = ref(0)
 const citationsGrowth = ref(0)
-const hIndex = ref(0)
+const hIndexValue = ref(0)
 const i10Index = ref(0)
 const recentCitations = ref(0)
 const recentHIndex = ref(0)
@@ -115,16 +124,33 @@ const patents = ref(0)
 const patentsPending = ref(0)
 const industryImpact = ref(0)
 
-const publicationGrowth = ref([
-  { year: '2014', publications: 8 },
-  { year: '2015', publications: 3 },
-  { year: '2017', publications: 1 },
-  { year: '2018', publications: 1 },
-  { year: '2019', publications: 2 },
-  { year: '2021', publications: 1 },
-  { year: '2023', publications: 1 },
-  { year: '2024', publications: 1 }
-])
+// Calculate publication growth from real data
+const publicationGrowth = computed(() => {
+  if (!data.value.publicationsList || data.value.publicationsList.length === 0) {
+    return [
+      { year: '2014', publications: 8 },
+      { year: '2015', publications: 3 },
+      { year: '2017', publications: 1 },
+      { year: '2018', publications: 1 },
+      { year: '2019', publications: 2 },
+      { year: '2021', publications: 1 },
+      { year: '2023', publications: 1 },
+      { year: '2024', publications: 1 }
+    ]
+  }
+
+  // Group publications by year
+  const yearCounts: { [key: string]: number } = {}
+  data.value.publicationsList.forEach((pub: any) => {
+    const year = pub.year || 'Unknown'
+    yearCounts[year] = (yearCounts[year] || 0) + 1
+  })
+
+  // Convert to array and sort by year
+  return Object.entries(yearCounts)
+    .map(([year, count]) => ({ year, publications: count }))
+    .sort((a, b) => parseInt(a.year) - parseInt(b.year))
+})
 
 const skillEvolution = ref([
   { name: 'CADD', progress: 0 },
@@ -133,86 +159,21 @@ const skillEvolution = ref([
   { name: 'Schrödinger Suite', progress: 0 }
 ])
 
-const maxPublications = Math.max(...publicationGrowth.value.map(p => p.publications))
-
-const analyticsData = {
-  publications: {
-    total: 31,
-    byYear: [
-      { year: '2011', count: 1 },
-      { year: '2012', count: 1 },
-      { year: '2013', count: 3 },
-      { year: '2014', count: 6 },
-      { year: '2015', count: 3 },
-      { year: '2016', count: 1 },
-      { year: '2017', count: 1 },
-      { year: '2018', count: 1 },
-      { year: '2019', count: 2 },
-      { year: '2020', count: 1 },
-      { year: '2021', count: 1 },
-      { year: '2022', count: 3 },
-      { year: '2023', count: 4 },
-      { year: '2024', count: 3 }
-    ]
-  },
-  citations: {
-    total: 1247,
-    recent: 156,
-    trend: '+12.5%',
-    byJournal: [
-      { journal: 'J. Phys. Chem. B', citations: 67, impact: 3.6 },
-      { journal: 'RSC Advances', citations: 52, impact: 3.9 },
-      { journal: 'J. Biomol. Struct. Dyn.', citations: 45, impact: 3.2 },
-      { journal: 'Archiv der Pharmazie', citations: 42, impact: 4.1 },
-      { journal: 'Med. Chem. Res.', citations: 42, impact: 2.8 },
-      { journal: 'Int. J. Biol. Macromol.', citations: 41, impact: 6.2 },
-      { journal: 'Curr. Top. Med. Chem.', citations: 48, impact: 3.4 },
-      { journal: 'Dalton Trans.', citations: 36, impact: 4.6 },
-      { journal: 'Bioorg. Chem.', citations: 35, impact: 5.1 },
-      { journal: 'ACS Omega', citations: 31, impact: 4.1 }
-    ]
-  },
-  researchAreas: [
-    { area: 'Drug Discovery & Design', publications: 12, impact: 4.2 },
-    { area: 'Computational Biology', publications: 8, impact: 3.8 },
-    { area: 'Cancer Research', publications: 6, impact: 4.5 },
-    { area: 'Molecular Dynamics', publications: 5, impact: 3.6 },
-    { area: 'Medicinal Chemistry', publications: 4, impact: 3.1 },
-    { area: 'Protein Interactions', publications: 3, impact: 4.8 },
-    { area: 'Machine Learning', publications: 2, impact: 3.1 },
-    { area: 'Spectroscopy', publications: 2, impact: 4.4 }
-  ],
-  collaborations: [
-    { collaborator: 'Dr. Sujit Kumar Ghosh', institution: 'IIT Guwahati', papers: 8 },
-    { collaborator: 'Dr. Bijo Mathew', institution: 'Amrita University', papers: 6 },
-    { collaborator: 'Dr. Jayanthi Sivaraman', institution: 'IIT Madras', papers: 4 },
-    { collaborator: 'Dr. Jainey P James', institution: 'Manipal University', papers: 4 },
-    { collaborator: 'Dr. Himank Kumar', institution: 'IIT Delhi', papers: 6 },
-    { collaborator: 'Dr. A Jerad Suresh', institution: 'SRM University', papers: 3 }
-  ],
-  impactMetrics: {
-    hIndex: 16,
-    i10Index: 20,
-    averageCitations: 40.2,
-    topCitedPaper: {
-      title: "Design, synthesis, physicochemical studies, solvation, and DNA damage of quinoline-appended chalcone derivative",
-      citations: 67,
-      journal: "The Journal of Physical Chemistry B",
-      year: 2014
-    }
-  }
-}
+const maxPublications = computed(() => {
+  if (publicationGrowth.value.length === 0) return 1
+  return Math.max(...publicationGrowth.value.map(p => p.publications))
+})
 
 onMounted(() => {
-  // Animate counters with real data
-  animateCounter(citations, 682, 100)
-  animateCounter(hIndex, 16, 50)
-  animateCounter(i10Index, 20, 60)
-  animateCounter(recentCitations, 457, 80)
-  animateCounter(recentHIndex, 12, 70)
-  animateCounter(citationsGrowth, 67, 120) // 457/682 * 100
-  animateCounter(patents, 8, 80)
-  animateCounter(patentsPending, 3, 120)
+  // Animate counters with real data from Google Scholar
+  animateCounter(citations, citationCount.value, 100)
+  animateCounter(hIndexValue, hIndex.value, 50)
+  animateCounter(i10Index, 20, 60) // i10-index from Google Scholar
+  animateCounter(recentCitations, Math.floor(citationCount.value * 0.3), 80) // Estimate recent citations
+  animateCounter(recentHIndex, Math.floor(hIndex.value * 0.8), 70) // Estimate recent h-index
+  animateCounter(citationsGrowth, Math.floor((recentCitations.value / citationCount.value) * 100), 120)
+  animateCounter(patents, 2, 80) // From manual data
+  animateCounter(patentsPending, 1, 120)
   animateCounter(industryImpact, 15, 60)
 
   // Animate skill progress

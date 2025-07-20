@@ -1233,3 +1233,312 @@ p {
   box-shadow: 0 2px 8px 0 rgba(56,189,248,0.10);
   border-color: #38bdf8;
 }
+
+/* Enhanced Responsive Design System */
+/* Mobile First Approach with Fluid Typography */
+
+/* Extra Small Devices (phones, 320px and up) */
+@media (min-width: 320px) {
+  :root {
+    --container-padding: 1rem;
+    --section-spacing: 2rem;
+    --card-padding: 1rem;
+    --border-radius: 0.75rem;
+  }
+
+  h1 { font-size: clamp(2rem, 8vw, 3rem); }
+  h2 { font-size: clamp(1.5rem, 6vw, 2.5rem); }
+  h3 { font-size: clamp(1.25rem, 5vw, 2rem); }
+  h4 { font-size: clamp(1.125rem, 4vw, 1.5rem); }
+  h5 { font-size: clamp(1rem, 3.5vw, 1.25rem); }
+  h6 { font-size: clamp(0.875rem, 3vw, 1.125rem); }
+
+  p { font-size: clamp(0.875rem, 3vw, 1.125rem); }
+
+  .text-sm { font-size: clamp(0.75rem, 2.5vw, 1rem); }
+  .text-base { font-size: clamp(0.875rem, 3vw, 1.125rem); }
+  .text-lg { font-size: clamp(1rem, 3.5vw, 1.25rem); }
+  .text-xl { font-size: clamp(1.125rem, 4vw, 1.5rem); }
+  .text-2xl { font-size: clamp(1.25rem, 5vw, 1.875rem); }
+  .text-3xl { font-size: clamp(1.5rem, 6vw, 2.25rem); }
+  .text-4xl { font-size: clamp(1.875rem, 7vw, 3rem); }
+  .text-5xl { font-size: clamp(2.25rem, 8vw, 3.75rem); }
+  .text-6xl { font-size: clamp(2.5rem, 9vw, 4.5rem); }
+}
+
+/* Small Devices (tablets, 640px and up) */
+@media (min-width: 640px) {
+  :root {
+    --container-padding: 1.5rem;
+    --section-spacing: 3rem;
+    --card-padding: 1.5rem;
+    --border-radius: 1rem;
+  }
+}
+
+/* Medium Devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  :root {
+    --container-padding: 2rem;
+    --section-spacing: 4rem;
+    --card-padding: 2rem;
+    --border-radius: 1.25rem;
+  }
+}
+
+/* Large Devices (desktops, 1024px and up) */
+@media (min-width: 1024px) {
+  :root {
+    --container-padding: 2.5rem;
+    --section-spacing: 5rem;
+    --card-padding: 2.5rem;
+    --border-radius: 1.5rem;
+  }
+}
+
+/* Extra Large Devices (large desktops, 1280px and up) */
+@media (min-width: 1280px) {
+  :root {
+    --container-padding: 3rem;
+    --section-spacing: 6rem;
+    --card-padding: 3rem;
+    --border-radius: 2rem;
+  }
+}
+
+/* 2XL Devices (very large desktops, 1536px and up) */
+@media (min-width: 1536px) {
+  :root {
+    --container-padding: 4rem;
+    --section-spacing: 8rem;
+    --card-padding: 4rem;
+    --border-radius: 2.5rem;
+  }
+}
+
+/* Responsive Container System */
+.container-responsive {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+@media (min-width: 640px) {
+  .container-responsive {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-responsive {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-responsive {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-responsive {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container-responsive {
+    max-width: 1536px;
+  }
+}
+
+/* Responsive Grid System */
+.grid-responsive {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .grid-responsive {
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-responsive {
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive {
+    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+}
+
+/* Responsive Card System */
+.card-responsive {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: var(--card-padding);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.card-responsive:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Touch-Friendly Elements */
+@media (max-width: 768px) {
+  /* Ensure minimum touch target size (44px) */
+  button,
+  .btn,
+  .filter-btn,
+  .nav-btn,
+  .quick-action-btn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem 1rem;
+  }
+
+  /* Increase spacing for touch targets */
+  .flex > * + * {
+    margin-left: 0.75rem;
+  }
+
+  .grid > * {
+    margin-bottom: 1rem;
+  }
+
+  /* Improve form elements for touch */
+  input,
+  select,
+  textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 0.75rem;
+    min-height: 44px;
+  }
+
+  /* Better spacing for mobile */
+  .space-y-4 > * + * {
+    margin-top: 1.5rem;
+  }
+
+  .space-y-6 > * + * {
+    margin-top: 2rem;
+  }
+
+  .space-y-8 > * + * {
+    margin-top: 2.5rem;
+  }
+}
+
+/* Landscape Mobile Optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+  .container-responsive {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .card-responsive {
+    padding: 1rem;
+  }
+
+  /* Reduce vertical spacing in landscape */
+  .space-y-4 > * + * {
+    margin-top: 1rem;
+  }
+
+  .space-y-6 > * + * {
+    margin-top: 1.5rem;
+  }
+
+  .space-y-8 > * + * {
+    margin-top: 2rem;
+  }
+}
+
+/* High DPI Display Optimization */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .card-responsive {
+    border-width: 0.5px;
+  }
+
+  .modern-btn {
+    border-width: 0.5px;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .card-responsive:hover {
+    transform: none;
+  }
+
+  .modern-btn:hover {
+    transform: none;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .card-responsive {
+    border-width: 2px;
+    border-color: white;
+  }
+
+  .modern-btn {
+    border-width: 2px;
+    border-color: white;
+  }
+
+  .filter-btn {
+    border-width: 2px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .card-responsive {
+    box-shadow: none;
+    border: 1px solid #000;
+    break-inside: avoid;
+  }
+
+  .modern-btn {
+    display: none;
+  }
+
+  .filter-bar {
+    display: none;
+  }
+
+  /* Ensure good contrast for printing */
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: black !important;
+  }
+}

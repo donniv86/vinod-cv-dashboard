@@ -55,9 +55,9 @@ export const EXTERNAL_API_CONFIG = {
 // Default data values (used as fallback)
 export const DEFAULT_DATA = {
   publications: {
-    count: 40,
-    citations: 1247,
-    hIndex: 16,
+    count: 44,
+    citations: 674,
+    hIndex: 15,
   },
   github: {
     repositories: 11,

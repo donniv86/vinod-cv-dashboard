@@ -7,7 +7,7 @@
       :class="[isExpanded || isHovered ? 'lg:ml-[290px]' : 'lg:ml-[90px]']"
     >
       <app-header />
-      <div class="p-2 mx-auto max-w-(--breakpoint-2xl) md:p-3">
+      <ResponsiveContainer class="mx-auto max-w-(--breakpoint-2xl) md:p-3">
         <!-- Minimal breadcrumb for navigation -->
         <div class="flex items-center gap-2 mb-2 px-1">
           <span class="text-xs text-gray-400">CV Dashboard</span>
@@ -15,7 +15,7 @@
           <span class="text-xs text-white font-medium">{{ $route.meta?.title || 'Overview' }}</span>
         </div>
         <slot></slot>
-      </div>
+      </ResponsiveContainer>
     </div>
   </div>
 </template>
@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import AppSidebar from './AppSidebar.vue'
 import AppHeader from './AppHeader.vue'
-import BreadcrumbNavigation from '../ui/BreadcrumbNavigation.vue'
+import ResponsiveContainer from '../ui/ResponsiveContainer.vue'
 import { useSidebar } from '@/composables/useSidebar'
 import Backdrop from './Backdrop.vue'
 

@@ -13,11 +13,11 @@
                 Peer-reviewed Research & Impact
               </p>
               <p class="text-lg mb-8 text-white/80 font-light" style="text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);">
-                31 publications with 1,247+ citations across multiple journals
+                {{ publicationCount }} publications with {{ citationCount.toLocaleString() }}+ citations across multiple journals
               </p>
             </div>
             <div class="text-center lg:text-right mt-8 lg:mt-0">
-              <div class="text-6xl lg:text-8xl font-black text-white/90 mb-2" style="text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);">1,247</div>
+              <div class="text-6xl lg:text-8xl font-black text-white/90 mb-2" style="text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);">{{ citationCount.toLocaleString() }}</div>
               <div class="text-xl text-white/80 font-medium" style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);">Total Citations</div>
             </div>
           </div>
@@ -46,64 +46,22 @@
           </h2>
           <interactive-projects />
         </div>
-
-        <!-- Virtual Scrolling Publications List -->
-        <div class="modern-card p-8 animate-fade-in-up">
-          <h2 class="text-3xl font-bold text-white mb-6 bg-black/20 px-4 py-2 rounded-lg drop-shadow-lg" style="color: white !important; text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); font-weight: 900;">
-            Publications Library
-          </h2>
-          <virtual-publication-list
-            :publications="allPublications"
-            :loading="loading"
-            @publication-share="handlePublicationShare"
-            @scroll-end="handleScrollEnd"
-          />
-        </div>
       </div>
     </div>
   </admin-layout>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
 import AdminLayout from '../components/layout/AdminLayout.vue'
 import AchievementMetrics from '../components/cv/AchievementMetrics.vue'
 import ProfessionalAnalytics from '../components/cv/ProfessionalAnalytics.vue'
 import InteractiveProjects from '../components/cv/InteractiveProjects.vue'
-import VirtualPublicationList from '../components/cv/VirtualPublicationList.vue'
-import { generatePublications, type Publication } from '../data/publications'
+import { useExternalData } from '../composables/useExternalData'
 
-// Reactive state
-const loading = ref(false)
-const allPublications = ref<Publication[]>([])
-
-// Load publications
-const loadPublications = async () => {
-  loading.value = true
-  try {
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    allPublications.value = generatePublications(200) // Generate 200 publications for testing
-  } catch (error) {
-    console.error('Failed to load publications:', error)
-  } finally {
-    loading.value = false
-  }
-}
-
-// Event handlers
-const handlePublicationShare = (publication: Publication) => {
-  console.log('Sharing publication:', publication.title)
-  // Implement sharing logic here
-}
-
-const handleScrollEnd = () => {
-  console.log('Reached end of publications list')
-  // Implement infinite scrolling logic here if needed
-}
-
-// Load publications on mount
-onMounted(() => {
-  loadPublications()
-})
+// Use external data for consistent information
+const {
+  publicationCount,
+  citationCount,
+  hIndex
+} = useExternalData()
 </script>

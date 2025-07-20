@@ -333,23 +333,23 @@ onMounted(() => {
   console.log('Content should be visible now')
 })
 
-const stats = [
+const stats = computed(() => [
   {
-    value: publicationCount.toString(),
+    value: publicationCount.value.toString(),
     label: 'Publications',
     icon: DocsIcon,
     iconBg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
     gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
   },
   {
-    value: citationCount.toLocaleString(),
+    value: citationCount.value.toLocaleString(),
     label: 'Citations',
     icon: BarChartIcon,
     iconBg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
     gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
   },
   {
-    value: hIndex.toString(),
+    value: hIndex.value.toString(),
     label: 'H-Index',
     icon: PieChartIcon,
     iconBg: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
@@ -362,7 +362,7 @@ const stats = [
     iconBg: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
     gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
   },
-]
+])
 
 const caddModalities = [
   { name: 'Small Molecule', desc: 'Traditional drugs', gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' },
@@ -436,10 +436,10 @@ const recentActivity = [
   }
 ]
 
-const categories = [
+const categories = computed(() => [
   {
     title: 'Research Publications',
-    description: '31 peer-reviewed papers with 1,247+ citations',
+    description: `${publicationCount.value} peer-reviewed papers with ${citationCount.value.toLocaleString()}+ citations`,
     link: '/publications',
     icon: DocsIcon,
     iconBg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -447,7 +447,7 @@ const categories = [
   },
   {
     title: 'GitHub Projects',
-    description: '11 repositories showcasing AI/ML, RAG, and computational chemistry',
+    description: `${repositoryCount.value} repositories showcasing AI/ML, RAG, and computational chemistry`,
     link: '/github-projects',
     icon: ArchiveIcon,
     iconBg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
@@ -469,7 +469,7 @@ const categories = [
     iconBg: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
     cta: 'Learn more'
   },
-]
+])
 </script>
 
 <style scoped>

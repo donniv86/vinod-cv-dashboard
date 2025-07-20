@@ -35,93 +35,112 @@ app.get('/api/google-scholar', async (req, res) => {
       });
     }
 
-    console.log('Fetching detailed Google Scholar data for Vinod Devaraji...');
+    console.log('Fetching Vinod Devaraji\'s Google Scholar profile data...');
 
-    // Fetch multiple pages for comprehensive data
-    const allPublications = [];
-    let page = 0;
-    const maxPages = 5; // Fetch up to 5 pages (100 results per page)
+    // Use the author API to get the specific author's data with pagination
+    let allArticles = [];
+    let start = 0;
+    const maxPages = 10; // Safety limit
 
-    while (page < maxPages) {
-      const response = await axios.get('https://serpapi.com/search.json', {
+    for (let page = 0; page < maxPages; page++) {
+      console.log(`Fetching page ${page + 1} (start=${start})...`);
+
+      const authorResponse = await axios.get('https://serpapi.com/search.json', {
         params: {
-          engine: 'google_scholar',
-          q: 'Vinod Devaraji',
+          engine: 'google_scholar_author',
+          author_id: 'Afl5YgEAAAAJ', // Vinod Devaraji's specific author ID
           api_key: SERPAPI_KEY,
-          num: 100,
-          start: page * 100
+          hl: 'en',
+          start: start
         }
       });
 
-      const data = response.data;
+      const authorData = authorResponse.data;
+      const articles = authorData.articles || [];
 
-      if (!data.organic_results || data.organic_results.length === 0) {
-        break; // No more results
-      }
+      console.log(`Found ${articles.length} articles on page ${page + 1}`);
 
-      // Process publications from this page
-      const pagePublications = data.organic_results.map(result => ({
-        title: result.title,
-        authors: result.publication_info?.authors?.map(author => author.name).join(', ') || 'N/A',
-        citations: parseInt(result.inline_links?.cited_by?.total || 0),
-        year: extractYear(result.publication_info?.summary) || 'N/A',
-        snippet: result.snippet,
-        publication: extractJournal(result.publication_info?.summary) || 'N/A',
-        link: result.link,
-        snippet_highlighted_words: result.snippet_highlighted_words || []
-      }));
-
-      allPublications.push(...pagePublications);
-      page++;
-
-      // If we got less than 100 results, we've reached the end
-      if (data.organic_results.length < 100) {
+      if (articles.length === 0) {
+        console.log('No more articles found, stopping pagination');
         break;
       }
+
+      allArticles.push(...articles);
+      start += 20; // SerpAPI returns 20 articles per page
+
+      // Add a small delay to avoid rate limiting
+      await new Promise(resolve => setTimeout(resolve, 1000));
     }
 
-    console.log(`Fetched ${allPublications.length} publications from Google Scholar`);
+    console.log(`Total articles found: ${allArticles.length}`);
 
-    // Remove duplicates based on title
-    const uniquePublications = allPublications.filter((pub, index, self) =>
-      index === self.findIndex(p => p.title === pub.title)
-    );
+    // Get author info from the first response
+    const firstResponse = await axios.get('https://serpapi.com/search.json', {
+      params: {
+        engine: 'google_scholar_author',
+        author_id: 'Afl5YgEAAAAJ',
+        api_key: SERPAPI_KEY,
+        hl: 'en'
+      }
+    });
 
-    // Sort by citations (descending)
-    const sortedPublications = uniquePublications.sort((a, b) => b.citations - a.citations);
+    const authorData = firstResponse.data;
+    const author = authorData.author;
+    const citedBy = authorData.cited_by;
 
-    // Calculate enhanced metrics
-    const totalCitations = sortedPublications.reduce((sum, pub) => sum + pub.citations, 0);
-    const averageCitations = totalCitations / sortedPublications.length;
+    // Process articles to match our format
+    const publications = allArticles.map(article => ({
+      title: article.title,
+      authors: article.authors || 'N/A',
+      citations: parseInt(article.cited_by?.value || 0),
+      year: article.year || 'N/A',
+      snippet: article.snippet || '',
+      publication: article.publication || 'N/A',
+      link: article.link,
+      snippet_highlighted_words: [],
+      citation_id: article.citation_id
+    }));
 
-    // Enhanced H-index calculation
-    const hIndex = calculateEnhancedHIndex(sortedPublications);
+    // Calculate metrics from the author's actual data
+    const totalCitations = citedBy.table.find(item => item.citations)?.citations?.all || 0;
+    const hIndex = citedBy.table.find(item => item.h_index)?.h_index?.all || 0;
+    const i10Index = citedBy.table.find(item => item.i10_index)?.i10_index?.all || 0;
+    const averageCitations = publications.length > 0 ? totalCitations / publications.length : 0;
 
     // Calculate additional metrics
-    const metrics = calculatePublicationMetrics(sortedPublications);
+    const metrics = calculatePublicationMetrics(publications);
 
     const result = {
       publications: {
-        count: sortedPublications.length,
+        count: publications.length,
         citations: totalCitations,
         hIndex: hIndex,
+        i10Index: i10Index,
         averageCitations: Math.round(averageCitations * 100) / 100,
         lastUpdated: new Date().toISOString()
       },
+      author: {
+        name: author.name,
+        affiliations: author.affiliations,
+        email: author.email,
+        interests: author.interests?.map(interest => interest.title) || []
+      },
       metrics: metrics,
-      publicationsList: sortedPublications.slice(0, 50), // Top 50 publications
+      publicationsList: publications,
       summary: {
-        totalPublications: sortedPublications.length,
-        highlyCited: sortedPublications.filter(pub => pub.citations >= 50).length,
-        recentPublications: sortedPublications.filter(pub => pub.year >= 2020).length,
-        topCited: sortedPublications[0]?.citations || 0
-      }
+        totalPublications: publications.length,
+        highlyCited: publications.filter(pub => pub.citations >= 50).length,
+        recentPublications: publications.filter(pub => parseInt(pub.year) >= 2020).length,
+        topCited: publications.length > 0 ? Math.max(...publications.map(pub => pub.citations)) : 0
+      },
+      citationGraph: citedBy.graph || []
     };
 
-    console.log('Enhanced Google Scholar data processed:', {
+    console.log('Google Scholar author data processed:', {
       publications: result.publications.count,
       citations: result.publications.citations,
       hIndex: result.publications.hIndex,
+      i10Index: result.publications.i10Index,
       topCited: result.summary.topCited
     });
 

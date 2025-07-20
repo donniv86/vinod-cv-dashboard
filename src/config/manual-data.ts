@@ -7,10 +7,10 @@
 export const MANUAL_DATA = {
   // Academic Publications
   publications: {
-    count: 40, // Total number of publications
-    citations: 1247, // Total citations
-    hIndex: 16, // H-index
-    lastUpdated: '2024-01-15', // Date when you last updated this
+    count: 44, // Total number of publications (updated from Google Scholar)
+    citations: 674, // Total citations (updated from Google Scholar)
+    hIndex: 15, // H-index (updated from Google Scholar)
+    lastUpdated: '2025-07-20', // Date when you last updated this
   },
 
   // Professional Experience
@@ -25,12 +25,12 @@ export const MANUAL_DATA = {
   // GitHub Data (this will be auto-fetched, but you can override here)
   github: {
     // These will be overridden by real API data
-    repositories: 10, // Will be updated automatically
-    stars: 0, // Will be updated automatically
+    repositories: 10, // Updated from GitHub API
+    stars: 0, // Updated from GitHub API
     languages: ['Python', 'Vue', 'Jupyter Notebook'], // Will be updated automatically
-    followers: 0, // Will be updated automatically
-    following: 6, // Will be updated automatically
-    lastUpdated: '2024-01-15',
+    followers: 0, // Updated from GitHub API
+    following: 6, // Updated from GitHub API
+    lastUpdated: '2025-07-20',
   },
 
   // Additional Metrics

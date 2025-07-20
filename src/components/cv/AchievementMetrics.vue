@@ -13,7 +13,7 @@
         <div class="flex items-center justify-between">
           <div>
             <p class="card-metric-label">Experience</p>
-            <p class="card-metric-value">10+ Years</p>
+            <p class="card-metric-value">{{ experienceYears }}+ Years</p>
           </div>
           <div class="text-3xl">⏰</div>
         </div>
@@ -25,7 +25,7 @@
         <div class="flex items-center justify-between">
           <div>
             <p class="card-metric-label">Publications</p>
-            <p class="card-metric-value">18+</p>
+            <p class="card-metric-value">{{ publicationCount }}+</p>
           </div>
           <div class="text-3xl">📚</div>
         </div>
@@ -37,7 +37,7 @@
         <div class="flex items-center justify-between">
           <div>
             <p class="card-metric-label">Citations</p>
-            <p class="card-metric-value">682</p>
+            <p class="card-metric-value">{{ citationCount.toLocaleString() }}</p>
           </div>
           <div class="text-3xl">📊</div>
         </div>
@@ -49,7 +49,7 @@
         <div class="flex items-center justify-between">
           <div>
             <p class="card-metric-label">H-Index</p>
-            <p class="card-metric-value">16</p>
+            <p class="card-metric-value">{{ hIndex }}</p>
           </div>
           <div class="text-3xl">🎯</div>
         </div>
@@ -93,12 +93,15 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { useExternalData } from '../../composables/useExternalData';
+
 const metrics = [
   {
     id: 1,
     title: "Total Publications",
-    value: "31",
-    change: "+3",
+    value: "44",
+    change: "+13",
     changeType: "positive",
     description: "Peer-reviewed research papers",
     icon: "📚",
@@ -108,18 +111,18 @@ const metrics = [
   {
     id: 2,
     title: "Total Citations",
-    value: "1,247",
+    value: "674",
     change: "+156",
     changeType: "positive",
     description: "Citations across all publications",
     icon: "📊",
     color: "green",
-    details: "Average of 40+ citations per publication"
+    details: "Average of 15+ citations per publication"
   },
   {
     id: 3,
     title: "H-Index",
-    value: "16",
+    value: "15",
     change: "+2",
     changeType: "positive",
     description: "Hirsch index based on citations",
@@ -161,4 +164,6 @@ const metrics = [
     details: "Drug discovery, computational biology, cancer research, and more"
   }
 ]
+
+const { experienceYears, publicationCount, citationCount, hIndex } = useExternalData();
 </script>
