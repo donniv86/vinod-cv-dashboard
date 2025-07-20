@@ -68,22 +68,13 @@
                   </svg>
                   <span style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); color: white !important;">LinkedIn</span>
                 </a>
-
-                <!-- New CV Download Button -->
-                <a href="/cv-download"
-                   class="modern-btn bg-yellow-500/20 backdrop-blur-sm border border-yellow-400/30 hover:bg-yellow-400/30 hover:scale-105 hover:shadow-lg transition-all duration-300 transform">
-                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                  </svg>
-                  <span style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); color: white !important;">Download CV</span>
-                </a>
               </div>
             </div>
 
             <!-- Animated Experience Counter -->
             <div class="text-center lg:text-right mt-8 lg:mt-0 animate-fade-in-up"
                  style="animation-delay: 1.4s; animation-fill-mode: both;">
-              <div class="text-6xl lg:text-8xl font-black text-yellow-300 mb-2 counter-animation">13+</div>
+              <div class="text-6xl lg:text-8xl font-black text-yellow-300 mb-2 counter-animation">{{ experienceYears }}+</div>
               <div class="text-xl text-sky-300 font-medium">Years Experience</div>
             </div>
           </div>
@@ -297,12 +288,22 @@ import CriticalCSS from '../components/ui/CriticalCSS.vue'
 import CacheMonitor from '../components/ui/CacheMonitor.vue'
 import SkeletonLoader from '../components/ui/SkeletonLoader.vue'
 import { useSkeletonLoading } from '../composables/useSkeletonLoading'
+import { useExternalData } from '../composables/useExternalData'
 import {
   ArchiveIcon, BarChartIcon, BoxCubeIcon,
   DocsIcon, PieChartIcon, UserCircleIcon, CheckIcon
 } from '../icons'
 
 const isDevelopment = computed(() => import.meta.env.DEV)
+
+// Use external data for consistent information
+const {
+  publicationCount,
+  citationCount,
+  hIndex,
+  repositoryCount,
+  experienceYears
+} = useExternalData()
 
 // Simple test: Show content immediately without skeleton loading
 const showContent = ref(true)
@@ -323,21 +324,21 @@ onMounted(() => {
 
 const stats = [
   {
-    value: '31',
+    value: publicationCount.toString(),
     label: 'Publications',
     icon: DocsIcon,
     iconBg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
     gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
   },
   {
-    value: '1,247',
+    value: citationCount.toLocaleString(),
     label: 'Citations',
     icon: BarChartIcon,
     iconBg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
     gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
   },
   {
-    value: '16',
+    value: hIndex.toString(),
     label: 'H-Index',
     icon: PieChartIcon,
     iconBg: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',

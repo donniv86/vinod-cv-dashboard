@@ -77,13 +77,6 @@
           <!-- Enhanced CTA Buttons -->
           <div class="flex flex-wrap gap-4 justify-center lg:justify-start animate-fade-in-up"
                style="animation-delay: 1s; animation-fill-mode: both;">
-            <button class="glassmorphism-btn bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-3 rounded-xl hover:scale-105 hover:shadow-xl transition-all duration-300 flex items-center font-semibold">
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-              </svg>
-              Download CV (PDF)
-            </button>
-
             <button class="glassmorphism-btn bg-gradient-to-r from-purple-500 to-pink-600 text-white px-8 py-3 rounded-xl hover:scale-105 hover:shadow-xl transition-all duration-300 flex items-center font-semibold">
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
@@ -147,6 +140,17 @@
 import { ref } from 'vue'
 import { MailIcon } from '../../icons'
 import LazyImage from '../ui/LazyImage.vue'
+import { useExternalData } from '../../composables/useExternalData'
+
+// Use external data for consistent information
+const {
+  publicationCount,
+  citationCount,
+  hIndex,
+  repositoryCount,
+  experienceYears,
+  isLoading: dataLoading
+} = useExternalData()
 
 const personalInfo = ref({
   name: "Dr. Vinod Devaraji",
@@ -158,7 +162,7 @@ const personalInfo = ref({
   github: "https://github.com/donniv86",
   googleScholar: "https://scholar.google.com/citations?user=YOUR_ID",
   orcid: "0000-0002-9355-3995",
-  summary: "Dr. Vinod D is a distinguished computational drug discovery scientist with nearly 14 years of expertise in computer-aided drug discovery (CADD) and therapeutic innovation. Holding a Ph.D. in Biotechnology from Vellore Institute of Technology, his research integrates computational drug design, herbal therapeutics, and formulation studies to identify breakthrough therapeutic strategies. As a recognized thought leader and sought-after speaker across the Asia-Pacific region, he delivers cutting-edge workshops on emerging scientific technologies and their transformative impact on drug discovery challenges. His pioneering research explores the convergence of computational formulation, artificial intelligence (AI), machine learning (ML), and physics-based molecular modeling to accelerate drug discovery pipelines and optimize lead identification processes. With approximately 40 publications in leading international journals, he has made significant contributions spanning diverse computational techniques and innovative drug design methodologies. Currently serving as Senior Scientist II at Schrödinger, he provides strategic scientific consultation across the APAC region and collaborates with top-tier academic and industry researchers to drive innovation in computational drug discovery and pharmaceutical development.",
+  summary: `Dr. Vinod D is a distinguished computational drug discovery scientist with nearly ${experienceYears.value} years of expertise in computer-aided drug discovery (CADD) and therapeutic innovation. Holding a Ph.D. in Biotechnology from Vellore Institute of Technology, his research integrates computational drug design, herbal therapeutics, and formulation studies to identify breakthrough therapeutic strategies. As a recognized thought leader and sought-after speaker across the Asia-Pacific region, he delivers cutting-edge workshops on emerging scientific technologies and their transformative impact on drug discovery challenges. His pioneering research explores the convergence of computational formulation, artificial intelligence (AI), machine learning (ML), and physics-based molecular modeling to accelerate drug discovery pipelines and optimize lead identification processes. With approximately ${publicationCount.value} publications in leading international journals and ${citationCount.value}+ citations (H-index: ${hIndex.value}), he has made significant contributions spanning diverse computational techniques and innovative drug design methodologies. Currently serving as Senior Scientist II at Schrödinger, he provides strategic scientific consultation across the APAC region and collaborates with top-tier academic and industry researchers to drive innovation in computational drug discovery and pharmaceutical development.`,
   expertise: [
     "Computational Drug Discovery",
     "Molecular Modeling & Simulation",
