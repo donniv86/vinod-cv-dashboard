@@ -1,57 +1,57 @@
 {
-  "timestamp": "2025-07-19T09:15:09.782Z",
-  "totalSize": 876360,
+  "timestamp": "2025-07-19T09:24:35.354Z",
+  "totalSize": 891977,
   "files": [
     {
-      "path": "js/About-Bwn7HLEF.js",
+      "path": "js/About-SnxQXvfm.js",
       "size": 20232,
       "sizeKB": 19.76,
       "type": "js"
     },
     {
-      "path": "js/AdminLayout-DuRsU4Er.js",
-      "size": 19068,
+      "path": "js/AdminLayout-DJuEpHjH.js",
+      "size": 19063,
       "sizeKB": 18.62,
       "type": "js"
     },
     {
-      "path": "js/CVDashboard-Qo0dXJVR.js",
-      "size": 18401,
+      "path": "js/CVDashboard-B-6ACTtk.js",
+      "size": 18406,
       "sizeKB": 17.97,
       "type": "js"
     },
     {
-      "path": "js/Certifications-CbLVSeEO.js",
+      "path": "js/Certifications-BQQxIlI-.js",
       "size": 12464,
       "sizeKB": 12.17,
       "type": "js"
     },
     {
-      "path": "js/FourZeroFour-tqexyBfq.js",
-      "size": 1732,
-      "sizeKB": 1.69,
+      "path": "js/FourZeroFour-CllIdN3z.js",
+      "size": 1755,
+      "sizeKB": 1.71,
       "type": "js"
     },
     {
-      "path": "js/GitHubProjects-D7vOo4jg.js",
+      "path": "js/GitHubProjects-EecInM_1.js",
       "size": 2392,
       "sizeKB": 2.34,
       "type": "js"
     },
     {
-      "path": "js/LazyImage-BkOWtVP5.js",
-      "size": 2452,
-      "sizeKB": 2.39,
+      "path": "js/LazyImage-D6duhwuD.js",
+      "size": 2410,
+      "sizeKB": 2.35,
       "type": "js"
     },
     {
-      "path": "js/Publications-BNdSoxli.js",
+      "path": "js/Publications-BPzm4vsj.js",
       "size": 29149,
       "sizeKB": 28.47,
       "type": "js"
     },
     {
-      "path": "js/SkillsRadarChart.vue_vue_type_script_setup_true_lang-hGasAY0Q.js",
+      "path": "js/SkillsRadarChart.vue_vue_type_script_setup_true_lang-D_OpyY0G.js",
       "size": 5724,
       "sizeKB": 5.59,
       "type": "js"
@@ -63,15 +63,15 @@
       "type": "js"
     },
     {
-      "path": "js/chart-vendor-C2mX2nuZ.js",
+      "path": "js/chart-vendor-0xk1kErW.js",
       "size": 574623,
       "sizeKB": 561.16,
       "type": "js"
     },
     {
-      "path": "js/index-DjYtrZQn.js",
-      "size": 5341,
-      "sizeKB": 5.22,
+      "path": "js/index-CIFlY3sk.js",
+      "size": 11504,
+      "sizeKB": 11.23,
       "type": "js"
     },
     {
@@ -87,9 +87,15 @@
       "type": "js"
     },
     {
-      "path": "js/vue-vendor--KMU96MC.js",
+      "path": "js/vue-vendor-YG6erWqa.js",
       "size": 90498,
       "sizeKB": 88.38,
+      "type": "js"
+    },
+    {
+      "path": "sw.js",
+      "size": 7233,
+      "sizeKB": 7.06,
       "type": "js"
     },
     {
@@ -99,31 +105,32 @@
       "type": "css"
     },
     {
-      "path": "css/index-D8fyRB29.css",
-      "size": 93463,
-      "sizeKB": 91.27,
+      "path": "css/index-BjXy8UOB.css",
+      "size": 95703,
+      "sizeKB": 93.46,
       "type": "css"
     }
   ],
   "chunks": {
     "unknown": {
-      "size": 782079,
+      "size": 795456,
       "files": [
-        "js/About-Bwn7HLEF.js",
-        "js/AdminLayout-DuRsU4Er.js",
-        "js/CVDashboard-Qo0dXJVR.js",
-        "js/Certifications-CbLVSeEO.js",
-        "js/FourZeroFour-tqexyBfq.js",
-        "js/GitHubProjects-D7vOo4jg.js",
-        "js/LazyImage-BkOWtVP5.js",
-        "js/Publications-BNdSoxli.js",
-        "js/SkillsRadarChart.vue_vue_type_script_setup_true_lang-hGasAY0Q.js",
+        "js/About-SnxQXvfm.js",
+        "js/AdminLayout-DJuEpHjH.js",
+        "js/CVDashboard-B-6ACTtk.js",
+        "js/Certifications-BQQxIlI-.js",
+        "js/FourZeroFour-CllIdN3z.js",
+        "js/GitHubProjects-EecInM_1.js",
+        "js/LazyImage-D6duhwuD.js",
+        "js/Publications-BPzm4vsj.js",
+        "js/SkillsRadarChart.vue_vue_type_script_setup_true_lang-D_OpyY0G.js",
         "js/calendar-vendor-l0sNRNKZ.js",
-        "js/chart-vendor-C2mX2nuZ.js",
-        "js/index-DjYtrZQn.js",
+        "js/chart-vendor-0xk1kErW.js",
+        "js/index-CIFlY3sk.js",
         "js/ui-vendor-l0sNRNKZ.js",
         "js/utility-vendor-l0sNRNKZ.js",
-        "js/vue-vendor--KMU96MC.js"
+        "js/vue-vendor-YG6erWqa.js",
+        "sw.js"
       ]
     }
   },
@@ -131,9 +138,9 @@
     {
       "type": "large-chunk",
       "severity": "warning",
-      "message": "Chunk \"unknown\" is large (763.75KB). Consider splitting.",
+      "message": "Chunk \"unknown\" is large (776.81KB). Consider splitting.",
       "chunk": "unknown",
-      "size": 782079
+      "size": 795456
     },
     {
       "type": "vendor-splitting",

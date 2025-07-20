@@ -3,7 +3,7 @@
     <div class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6">
       <div class="space-y-8">
         <!-- Hero Section with Modern Design -->
-        <div class="gradient-card animate-fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
+        <div v-if="!heroLoading.isVisible" class="gradient-card animate-fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
           <div class="flex flex-col lg:flex-row items-center justify-between">
             <div class="text-center lg:text-left">
               <h1 class="text-4xl lg:text-6xl font-black mb-4 text-white drop-shadow-lg" style="text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); color: white !important;">
@@ -33,14 +33,17 @@
               </div>
             </div>
             <div class="text-center lg:text-right mt-8 lg:mt-0">
-                              <div class="text-6xl lg:text-8xl font-black text-yellow-300 mb-2">13+</div>
-                              <div class="text-xl text-sky-300 font-medium">Years Experience</div>
+              <div class="text-6xl lg:text-8xl font-black text-yellow-300 mb-2">13+</div>
+              <div class="text-xl text-sky-300 font-medium">Years Experience</div>
             </div>
           </div>
         </div>
 
+        <!-- Hero Skeleton -->
+        <SkeletonLoader v-if="heroLoading.isVisible" variant="profile" size="large" :is-animated="true" />
+
         <!-- Quick Stats with Modern Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div v-if="!statsLoading.isVisible" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div v-for="(stat, index) in stats" :key="stat.label"
                class="modern-card animate-fade-in-up"
                :style="{ animationDelay: `${index * 0.1}s` }">
@@ -58,121 +61,178 @@
           </div>
         </div>
 
-        <!-- CADD Modalities with Modern Design -->
-        <Card title="CADD Modalities">
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            <div v-for="(modality, index) in caddModalities" :key="modality.name"
-                 class="group cursor-pointer">
-              <div class="bg-gray-800/50 backdrop-blur-sm p-4 text-center transition-all duration-300 hover:scale-105 rounded-lg border border-cyan-500/30 hover:border-cyan-400/50 hover:bg-gray-700/50">
-                <div class="text-sm font-bold text-white mb-1" style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);">{{ modality.name }}</div>
-                <div class="text-xs text-cyan-300 mt-1" style="text-shadow: 0 0 5px rgba(34, 211, 238, 0.4);">{{ modality.desc }}</div>
-              </div>
-            </div>
-          </div>
-        </Card>
-
-        <!-- Computational Techniques with Modern Design -->
-        <Card title="Computational Techniques">
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <div v-for="tech in computationalTechniques" :key="tech.title"
-                 class="group cursor-pointer">
-              <div class="bg-gray-800/50 backdrop-blur-sm p-4 text-center transition-all duration-300 hover:scale-105 rounded-lg border border-cyan-500/30 hover:border-cyan-400/50 hover:bg-gray-700/50">
-                <div class="text-sm font-bold text-white mb-1" style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);">{{ tech.title }}</div>
-                <div class="text-xs text-cyan-300" style="text-shadow: 0 0 5px rgba(34, 211, 238, 0.4);">{{ tech.subtitle }}</div>
-              </div>
-            </div>
-          </div>
-        </Card>
-
-        <!-- Recent GitHub Activity -->
-        <Card title="Recent GitHub Activity">
-          <div class="space-y-4">
-            <div v-for="activity in recentActivity" :key="activity.id"
-                 class="modern-card p-4 border-l-4 transition-all duration-300 hover:scale-105"
-                 :style="{ borderLeftColor: activity.color }">
-              <div class="flex items-center justify-between">
-                <div class="flex-1">
-                  <div class="font-bold text-yellow-300 mb-1">{{ activity.title }}</div>
-                  <div class="text-sm text-sky-300">{{ activity.description }}</div>
-                  <div class="flex flex-wrap gap-2 mt-2">
-                    <span v-for="tech in activity.technologies" :key="tech"
-                          class="bg-cyan-600/30 px-3 py-1 rounded-full text-xs text-cyan-100 font-medium">
-                      {{ tech }}
-                    </span>
-                  </div>
-                </div>
-                <div class="text-right">
-                  <div class="text-xs text-cyan-100 bg-cyan-600/40 px-3 py-1 rounded-full font-medium">{{ activity.date }}</div>
-                  <a :href="activity.url" target="_blank"
-                     class="text-xs text-cyan-300 hover:text-cyan-200 mt-1 block font-medium">
-                    View →
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Card>
-
-        <!-- Therapeutic Areas & Molecular Targets -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <Card title="Therapeutic Areas">
-            <div class="space-y-4">
-              <div v-for="area in therapeuticAreas" :key="area.title"
-                   class="modern-card p-4 border-l-4 transition-all duration-300 hover:scale-105"
-                   :style="{ borderLeftColor: area.color }">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <div class="font-bold text-yellow-300 mb-1">{{ area.title }}</div>
-                    <div class="text-sm text-sky-300">{{ area.subtitle }}</div>
-                  </div>
-                  <div class="text-xs text-cyan-100 bg-cyan-600/40 px-3 py-1 rounded-full font-medium">{{ area.years }}</div>
-                </div>
-              </div>
-            </div>
-          </Card>
-
-          <Card title="Molecular Targets">
-            <div class="space-y-4">
-              <div v-for="target in molecularTargets" :key="target.title"
-                   class="modern-card p-4 border-l-4 transition-all duration-300 hover:scale-105"
-                   :style="{ borderLeftColor: target.color }">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <div class="font-bold text-yellow-300 mb-1">{{ target.title }}</div>
-                    <div class="text-sm text-sky-300">{{ target.subtitle }}</div>
-                  </div>
-                  <div class="text-xs text-cyan-100 bg-cyan-600/40 px-3 py-1 rounded-full font-medium">{{ target.context }}</div>
-                </div>
-              </div>
-            </div>
-          </Card>
+        <!-- Stats Skeleton -->
+        <div v-if="statsLoading.isVisible" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <SkeletonLoader v-for="i in 4" :key="i" variant="card" size="medium" :is-animated="true" />
         </div>
 
-        <!-- Main Categories Grid with Modern Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div v-for="cat in categories" :key="cat.title" class="group">
-            <router-link :to="cat.link" class="block">
-              <div class="modern-card hover:scale-105 transition-all duration-300 cursor-pointer">
-                <div class="flex items-center justify-between mb-4">
-                  <div class="w-16 h-16 rounded-2xl flex items-center justify-center backdrop-blur-sm"
-                       :style="{ background: cat.iconBg }">
-                    <component :is="cat.icon" class="w-8 h-8 text-white" style="text-shadow: 0 0 10px rgba(255, 255, 255, 0.7); filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));" />
-                  </div>
-                  <svg class="w-6 h-6 text-cyan-400 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                  </svg>
-                </div>
-                <h3 class="text-xl font-bold text-yellow-300 mb-2">{{ cat.title }}</h3>
-                <p class="text-sm text-sky-300 mb-4">{{ cat.description }}</p>
-                <div class="flex items-center text-sm text-cyan-300 font-medium">
-                  <span>{{ cat.cta }}</span>
-                  <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                  </svg>
+        <!-- Content Sections -->
+        <div v-if="!contentLoading.isVisible">
+          <!-- CADD Modalities with Modern Design -->
+          <Card title="CADD Modalities">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              <div v-for="(modality, index) in caddModalities" :key="modality.name"
+                   class="group cursor-pointer">
+                <div class="bg-gray-800/50 backdrop-blur-sm p-4 text-center transition-all duration-300 hover:scale-105 rounded-lg border border-cyan-500/30 hover:border-cyan-400/50 hover:bg-gray-700/50">
+                  <div class="text-sm font-bold text-white mb-1" style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);">{{ modality.name }}</div>
+                  <div class="text-xs text-cyan-300 mt-1" style="text-shadow: 0 0 5px rgba(34, 211, 238, 0.4);">{{ modality.desc }}</div>
                 </div>
               </div>
-            </router-link>
+            </div>
+          </Card>
+
+          <!-- Computational Techniques with Modern Design -->
+          <Card title="Computational Techniques">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div v-for="tech in computationalTechniques" :key="tech.title"
+                   class="group cursor-pointer">
+                <div class="bg-gray-800/50 backdrop-blur-sm p-4 text-center transition-all duration-300 hover:scale-105 rounded-lg border border-cyan-500/30 hover:border-cyan-400/50 hover:bg-gray-700/50">
+                  <div class="text-sm font-bold text-white mb-1" style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);">{{ tech.title }}</div>
+                  <div class="text-xs text-cyan-300" style="text-shadow: 0 0 5px rgba(34, 211, 238, 0.4);">{{ tech.subtitle }}</div>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          <!-- Recent GitHub Activity -->
+          <Card title="Recent GitHub Activity">
+            <div class="space-y-4">
+              <div v-for="activity in recentActivity" :key="activity.id"
+                   class="modern-card p-4 border-l-4 transition-all duration-300 hover:scale-105"
+                   :style="{ borderLeftColor: activity.color }">
+                <div class="flex items-center justify-between">
+                  <div class="flex-1">
+                    <div class="font-bold text-yellow-300 mb-1">{{ activity.title }}</div>
+                    <div class="text-sm text-sky-300">{{ activity.description }}</div>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                      <span v-for="tech in activity.technologies" :key="tech"
+                            class="bg-cyan-600/30 px-3 py-1 rounded-full text-xs text-cyan-100 font-medium">
+                        {{ tech }}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="text-right">
+                    <div class="text-xs text-cyan-100 bg-cyan-600/40 px-3 py-1 rounded-full font-medium">{{ activity.date }}</div>
+                    <a :href="activity.url" target="_blank"
+                       class="text-xs text-cyan-300 hover:text-cyan-200 mt-1 block font-medium">
+                      View →
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          <!-- Therapeutic Areas & Molecular Targets -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card title="Therapeutic Areas">
+              <div class="space-y-4">
+                <div v-for="area in therapeuticAreas" :key="area.title"
+                     class="modern-card p-4 border-l-4 transition-all duration-300 hover:scale-105"
+                     :style="{ borderLeftColor: area.color }">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <div class="font-bold text-yellow-300 mb-1">{{ area.title }}</div>
+                      <div class="text-sm text-sky-300">{{ area.subtitle }}</div>
+                    </div>
+                    <div class="text-xs text-cyan-100 bg-cyan-600/40 px-3 py-1 rounded-full font-medium">{{ area.years }}</div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            <Card title="Molecular Targets">
+              <div class="space-y-4">
+                <div v-for="target in molecularTargets" :key="target.title"
+                     class="modern-card p-4 border-l-4 transition-all duration-300 hover:scale-105"
+                     :style="{ borderLeftColor: target.color }">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <div class="font-bold text-yellow-300 mb-1">{{ target.title }}</div>
+                      <div class="text-sm text-sky-300">{{ target.subtitle }}</div>
+                    </div>
+                    <div class="text-xs text-cyan-100 bg-cyan-600/40 px-3 py-1 rounded-full font-medium">{{ target.context }}</div>
+                  </div>
+                </div>
+              </div>
+            </Card>
           </div>
+
+          <!-- Main Categories Grid with Modern Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div v-for="cat in categories" :key="cat.title" class="group">
+              <router-link :to="cat.link" class="block">
+                <div class="modern-card hover:scale-105 transition-all duration-300 cursor-pointer">
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="w-16 h-16 rounded-2xl flex items-center justify-center backdrop-blur-sm"
+                         :style="{ background: cat.iconBg }">
+                      <component :is="cat.icon" class="w-8 h-8 text-white" style="text-shadow: 0 0 10px rgba(255, 255, 255, 0.7); filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));" />
+                    </div>
+                    <svg class="w-6 h-6 text-cyan-400 group-hover:text-cyan-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                  </div>
+                  <h3 class="text-xl font-bold text-yellow-300 mb-2">{{ cat.title }}</h3>
+                  <p class="text-sm text-sky-300 mb-4">{{ cat.description }}</p>
+                  <div class="flex items-center text-sm text-cyan-300 font-medium">
+                    <span>{{ cat.cta }}</span>
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                  </div>
+                </div>
+              </router-link>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Skeleton -->
+        <div v-if="contentLoading.isVisible" class="space-y-8">
+          <Card title="CADD Modalities">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              <SkeletonLoader v-for="i in 6" :key="i" variant="card" size="small" :is-animated="true" />
+            </div>
+          </Card>
+
+          <Card title="Computational Techniques">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <SkeletonLoader v-for="i in 8" :key="i" variant="card" size="small" :is-animated="true" />
+            </div>
+          </Card>
+
+          <Card title="Recent GitHub Activity">
+            <div class="space-y-4">
+              <SkeletonLoader v-for="i in 4" :key="i" variant="list-item" size="medium" :is-animated="true" />
+            </div>
+          </Card>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card title="Therapeutic Areas">
+              <div class="space-y-4">
+                <SkeletonLoader v-for="i in 4" :key="i" variant="list-item" size="small" :is-animated="true" />
+              </div>
+            </Card>
+
+            <Card title="Molecular Targets">
+              <div class="space-y-4">
+                <SkeletonLoader v-for="i in 3" :key="i" variant="list-item" size="small" :is-animated="true" />
+              </div>
+            </Card>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <SkeletonLoader v-for="i in 4" :key="i" variant="card" size="medium" :is-animated="true" />
+          </div>
+        </div>
+
+        <!-- Development Tools (only in development mode) -->
+        <div v-if="isDevelopment" class="space-y-6">
+          <Card title="Performance Optimization Tools">
+            <div class="space-y-4">
+              <CriticalCSS />
+              <CacheMonitor />
+            </div>
+          </Card>
         </div>
       </div>
     </div>
@@ -180,12 +240,44 @@
 </template>
 
 <script setup lang="ts">
+import { computed, onMounted } from 'vue'
 import AdminLayout from '../components/layout/AdminLayout.vue'
 import Card from '../components/ui/Card.vue'
+import CriticalCSS from '../components/ui/CriticalCSS.vue'
+import CacheMonitor from '../components/ui/CacheMonitor.vue'
+import SkeletonLoader from '../components/ui/SkeletonLoader.vue'
+import { useSkeletonLoading } from '../composables/useSkeletonLoading'
 import {
   ArchiveIcon, BarChartIcon, BoxCubeIcon,
   DocsIcon, PieChartIcon, UserCircleIcon, CheckIcon
 } from '../icons'
+
+const isDevelopment = computed(() => import.meta.env.DEV)
+
+// Skeleton loading states
+const heroLoading = useSkeletonLoading({ delay: 0, minDuration: 500 })
+const statsLoading = useSkeletonLoading({ delay: 100, minDuration: 300 })
+const contentLoading = useSkeletonLoading({ delay: 200, minDuration: 400 })
+
+// Initialize loading states
+onMounted(() => {
+  heroLoading.startLoading()
+  statsLoading.startLoading()
+  contentLoading.startLoading()
+
+  // Simulate loading completion
+  setTimeout(() => {
+    heroLoading.stopLoading()
+  }, 800)
+
+  setTimeout(() => {
+    statsLoading.stopLoading()
+  }, 1000)
+
+  setTimeout(() => {
+    contentLoading.stopLoading()
+  }, 1200)
+})
 
 const stats = [
   {

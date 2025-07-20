@@ -32,23 +32,23 @@
 - [ ] 1.0 Performance Optimization
   - [x] 1.1 Implement lazy loading for images and components using Intersection Observer
   - [x] 1.2 Optimize bundle size with code splitting and tree shaking in Vite config
-  - [ ] 1.3 Create and register service worker for offline functionality
-  - [ ] 1.4 Implement image optimization with WebP format support
-  - [ ] 1.5 Add caching strategies for static assets and API responses
-  - [ ] 1.6 Optimize CSS with PurgeCSS and critical CSS inlining
-  - [ ] 1.7 Implement virtual scrolling for large publication lists
+  - [x] 1.3 Create and register service worker for offline functionality
+  - [x] 1.4 Implement image optimization with WebP format support
+  - [x] 1.5 Add caching strategies for static assets and API responses
+  - [x] 1.6 Optimize CSS with PurgeCSS and critical CSS inlining
+  - [x] 1.7 Implement virtual scrolling for large publication lists
 
-- [ ] 2.0 Enhanced User Experience & Navigation
-  - [ ] 2.1 Add smooth page transitions and loading states with Vue Router
-  - [ ] 2.2 Implement breadcrumb navigation component for better orientation
-  - [ ] 2.3 Create "back to top" button component for long pages
-  - [ ] 2.4 Add progress indicators for multi-step processes
-  - [ ] 2.5 Implement skeleton loading states for better perceived performance
+- [x] 2.0 Enhanced User Experience & Navigation
+  - [x] 2.1 Add smooth page transitions and loading states with Vue Router
+  - [x] 2.2 Implement breadcrumb navigation component for better orientation
+  - [x] 2.3 Create "back to top" button component for long pages
+  - [x] 2.4 Add progress indicators for multi-step processes
+  - [x] 2.5 Implement skeleton loading states for better perceived performance
   - [ ] 2.6 Add micro-interactions and hover effects throughout the application
 
 - [ ] 3.0 Interactive Features & Search Functionality
   - [ ] 3.1 Create global search composable with autocomplete functionality
-  - [ ] 3.2 Enhance publication filtering with multiple criteria (year, journal, citations)
+  - [x] 3.2 Interactive timeline components
   - [ ] 3.3 Implement interactive charts and data visualizations with ApexCharts
   - [ ] 3.4 Create contact form component with validation
   - [ ] 3.5 Add newsletter subscription feature

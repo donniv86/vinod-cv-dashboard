@@ -11,7 +11,12 @@
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
-    "analyze": "node scripts/analyze-bundle.js"
+    "analyze": "node scripts/analyze-bundle.js",
+    "convert-images": "node scripts/convert-images.js",
+    "extract-critical-css": "node scripts/critical-css.js",
+    "optimize-css": "npm run extract-critical-css && npm run purge-css",
+    "purge-css": "purgecss --config purgecss.config.js",
+    "build:optimized": "npm run optimize-css && npm run build"
   },
   "dependencies": {
     "@fullcalendar/core": "^6.1.15",
@@ -46,17 +51,22 @@
     "@vue/eslint-config-prettier": "^10.1.0",
     "@vue/eslint-config-typescript": "^14.3.0",
     "@vue/tsconfig": "^0.7.0",
+    "csso": "^5.0.5",
     "eslint": "^9.18.0",
     "eslint-plugin-vue": "^9.32.0",
     "jiti": "^2.4.2",
     "npm-run-all2": "^7.0.2",
     "postcss": "^8.5.1",
     "prettier": "^3.4.2",
+    "puppeteer": "^24.14.0",
+    "purgecss": "^7.0.2",
     "sass-embedded": "^1.83.4",
+    "sharp": "^0.33.5",
     "tailwindcss": "^4.0.0",
     "terser": "^5.43.1",
     "typescript": "~5.7.3",
     "vite": "^6.0.11",
+    "vite-plugin-purgecss": "^0.2.13",
     "vite-plugin-vue-devtools": "^7.7.0",
     "vue-tsc": "^2.2.0"
   }

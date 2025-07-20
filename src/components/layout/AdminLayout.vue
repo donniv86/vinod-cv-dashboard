@@ -8,16 +8,26 @@
     >
       <app-header />
       <div class="p-4 mx-auto max-w-(--breakpoint-2xl) md:p-6">
+        <BreadcrumbNavigation
+          :show-quick-actions="true"
+          @breadcrumb-click="handleBreadcrumbClick"
+        />
         <slot></slot>
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import AppSidebar from './AppSidebar.vue'
 import AppHeader from './AppHeader.vue'
+import BreadcrumbNavigation from '../ui/BreadcrumbNavigation.vue'
 import { useSidebar } from '@/composables/useSidebar'
 import Backdrop from './Backdrop.vue'
+
 const { isExpanded, isHovered } = useSidebar()
+
+const handleBreadcrumbClick = (breadcrumb: any, index: number) => {
+  console.log('Breadcrumb clicked:', breadcrumb.title, 'at index:', index)
+}
 </script>

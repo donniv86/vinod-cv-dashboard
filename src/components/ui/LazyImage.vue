@@ -1,54 +1,28 @@
 <template>
-  <div
-    ref="elementRef"
-    class="lazy-image-container"
-    :class="{ 'lazy-image-loaded': isLoaded }"
-  >
-    <!-- Skeleton placeholder -->
-    <div
-      v-if="!isVisible"
-      class="lazy-image-skeleton"
-      :style="{
-        width: width || '100%',
-        height: height || '200px',
-        backgroundColor: skeletonColor || '#374151'
-      }"
-    >
-      <div class="lazy-image-skeleton-shimmer"></div>
-    </div>
-
-    <!-- Actual image -->
-    <img
-      v-show="isVisible"
-      :src="isVisible ? src : ''"
-      :alt="alt"
-      :class="imageClass"
-      :style="imageStyle"
-      @load="handleImageLoad"
-      @error="handleImageError"
-      loading="lazy"
-    />
-
-    <!-- Error fallback -->
-    <div
-      v-if="showError"
-      class="lazy-image-error"
-      :style="{
-        width: width || '100%',
-        height: height || '200px'
-      }"
-    >
-      <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-      </svg>
-      <span class="text-sm text-gray-500 mt-2">Image failed to load</span>
-    </div>
-  </div>
+  <OptimizedImage
+    :src="src"
+    :alt="alt"
+    :width="width ? parseInt(width) : undefined"
+    :height="height ? parseInt(height) : undefined"
+    :quality="quality"
+    :format="format"
+    :lazy="lazy"
+    :placeholder="placeholder"
+    :placeholder-text="placeholderText"
+    :className="imageClass"
+    :container-class="containerClass"
+    :responsive="responsive"
+    :sizes="sizes"
+    :clickable="clickable"
+    @load="handleImageLoad"
+    @error="handleImageError"
+    @click="handleImageClick"
+  />
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { useLazyLoading } from '../../composables/useLazyLoading'
+import { ref } from 'vue'
+import OptimizedImage from './OptimizedImage.vue'
 
 interface Props {
   src: string
@@ -60,6 +34,21 @@ interface Props {
   skeletonColor?: string
   threshold?: number
   rootMargin?: string
+  quality?: number
+  format?: 'webp' | 'avif' | 'original' | 'auto'
+  lazy?: boolean
+  placeholder?: string
+  placeholderText?: string
+  containerClass?: string
+  responsive?: boolean
+  sizes?: {
+    sm?: number
+    md?: number
+    lg?: number
+    xl?: number
+    '2xl'?: number
+  }
+  clickable?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -67,86 +56,32 @@ const props = withDefaults(defineProps<Props>(), {
   imageStyle: () => ({}),
   skeletonColor: '#374151',
   threshold: 0.1,
-  rootMargin: '50px'
+  rootMargin: '50px',
+  quality: 85,
+  format: 'auto',
+  lazy: true,
+  responsive: true,
+  clickable: false,
+  placeholderText: 'Loading...'
 })
 
-const showError = ref(false)
-
-const { isVisible, isLoaded, elementRef } = useLazyLoading({
-  threshold: props.threshold,
-  rootMargin: props.rootMargin
-})
+const emit = defineEmits<{
+  load: []
+  error: [error: Error]
+  click: []
+}>()
 
 const handleImageLoad = () => {
-  isLoaded.value = true
-  showError.value = false
+  emit('load')
 }
 
-const handleImageError = () => {
-  showError.value = true
-  isLoaded.value = false
+const handleImageError = (error: Error) => {
+  emit('error', error)
+}
+
+const handleImageClick = () => {
+  emit('click')
 }
 </script>
 
-<style scoped>
-.lazy-image-container {
-  position: relative;
-  overflow: hidden;
-}
-
-.lazy-image-skeleton {
-  position: relative;
-  border-radius: 0.5rem;
-  overflow: hidden;
-}
-
-.lazy-image-skeleton-shimmer {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-  animation: shimmer 1.5s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
-.lazy-image-error {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #1f2937;
-  border: 1px solid #374151;
-  border-radius: 0.5rem;
-  color: #9ca3af;
-}
-
-.lazy-image-loaded img {
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-</style>
+<!-- Styles are handled by OptimizedImage component -->
