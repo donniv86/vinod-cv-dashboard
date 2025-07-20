@@ -10,7 +10,33 @@ interface PublicationData {
   count: number
   citations: number
   hIndex: number
+  averageCitations?: number
   lastUpdated: string
+}
+
+interface PublicationMetrics {
+  citationRanges: Record<string, number>
+  yearDistribution: Record<string, number>
+  topJournals: Array<{ journal: string; count: number }>
+  topCollaborators: Array<{ author: string; count: number }>
+}
+
+interface PublicationItem {
+  title: string
+  authors: string
+  citations: number
+  year: string
+  snippet: string
+  publication: string
+  link: string
+  snippet_highlighted_words: string[]
+}
+
+interface PublicationSummary {
+  totalPublications: number
+  highlyCited: number
+  recentPublications: number
+  topCited: number
 }
 
 interface GitHubData {
@@ -33,6 +59,9 @@ interface LinkedInData {
 
 interface ExternalData {
   publications: PublicationData
+  publicationsList?: PublicationItem[]
+  metrics?: PublicationMetrics
+  summary?: PublicationSummary
   github: GitHubData
   linkedin: LinkedInData
 }
@@ -52,7 +81,21 @@ export function useExternalData() {
       count: MANUAL_DATA.publications.count,
       citations: MANUAL_DATA.publications.citations,
       hIndex: MANUAL_DATA.publications.hIndex,
+      averageCitations: 0,
       lastUpdated: MANUAL_DATA.publications.lastUpdated
+    },
+    publicationsList: [],
+    metrics: {
+      citationRanges: {},
+      yearDistribution: {},
+      topJournals: [],
+      topCollaborators: []
+    },
+    summary: {
+      totalPublications: 0,
+      highlyCited: 0,
+      recentPublications: 0,
+      topCited: 0
     },
     github: {
       repositories: MANUAL_DATA.github.repositories,
@@ -144,7 +187,19 @@ export function useExternalData() {
         count: scholarData.publications.count,
         citations: scholarData.publications.citations,
         hIndex: scholarData.publications.hIndex,
+        averageCitations: scholarData.publications.averageCitations,
         lastUpdated: scholarData.publications.lastUpdated
+      }
+
+      // Update enhanced data
+      if (scholarData.publicationsList) {
+        data.value.publicationsList = scholarData.publicationsList
+      }
+      if (scholarData.metrics) {
+        data.value.metrics = scholarData.metrics
+      }
+      if (scholarData.summary) {
+        data.value.summary = scholarData.summary
       }
 
       console.log('Updated Google Scholar data:', data.value.publications)

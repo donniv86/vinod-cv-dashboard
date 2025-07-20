@@ -225,6 +225,9 @@
               </router-link>
             </div>
           </div>
+
+          <!-- Publications List -->
+          <PublicationsList />
         </div>
 
         <!-- Content Skeleton -->
@@ -278,6 +281,9 @@
 
         <!-- Data Admin Panel -->
         <DataAdminPanel />
+
+        <!-- Publications List -->
+        <PublicationsList />
       </div>
     </div>
   </admin-layout>
@@ -291,6 +297,7 @@ import CriticalCSS from '../components/ui/CriticalCSS.vue'
 import CacheMonitor from '../components/ui/CacheMonitor.vue'
 import SkeletonLoader from '../components/ui/SkeletonLoader.vue'
 import DataAdminPanel from '../components/cv/DataAdminPanel.vue'
+import PublicationsList from '../components/cv/PublicationsList.vue'
 import { useSkeletonLoading } from '../composables/useSkeletonLoading'
 import { useExternalData } from '../composables/useExternalData'
 import {

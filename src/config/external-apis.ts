@@ -29,7 +29,7 @@ export const EXTERNAL_API_CONFIG = {
 
   // Backend Service Configuration (for LinkedIn and Google Scholar)
   BACKEND: {
-    BASE_URL: process.env.VUE_APP_BACKEND_URL || 'http://localhost:3001',
+    BASE_URL: import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001',
     ENDPOINTS: {
       LINKEDIN_DATA: '/api/linkedin-data',
       GOOGLE_SCHOLAR_DATA: '/api/google-scholar-data',
