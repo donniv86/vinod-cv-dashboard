@@ -275,6 +275,9 @@
             </div>
           </Card>
         </div>
+
+        <!-- Data Admin Panel -->
+        <DataAdminPanel />
       </div>
     </div>
   </admin-layout>
@@ -287,6 +290,7 @@ import Card from '../components/ui/Card.vue'
 import CriticalCSS from '../components/ui/CriticalCSS.vue'
 import CacheMonitor from '../components/ui/CacheMonitor.vue'
 import SkeletonLoader from '../components/ui/SkeletonLoader.vue'
+import DataAdminPanel from '../components/cv/DataAdminPanel.vue'
 import { useSkeletonLoading } from '../composables/useSkeletonLoading'
 import { useExternalData } from '../composables/useExternalData'
 import {

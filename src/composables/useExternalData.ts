@@ -4,6 +4,7 @@
  */
 
 import { ref, computed, onMounted, readonly } from 'vue'
+import { MANUAL_DATA } from '../config/manual-data'
 
 interface PublicationData {
   count: number
@@ -17,6 +18,8 @@ interface GitHubData {
   stars: number
   contributions: number
   languages: string[]
+  followers: number
+  following: number
   lastUpdated: string
 }
 
@@ -43,26 +46,29 @@ const CONFIG = {
 }
 
 export function useExternalData() {
+  // Initialize with manual data (reliable fallback)
   const data = ref<ExternalData>({
     publications: {
-      count: 40, // Default from your summary
-      citations: 1247, // Default from your summary
-      hIndex: 16, // Default from your summary
-      lastUpdated: new Date().toISOString()
+      count: MANUAL_DATA.publications.count,
+      citations: MANUAL_DATA.publications.citations,
+      hIndex: MANUAL_DATA.publications.hIndex,
+      lastUpdated: MANUAL_DATA.publications.lastUpdated
     },
     github: {
-      repositories: 11, // Default from your summary
-      stars: 0,
+      repositories: MANUAL_DATA.github.repositories,
+      stars: MANUAL_DATA.github.stars,
       contributions: 0,
-      languages: ['Python', 'JavaScript', 'TypeScript'],
-      lastUpdated: new Date().toISOString()
+      languages: MANUAL_DATA.github.languages,
+      followers: MANUAL_DATA.github.followers,
+      following: MANUAL_DATA.github.following,
+      lastUpdated: MANUAL_DATA.github.lastUpdated
     },
     linkedin: {
-      experience: 14, // Default from your summary
-      currentPosition: 'Senior Scientist II',
-      company: 'Schrödinger',
-      location: 'Bangalore, India',
-      lastUpdated: new Date().toISOString()
+      experience: MANUAL_DATA.linkedin.experience,
+      currentPosition: MANUAL_DATA.linkedin.currentPosition,
+      company: MANUAL_DATA.linkedin.company,
+      location: MANUAL_DATA.linkedin.location,
+      lastUpdated: MANUAL_DATA.linkedin.lastUpdated
     }
   })
 
@@ -76,22 +82,25 @@ export function useExternalData() {
   const repositoryCount = computed(() => data.value.github.repositories)
   const experienceYears = computed(() => data.value.linkedin.experience)
 
-  // Fetch GitHub data
+  // Fetch GitHub data - This actually works!
   const fetchGitHubData = async () => {
     try {
+      console.log('Fetching GitHub data...')
       const response = await fetch(`https://api.github.com/users/${CONFIG.GITHUB_USERNAME}`)
       if (!response.ok) throw new Error('GitHub API error')
 
       const userData = await response.json()
+      console.log('GitHub user data:', userData)
 
       // Fetch repositories
       const reposResponse = await fetch(`https://api.github.com/users/${CONFIG.GITHUB_USERNAME}/repos?per_page=100`)
       const repos = await reposResponse.json()
+      console.log('GitHub repos:', repos.length)
 
       // Calculate total stars
       const totalStars = repos.reduce((sum: number, repo: any) => sum + repo.stargazers_count, 0)
 
-      // Get unique languages (simplified approach)
+      // Get unique languages
       const languageSet = new Set<string>()
       repos.forEach((repo: any) => {
         if (repo.language && typeof repo.language === 'string') {
@@ -105,52 +114,71 @@ export function useExternalData() {
         stars: totalStars,
         contributions: 0, // Would need GitHub GraphQL API for this
         languages: languages,
+        followers: userData.followers,
+        following: userData.following,
         lastUpdated: new Date().toISOString()
       }
+
+      console.log('Updated GitHub data:', data.value.github)
     } catch (err) {
-      console.warn('Failed to fetch GitHub data:', err)
-      // Keep existing data if fetch fails
+      console.warn('Failed to fetch GitHub data, using manual data:', err)
+      // Keep manual data if fetch fails
     }
   }
 
-  // Fetch Google Scholar data (Note: Google Scholar doesn't have a public API)
-  // This would require a backend service or manual updates
+  // For Google Scholar and LinkedIn, we use the backend API
   const fetchGoogleScholarData = async () => {
     try {
-      // For now, we'll use a placeholder approach
-      // In production, you'd need a backend service to scrape Google Scholar
-      // or use a service like SerpAPI
+      console.log('Fetching Google Scholar data via backend API...')
 
-      // Placeholder: Update with actual data when available
-      data.value.publications = {
-        count: 40, // Update with actual count
-        citations: 1247, // Update with actual citations
-        hIndex: 16, // Update with actual h-index
-        lastUpdated: new Date().toISOString()
+      const response = await fetch('http://localhost:3001/api/google-scholar')
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Backend API error')
       }
+
+      const scholarData = await response.json()
+      console.log('Google Scholar data received:', scholarData)
+
+      data.value.publications = {
+        count: scholarData.publications.count,
+        citations: scholarData.publications.citations,
+        hIndex: scholarData.publications.hIndex,
+        lastUpdated: scholarData.publications.lastUpdated
+      }
+
+      console.log('Updated Google Scholar data:', data.value.publications)
     } catch (err) {
-      console.warn('Failed to fetch Google Scholar data:', err)
+      console.warn('Failed to fetch Google Scholar data, using manual data:', err)
+      // Keep manual data if fetch fails
     }
   }
 
-  // Fetch LinkedIn data (Note: LinkedIn doesn't have a public API)
-  // This would require a backend service or manual updates
   const fetchLinkedInData = async () => {
     try {
-      // For now, we'll use a placeholder approach
-      // In production, you'd need a backend service to scrape LinkedIn
-      // or use a service like Proxycurl API
+      console.log('Fetching LinkedIn data via backend API...')
 
-      // Placeholder: Update with actual data when available
-      data.value.linkedin = {
-        experience: 14, // Update with actual experience years
-        currentPosition: 'Senior Scientist II',
-        company: 'Schrödinger',
-        location: 'Bangalore, India',
-        lastUpdated: new Date().toISOString()
+      const response = await fetch('http://localhost:3001/api/linkedin-profile')
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Backend API error')
       }
+
+      const linkedinData = await response.json()
+      console.log('LinkedIn data received:', linkedinData)
+
+      data.value.linkedin = {
+        experience: linkedinData.linkedin.experience,
+        currentPosition: linkedinData.linkedin.currentPosition,
+        company: linkedinData.linkedin.company,
+        location: linkedinData.linkedin.location,
+        lastUpdated: linkedinData.linkedin.lastUpdated
+      }
+
+      console.log('Updated LinkedIn data:', data.value.linkedin)
     } catch (err) {
-      console.warn('Failed to fetch LinkedIn data:', err)
+      console.warn('Failed to fetch LinkedIn data, using manual data:', err)
+      // Keep manual data if fetch fails
     }
   }
 
@@ -160,11 +188,13 @@ export function useExternalData() {
     error.value = null
 
     try {
+      console.log('Starting to fetch all external data...')
       await Promise.allSettled([
-        fetchGitHubData(),
-        fetchGoogleScholarData(),
-        fetchLinkedInData()
+        fetchGitHubData(), // This works!
+        fetchGoogleScholarData(), // Uses backend API
+        fetchLinkedInData() // Uses backend API
       ])
+      console.log('Finished fetching external data')
     } catch (err) {
       error.value = 'Failed to fetch external data'
       console.error('Error fetching external data:', err)
@@ -182,14 +212,25 @@ export function useExternalData() {
 
   // Initialize data fetching
   onMounted(() => {
+    console.log('useExternalData mounted, checking if update needed...')
     if (shouldUpdateData()) {
+      console.log('Data update needed, fetching...')
       fetchAllData()
+    } else {
+      console.log('Data is recent, no update needed')
     }
   })
 
   // Manual refresh function
   const refreshData = () => {
+    console.log('Manual refresh requested')
     fetchAllData()
+  }
+
+  // Function to update manual data (for easy updates)
+  const updateManualData = (section: 'publications' | 'linkedin' | 'github', newData: any) => {
+    data.value[section] = { ...data.value[section], ...newData, lastUpdated: new Date().toISOString() }
+    console.log(`Updated ${section} data:`, data.value[section])
   }
 
   return {
@@ -202,6 +243,7 @@ export function useExternalData() {
     repositoryCount,
     experienceYears,
     refreshData,
-    fetchAllData
+    fetchAllData,
+    updateManualData
   }
 }
